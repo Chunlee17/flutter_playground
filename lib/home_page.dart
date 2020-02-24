@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_playground/playground_pages/interval_animation.dart';
 import 'package:flutter_playground/playground_pages/scaling_page.dart';
 import 'package:flutter_playground/playground_pages/streambuilder.dart';
 
@@ -11,6 +12,7 @@ class _MyHomePageState extends State<MyHomePage> {
   static final List<Widget> pages = [
     StreamBuilderPlayground(),
     ScalingPage(),
+    IntervalAnimationPlayground(),
   ];
 
   @override
@@ -26,6 +28,7 @@ class _MyHomePageState extends State<MyHomePage> {
           return Card(
             child: ListTile(
               leading: Icon(Icons.pages),
+              trailing: Icon(Icons.arrow_forward_ios),
               title: Text(page.toString()),
               onTap: () {
                 Navigator.of(context).push(

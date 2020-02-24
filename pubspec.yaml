@@ -12,6 +12,7 @@ dependencies:
 
   cupertino_icons: ^0.1.2
   rxdart: ^0.23.1
+  firebase_core: ^0.4.4
 
 dev_dependencies:
   flutter_test:
