@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_playground/playground_pages/firebase_face_detection.dart';
 import 'package:flutter_playground/playground_pages/interval_animation.dart';
 import 'package:flutter_playground/playground_pages/scaling_page.dart';
 import 'package:flutter_playground/playground_pages/streambuilder.dart';
@@ -13,6 +14,7 @@ class _MyHomePageState extends State<MyHomePage> {
     StreamBuilderPlayground(),
     ScalingPage(),
     IntervalAnimationPlayground(),
+    FirebaseFaceDetectionDemo(),
   ];
 
   @override
