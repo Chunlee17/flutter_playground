@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_playground/playground_pages/firebase_face_detection.dart';
 import 'package:flutter_playground/playground_pages/interval_animation.dart';
+import 'package:flutter_playground/playground_pages/local_auth.dart';
+import 'package:flutter_playground/playground_pages/look_rotation.dart';
 import 'package:flutter_playground/playground_pages/scaling_page.dart';
+import 'package:flutter_playground/playground_pages/sliver_persistent_header.dart';
 import 'package:flutter_playground/playground_pages/streambuilder.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -15,6 +18,9 @@ class _MyHomePageState extends State<MyHomePage> {
     ScalingPage(),
     IntervalAnimationPlayground(),
     FirebaseFaceDetectionDemo(),
+    SliverPersistentHeaderDemo(),
+    LookRotation(),
+    LocalAuthenthicationDemo(),
   ];
 
   @override
