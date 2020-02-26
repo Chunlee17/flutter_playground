@@ -13,6 +13,7 @@ class StateBuilderHandler<T extends BaseViewModel> extends StatelessWidget {
   Widget build(BuildContext context) {
     return StateBuilder<T>(
       models: [model],
+      disposeModels: true,
       initState: (ctx, _) {
         if (onInitState != null) onInitState();
       },

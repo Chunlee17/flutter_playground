@@ -44,7 +44,7 @@ class CounterDisplay extends StatelessWidget {
         error: (error) => Text(error, style: Theme.of(context).textTheme.title),
         builder: (context) {
           return Text(
-            "You do not have error",
+            "You do not have error: ${counterModel.count}",
             style: Theme.of(context).textTheme.title,
           );
         },
