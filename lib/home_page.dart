@@ -6,6 +6,7 @@ import 'package:flutter_playground/playground_pages/local_auth.dart';
 import 'package:flutter_playground/playground_pages/look_rotation.dart';
 import 'package:flutter_playground/playground_pages/scaling_page.dart';
 import 'package:flutter_playground/playground_pages/sliver_persistent_header.dart';
+import 'package:flutter_playground/playground_pages/state_rebuilder_demo.dart';
 import 'package:flutter_playground/playground_pages/streambuilder.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -23,6 +24,7 @@ class _MyHomePageState extends State<MyHomePage> {
     LookRotation(),
     LocalAuthenthicationDemo(),
     ContainerShadowDemo(),
+    StateRebuilderDemo(),
   ];
 
   @override
