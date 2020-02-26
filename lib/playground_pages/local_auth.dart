@@ -69,18 +69,20 @@ class _LocalAuthenthicationDemoState extends State<LocalAuthenthicationDemo> {
       body: ConstrainedBox(
         constraints: const BoxConstraints.expand(),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             Text('Can check biometrics: $_canCheckBiometrics\n'),
             RaisedButton(
               child: const Text('Check biometrics'),
               onPressed: _checkBiometrics,
             ),
+            Divider(height: 45),
             Text('Available biometrics: $_availableBiometrics\n'),
             RaisedButton(
               child: const Text('Get available biometrics'),
               onPressed: _getAvailableBiometrics,
             ),
+            Divider(height: 45),
             Text('Current State: $_authorized\n'),
             RaisedButton(
               child: const Text('Authenticate'),

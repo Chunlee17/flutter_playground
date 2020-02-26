@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_playground/playground_pages/container_shadow.dart';
 import 'package:flutter_playground/playground_pages/firebase_face_detection.dart';
 import 'package:flutter_playground/playground_pages/interval_animation.dart';
 import 'package:flutter_playground/playground_pages/local_auth.dart';
@@ -21,6 +22,7 @@ class _MyHomePageState extends State<MyHomePage> {
     SliverPersistentHeaderDemo(),
     LookRotation(),
     LocalAuthenthicationDemo(),
+    ContainerShadowDemo(),
   ];
 
   @override
@@ -36,7 +38,10 @@ class _MyHomePageState extends State<MyHomePage> {
           return Card(
             child: ListTile(
               leading: Icon(Icons.pages),
-              trailing: Icon(Icons.arrow_forward_ios),
+              trailing: Icon(
+                Icons.arrow_forward_ios,
+                size: 20,
+              ),
               title: Text(page.toString()),
               onTap: () {
                 Navigator.of(context).push(
