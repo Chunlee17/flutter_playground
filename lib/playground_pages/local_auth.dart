@@ -61,10 +61,9 @@ class _LocalAuthenthicationDemoState extends State<LocalAuthenthicationDemo> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        home: Scaffold(
+    return Scaffold(
       appBar: AppBar(
-        title: const Text('Plugin example app'),
+        title: const Text('Local Authenthication'),
       ),
       body: ConstrainedBox(
         constraints: const BoxConstraints.expand(),
@@ -91,7 +90,7 @@ class _LocalAuthenthicationDemoState extends State<LocalAuthenthicationDemo> {
           ],
         ),
       ),
-    ));
+    );
   }
 
   Widget buildSection(String title, String button, Function onPressed) {

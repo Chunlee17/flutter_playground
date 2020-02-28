@@ -3,6 +3,8 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 
 class ScalingPage extends StatefulWidget {
+  final String image;
+  ScalingPage(this.image);
   @override
   _ScalingPageState createState() => _ScalingPageState();
 }
@@ -15,10 +17,13 @@ class _ScalingPageState extends State<ScalingPage> with SingleTickerProviderStat
   void initState() {
     super.initState();
     _controller = AnimationController(vsync: this, duration: Duration(milliseconds: 300));
-    scale = Tween(begin: 1.0, end: 0.7).animate(CurvedAnimation(
+    scale = Tween(begin: 1.0, end: 0.5).animate(CurvedAnimation(
       curve: Curves.linear,
       parent: _controller,
     ));
+    _controller.addListener(() {
+      //print(_controller.value);
+    });
   }
 
   @override
@@ -29,6 +34,7 @@ class _ScalingPageState extends State<ScalingPage> with SingleTickerProviderStat
 
   @override
   Widget build(BuildContext context) {
+    double maxHeight = MediaQuery.of(context).size.height;
     return ScaleTransition(
       scale: scale,
       child: BackdropFilter(
@@ -38,17 +44,14 @@ class _ScalingPageState extends State<ScalingPage> with SingleTickerProviderStat
             title: Text("Scaling page"),
           ),
           body: GestureDetector(
-            onLongPressStart: (detail) {
-              _controller.forward();
-            },
-            onLongPressEnd: (detail) {
-              _controller.reverse();
-            },
             onVerticalDragUpdate: (detail) {
               print(detail.primaryDelta);
+              _controller.value += detail.primaryDelta / maxHeight * 2;
             },
             onVerticalDragEnd: (detail) {
-              if (detail.velocity.pixelsPerSecond != Offset.zero) {
+              if (scale.value > 0.65) {
+                _controller.reverse();
+              } else {
                 Navigator.of(context).pop();
               }
             },
@@ -57,6 +60,10 @@ class _ScalingPageState extends State<ScalingPage> with SingleTickerProviderStat
               height: double.infinity,
               alignment: Alignment.center,
               color: Colors.white,
+              child: Hero(
+                tag: "Image",
+                child: Image.network(widget.image),
+              ),
             ),
           ),
         ),

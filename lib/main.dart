@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
             title: 'Flutter Playground',
             debugShowCheckedModeBanner: false,
             theme: ThemeData(
-              primarySwatch: Colors.teal,
+              primarySwatch: Colors.pink,
             ),
             home: MyHomePage(),
           );

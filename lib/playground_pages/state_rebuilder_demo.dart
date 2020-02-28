@@ -17,6 +17,7 @@ class _StateRebuilderDemoState extends State<StateRebuilderDemo> {
   }
 
   Widget build(BuildContext context) {
+    print("Rebuild setter");
     return Scaffold(
       appBar: AppBar(
         title: Text("State rebuilder Demo"),
@@ -37,6 +38,7 @@ class CounterDisplay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("Rebuild receiver");
     return Container(
       child: StateBuilderHandler<Counter>(
         model: counterModel,

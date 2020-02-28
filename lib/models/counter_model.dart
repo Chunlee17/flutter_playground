@@ -9,11 +9,13 @@ class Counter extends BaseViewModel {
     setState(ViewState.loading);
     await Future.delayed(Duration(milliseconds: 300));
     isError = Random().nextBool();
-    count++;
+
     if (isError) {
       setState(ViewState.error);
       errorMessage = "I have an error";
-    } else
+    } else {
+      count++;
       setState(ViewState.ready);
+    }
   }
 }
