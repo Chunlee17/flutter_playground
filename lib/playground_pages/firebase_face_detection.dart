@@ -3,6 +3,7 @@ import 'package:firebase_ml_vision/firebase_ml_vision.dart';
 import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
 import 'package:image_picker/image_picker.dart';
+import 'package:toast/toast.dart';
 
 class FirebaseFaceDetectionDemo extends StatefulWidget {
   @override
@@ -28,6 +29,7 @@ class _FirebaseFaceDetectionDemoState extends State<FirebaseFaceDetectionDemo> {
     final FirebaseVisionImage visionImage = FirebaseVisionImage.fromFile(_image);
     faces = await faceDetector.processImage(visionImage);
     img = await loadImageFromFile(_image);
+    if (faces.isEmpty) Toast.show("No face found", context, duration: 3);
     setState(() {});
   }
 

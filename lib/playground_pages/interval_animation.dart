@@ -26,8 +26,9 @@ class _IntervalAnimationPlaygroundState extends State<IntervalAnimationPlaygroun
       appBar: AppBar(
         title: Text("Interval animation"),
       ),
-      body: ListView.builder(
+      body: ListView.separated(
         itemCount: 10,
+        separatorBuilder: (context, index) => Divider(height: 0),
         itemBuilder: (BuildContext context, int index) {
           var animation = Tween<double>(begin: 800.0, end: 0.0).animate(
             CurvedAnimation(
@@ -43,6 +44,7 @@ class _IntervalAnimationPlaygroundState extends State<IntervalAnimationPlaygroun
               child: ListTile(
                 title: Text("Hello animation $index"),
                 subtitle: Text("nice app"),
+                onTap: () {},
                 leading: Icon(Icons.all_inclusive),
               ),
             ),
