@@ -54,18 +54,19 @@ class _StreamBuilderPlaygroundState extends State<StreamBuilderPlayground> {
                     stream: streamController.stream,
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
-                        return Text(snapshot.data.toString());
+                        return Text("Stream value: ${snapshot.data}", style: Theme.of(context).textTheme.title);
                       }
                       return Center(child: CircularProgressIndicator());
                     })
-                : Text("No stream"),
+                : Text("Stream has been hide"),
+            SizedBox(height: 32),
             RaisedButton(
               onPressed: () {
                 setState(() {
                   showStream = !showStream;
                 });
               },
-              child: Text("Show"),
+              child: Text(showStream ? "Hide Stream" : "Show Stream"),
             )
           ],
         ),

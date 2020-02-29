@@ -1,5 +1,5 @@
 name: flutter_playground
-description: A new Flutter project.
+description: A flutter project for multi purpose playfround
 
 version: 1.0.0+1
 
@@ -19,6 +19,11 @@ dependencies:
   local_auth: ^0.6.1+3
   flutter_colorpicker: ^0.3.2
   states_rebuilder: ^1.14.1
+  google_maps_flutter: ^0.5.24+1
+  location: ^2.5.3
+  dio: any
+  toast: ^0.1.5
+  flare_flutter: ^2.0.1
 
 dev_dependencies:
   flutter_test:
@@ -26,3 +31,5 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/pin.flr
