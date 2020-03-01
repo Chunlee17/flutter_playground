@@ -4,7 +4,6 @@ import 'package:dio/dio.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_playground/models/route_model.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 import 'package:toast/toast.dart';
@@ -25,7 +24,6 @@ class GoogleMapPolyLineDemoState extends State<GoogleMapPolyLineDemo> {
   Future<CameraPosition> pos;
   LatLng cameraLatlng;
   bool onInit = true;
-  String address;
   double distanceBetweenPoint;
 
   Future<CameraPosition> getCurrentLocationService() async {
@@ -69,7 +67,6 @@ class GoogleMapPolyLineDemoState extends State<GoogleMapPolyLineDemo> {
   void onGenerateRoute(LatLng latLng) async {
     try {
       await getRoute(currentCameraPosition.target, latLng);
-      await getLocationAddress(latLng.latitude, latLng.longitude);
       PolylineId polylineId = PolylineId(latLng.hashCode.toString());
       final Polyline polyline = Polyline(
         polylineId: polylineId,
@@ -83,13 +80,6 @@ class GoogleMapPolyLineDemoState extends State<GoogleMapPolyLineDemo> {
       });
     } catch (err) {
       Toast.show(err.toString(), context, duration: 3);
-    }
-  }
-
-  Future<void> getLocationAddress(double lat, double lng) async {
-    List<Placemark> placeMarks = await Geolocator().placemarkFromCoordinates(lat, lng);
-    if (placeMarks.length > 0) {
-      address = '${placeMarks[0].name}, ${placeMarks[0].thoroughfare}, ${placeMarks[0].subLocality}, ${placeMarks[0].locality}';
     }
   }
 
@@ -218,28 +208,10 @@ class GoogleMapPolyLineDemoState extends State<GoogleMapPolyLineDemo> {
                   ),
                 ],
               ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Flexible(
-                    flex: 6,
-                    child: Text(
-                      "Distance to:\n$address",
-                      textAlign: TextAlign.center,
-                      style: Theme.of(context).textTheme.subtitle.copyWith(color: Colors.white),
-                    ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 8),
-                    color: Colors.white,
-                    height: 32,
-                    width: 0.6,
-                  ),
-                  Text(
-                    "${(distanceBetweenPoint / 1000).toStringAsFixed(2)} km",
-                    style: Theme.of(context).textTheme.title.copyWith(color: Colors.white),
-                  )
-                ],
+              child: Text(
+                "Distance: ${(distanceBetweenPoint / 1000).toStringAsFixed(2)} km",
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.subtitle.copyWith(color: Colors.white),
               ),
             ),
           );
