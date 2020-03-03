@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_playground/playground_pages/container_shadow.dart';
 import 'package:flutter_playground/playground_pages/draggable_scrollable_sheet.dart';
 import 'package:flutter_playground/playground_pages/firebase_face_detection.dart';
+import 'package:flutter_playground/playground_pages/flutter_audio_player_demo.dart';
+import 'package:flutter_playground/playground_pages/flutter_html_demo.dart';
 import 'package:flutter_playground/playground_pages/google_map_polyline.dart';
 import 'package:flutter_playground/playground_pages/interval_animation.dart';
 import 'package:flutter_playground/playground_pages/lerp_animation.dart';
@@ -44,4 +46,6 @@ final List<PageModel> pages = [
   PageModel(page: LerpAnimationDemo()),
   PageModel(page: DraggableSrollableSheetDemo()),
   PageModel(page: GoogleMapPolyLineDemo()),
+  PageModel(page: FlutterHtmlDemo()),
+  PageModel(page: FlutterAudioPlayerDemo()),
 ];
