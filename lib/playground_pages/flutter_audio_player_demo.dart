@@ -78,7 +78,6 @@ class _FlutterAudioPlayerDemoState extends State<FlutterAudioPlayerDemo> with Si
   @override
   void dispose() {
     audioPlayer.dispose();
-    audioPlayer.release();
     super.dispose();
   }
 

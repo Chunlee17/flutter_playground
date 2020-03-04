@@ -47,8 +47,8 @@ class _LerpAnimationDemoState extends State<LerpAnimationDemo> with SingleTicker
 
   @override
   void dispose() {
-    super.dispose();
     _controller.dispose();
+    super.dispose();
   }
 
   @override
