@@ -16,12 +16,6 @@ class _FlutterBlocWithGetItState extends State<FlutterBlocWithGetIt> {
   }
 
   @override
-  void dispose() {
-    //counterBloc.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(

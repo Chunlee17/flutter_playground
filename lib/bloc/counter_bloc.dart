@@ -7,7 +7,7 @@ class CounterBloc {
   BehaviorSubject<int> streamController = BehaviorSubject();
 
   void increment() async {
-    count = await streamController.length;
+    count++;
     streamController.add(count);
   }
 
