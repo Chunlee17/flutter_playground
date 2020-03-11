@@ -11,9 +11,7 @@ class _FlutterPageViewEnlargeState extends State<FlutterPageViewEnlarge> {
   @override
   void initState() {
     pageController = PageController(viewportFraction: 0.9);
-    pageController.addListener(() => setState(() {
-          print(pageController.page);
-        }));
+    pageController.addListener(() => setState(() {}));
     super.initState();
   }
 

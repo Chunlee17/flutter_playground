@@ -88,10 +88,13 @@ class _FlutterAudioPlayerDemoState extends State<FlutterAudioPlayerDemo> with Si
         title: Text("Flutter Audio Player"),
       ),
       body: Container(
-        padding: EdgeInsets.symmetric(vertical: 32, horizontal: 16),
+        padding: EdgeInsets.symmetric(horizontal: 16),
         child: Column(
           children: <Widget>[
-            SizedBox(height: 32),
+            Container(
+              margin: EdgeInsets.symmetric(vertical: 32),
+              child: Text("Vannda - J+O", style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+            ),
             RotationTransition(
               alignment: Alignment.center,
               turns: animationController,
@@ -100,7 +103,9 @@ class _FlutterAudioPlayerDemoState extends State<FlutterAudioPlayerDemo> with Si
                 height: 200,
                 decoration: BoxDecoration(
                   color: Colors.red,
-                  //shape: BoxShape.circle,
+                  shape: BoxShape.circle,
+                  border: Border.all(width: 5.0, color: Colors.pink),
+                  image: DecorationImage(image: AssetImage("assets/vannda.jpg"), fit: BoxFit.cover),
                 ),
               ),
             ),
@@ -114,9 +119,8 @@ class _FlutterAudioPlayerDemoState extends State<FlutterAudioPlayerDemo> with Si
                     max: maxDuration.inSeconds.toDouble(),
                     value: value,
                     onChanged: (duration) {
-                      setState(() {
-                        this.value = duration;
-                      });
+                      Duration seekDuration = Duration(seconds: duration.floor());
+                      audioPlayer.seek(seekDuration);
                     },
                   ),
                 ),

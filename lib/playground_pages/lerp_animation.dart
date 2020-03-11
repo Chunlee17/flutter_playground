@@ -40,7 +40,7 @@ class _LerpAnimationDemoState extends State<LerpAnimationDemo> with SingleTicker
 
   @override
   void initState() {
-    minHeight = 120;
+    minHeight = 32;
     super.initState();
     _controller = AnimationController(vsync: this, duration: Duration(seconds: 1));
   }
@@ -53,7 +53,7 @@ class _LerpAnimationDemoState extends State<LerpAnimationDemo> with SingleTicker
 
   @override
   Widget build(BuildContext context) {
-    maxHeight = MediaQuery.of(context).size.height - 100;
+    maxHeight = MediaQuery.of(context).size.height - 200;
     return Scaffold(
       appBar: AppBar(
         title: Text("Flutter lerp animation"),
@@ -68,36 +68,40 @@ class _LerpAnimationDemoState extends State<LerpAnimationDemo> with SingleTicker
           )
         ],
       ),
-      body: Stack(
-        children: <Widget>[
-          AnimatedBuilder(
-            animation: _controller,
-            builder: (context, child) {
-              return Positioned(
-                left: 0,
-                right: 0,
-                bottom: 0,
-                child: GestureDetector(
-                  onVerticalDragUpdate: _handleDragUpdate,
-                  onVerticalDragEnd: _handleDragEnd,
-                  child: Container(
-                    height: lerpDouble(minHeight, maxHeight - 30, _controller.value),
-                    padding: const EdgeInsets.symmetric(horizontal: 32),
-                    decoration: BoxDecoration(
-                      color: bottomSheetColor,
-                      borderRadius: BorderRadius.vertical(top: Radius.circular(32)),
-                    ),
-                    child: Column(
-                      children: <Widget>[
-                        handler(),
-                      ],
-                    ),
+      body: AnimatedBuilder(
+        animation: _controller,
+        builder: (context, value) => Stack(
+          children: <Widget>[
+            Positioned(
+              top: lerpDouble(maxHeight, minHeight, _controller.value),
+              right: 0,
+              left: 0,
+              child: GestureDetector(
+                onVerticalDragUpdate: _handleDragUpdate,
+                onVerticalDragEnd: _handleDragEnd,
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: bottomSheetColor,
+                    borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+                  ),
+                  child: Column(
+                    children: <Widget>[
+                      handler(),
+                      ListView.builder(
+                        padding: const EdgeInsets.symmetric(horizontal: 32),
+                        shrinkWrap: true,
+                        itemCount: 15,
+                        itemBuilder: (context, index) => ListTile(
+                          title: Text("HELLO $index"),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-              );
-            },
-          ),
-        ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

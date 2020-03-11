@@ -25,6 +25,15 @@ class _IntervalAnimationPlaygroundState extends State<IntervalAnimationPlaygroun
     return Scaffold(
       appBar: AppBar(
         title: Text("Interval animation"),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.refresh),
+            onPressed: () {
+              _controller.reset();
+              _controller.forward();
+            },
+          )
+        ],
       ),
       body: ListView.separated(
         itemCount: 10,
