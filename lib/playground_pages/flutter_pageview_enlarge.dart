@@ -7,6 +7,14 @@ class FlutterPageViewEnlarge extends StatefulWidget {
 
 class _FlutterPageViewEnlargeState extends State<FlutterPageViewEnlarge> {
   PageController pageController;
+  static const images = [
+    "https://picsum.photos/200",
+    "https://picsum.photos/210",
+    "https://picsum.photos/220",
+    "https://picsum.photos/230",
+    "https://picsum.photos/240",
+    "https://picsum.photos/260",
+  ];
 
   @override
   void initState() {
@@ -22,7 +30,7 @@ class _FlutterPageViewEnlargeState extends State<FlutterPageViewEnlarge> {
         title: Text("Flutter PageView Enlarge"),
       ),
       body: Container(
-        height: 200,
+        height: MediaQuery.of(context).size.width,
         margin: EdgeInsets.only(top: 16),
         child: PageView.builder(
           controller: pageController,
@@ -38,9 +46,10 @@ class _FlutterPageViewEnlargeState extends State<FlutterPageViewEnlarge> {
             value = (1 - (value.abs() * 0.2)).clamp(0.0, 1.0);
             final double distortionValue = Curves.linear.transform(value);
             return Center(
-              child: SizedBox(
+              child: Container(
                 width: double.infinity,
-                height: distortionValue * 200,
+                height: distortionValue * MediaQuery.of(context).size.width,
+                alignment: Alignment.center,
                 child: Card(
                   color: Colors.blueAccent,
                   child: Center(
