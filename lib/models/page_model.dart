@@ -7,6 +7,7 @@ import 'package:flutter_playground/playground_pages/flutter_bloc_get_it.dart';
 import 'package:flutter_playground/playground_pages/flutter_html_demo.dart';
 import 'package:flutter_playground/playground_pages/flutter_pageview_enlarge.dart';
 import 'package:flutter_playground/playground_pages/google_map_polyline.dart';
+import 'package:flutter_playground/playground_pages/half_circle_clipper.dart';
 import 'package:flutter_playground/playground_pages/interval_animation.dart';
 import 'package:flutter_playground/playground_pages/lerp_animation.dart';
 import 'package:flutter_playground/playground_pages/local_auth.dart';
@@ -52,4 +53,5 @@ final List<PageModel> pages = [
   PageModel(page: FlutterAudioPlayerDemo()),
   PageModel(page: FlutterBlocWithGetIt()),
   PageModel(page: FlutterPageViewEnlarge()),
+  PageModel(page: HalfCircleClipper()),
 ];

@@ -1,9 +1,11 @@
 import 'dart:async';
+import 'dart:typed_data';
 
 import 'package:dio/dio.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_playground/models/route_model.dart';
+import 'package:flutter_playground/utils/map_utils.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
@@ -55,10 +57,14 @@ class GoogleMapPolyLineDemoState extends State<GoogleMapPolyLineDemo> {
       zoom: 14.4746,
     );
     MarkerId markerId = MarkerId("CurrentLocation");
+    final Uint8List customMarker = await MapUtils.getBytesFromCanvas();
     final Marker marker = Marker(
       markerId: markerId,
+      icon: BitmapDescriptor.fromBytes(customMarker),
       position: LatLng(_locationData.latitude, _locationData.longitude),
-      infoWindow: InfoWindow(title: "Current location"),
+      onTap: () {
+        print("I tap something");
+      },
     );
     setState(() {
       markers[markerId] = marker;
@@ -144,11 +150,11 @@ class GoogleMapPolyLineDemoState extends State<GoogleMapPolyLineDemo> {
                     cameraLatlng = LatLng(cameraPosition.target.latitude.toDouble(), cameraPosition.target.longitude.toDouble());
                   },
                   onCameraIdle: () {
-                    if (onInit == false) onGenerateRoute(cameraLatlng);
+                    //if (onInit == false) onGenerateRoute(cameraLatlng);
                   },
                   onMapCreated: (GoogleMapController controller) {
                     _controller.complete(controller);
-                    controller.showMarkerInfoWindow(MarkerId("CurrentLocation"));
+                    //controller.showMarkerInfoWindow(MarkerId("CurrentLocation"));
                   },
                 ),
                 buildInstructionText(),
@@ -158,7 +164,7 @@ class GoogleMapPolyLineDemoState extends State<GoogleMapPolyLineDemo> {
             );
           } else if (snapshot.hasError) {
             return Center(
-              child: Text(snapshot.error),
+              child: Text(snapshot.error.toString()),
             );
           } else {
             return Center(
