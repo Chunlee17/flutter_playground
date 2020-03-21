@@ -29,7 +29,6 @@ class _LerpAnimationDemoState extends State<LerpAnimationDemo> with SingleTicker
     if (_controller.isAnimating || _controller.status == AnimationStatus.completed) return;
 
     final double flingVelocity = details.velocity.pixelsPerSecond.dy / maxHeight;
-    print('velocity value : $flingVelocity');
     if (flingVelocity < 0.0)
       _controller.fling(velocity: 1);
     else if (flingVelocity > 0.0)
@@ -90,6 +89,7 @@ class _LerpAnimationDemoState extends State<LerpAnimationDemo> with SingleTicker
                       ListView.builder(
                         padding: const EdgeInsets.symmetric(horizontal: 32),
                         shrinkWrap: true,
+                        primary: false,
                         itemCount: 15,
                         itemBuilder: (context, index) => ListTile(
                           title: Text("HELLO $index"),
