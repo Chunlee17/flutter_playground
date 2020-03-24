@@ -11,6 +11,7 @@ import 'package:flutter_playground/playground_pages/interval_animation.dart';
 import 'package:flutter_playground/playground_pages/lerp_animation.dart';
 import 'package:flutter_playground/playground_pages/local_auth.dart';
 import 'package:flutter_playground/playground_pages/look_rotation.dart';
+import 'package:flutter_playground/playground_pages/new_localization.dart';
 import 'package:flutter_playground/playground_pages/scaling_page.dart';
 import 'package:flutter_playground/playground_pages/sliver_persistent_header.dart';
 import 'package:flutter_playground/playground_pages/state_rebuilder_demo.dart';
@@ -52,4 +53,5 @@ final List<PageModel> pages = [
   PageModel(page: FlutterBlocWithGetIt()),
   PageModel(page: FlutterPageViewEnlarge()),
   PageModel(page: HalfCircleClipper()),
+  PageModel(page: NewLocalization()),
 ];
