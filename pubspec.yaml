@@ -19,7 +19,7 @@ dependencies:
   local_auth: ^0.6.1+3
   flutter_colorpicker: ^0.3.2
   states_rebuilder: ^1.14.1
-  google_maps_flutter: ^0.5.24+1
+  google_maps_flutter: ^0.5.25+1
   location: ^2.5.3
   dio: any
   toast: ^0.1.5
