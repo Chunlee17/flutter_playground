@@ -73,8 +73,9 @@ class _ContainerShadowDemoState extends State<ContainerShadowDemo> {
             width: 200,
             height: 200,
             margin: EdgeInsets.only(bottom: 32, top: 32),
+            padding: EdgeInsets.all(4),
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12),
+              borderRadius: BorderRadius.circular(16),
               color: Colors.red,
               boxShadow: <BoxShadow>[
                 BoxShadow(
@@ -84,6 +85,10 @@ class _ContainerShadowDemoState extends State<ContainerShadowDemo> {
                   offset: Offset(rangeValues.start, rangeValues.end),
                 )
               ],
+            ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(12),
+              child: Image.network("https://picsum.photos/200"),
             ),
           ),
           Text("Blur radius: ${blurRadius.toStringAsFixed(4)}", style: Theme.of(context).textTheme.title),

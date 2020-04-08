@@ -1,4 +1,4 @@
-package com.chunlee.flutter_playground
+package com.example.flutter_playground
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity

@@ -7,15 +7,8 @@ class Counter extends BaseViewModel {
   int count = 0;
   void increment() async {
     setState(ViewState.loading);
-    await Future.delayed(Duration(milliseconds: 300));
-    isError = Random().nextBool();
-
-    if (isError) {
-      setState(ViewState.error);
-      errorMessage = "I have an error";
-    } else {
-      count++;
-      setState(ViewState.ready);
-    }
+    await Future.delayed(Duration(milliseconds: 2300));
+    count++;
+    setState(ViewState.ready);
   }
 }
