@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:jin_widget_helper/jin_widget_helper.dart';
 import 'package:rxdart/rxdart.dart';
 
 class StreamBuilderPlayground extends StatefulWidget {
@@ -50,13 +51,10 @@ class _StreamBuilderPlaygroundState extends State<StreamBuilderPlayground> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             showStream
-                ? StreamBuilder<int>(
+                ? StreamHandler<int>(
                     stream: streamController.stream,
-                    builder: (context, snapshot) {
-                      if (snapshot.hasData) {
-                        return Text("Stream value: ${snapshot.data}", style: Theme.of(context).textTheme.title);
-                      }
-                      return Center(child: CircularProgressIndicator());
+                    ready: (snapshot) {
+                      return Text("Stream value: $snapshot", style: Theme.of(context).textTheme.title);
                     })
                 : Text("Stream has been hide"),
             SizedBox(height: 32),
