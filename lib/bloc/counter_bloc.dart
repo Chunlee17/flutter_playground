@@ -15,8 +15,4 @@ class CounterBloc {
     count--;
     streamController.add(count);
   }
-
-  void dispose() {
-    streamController.close();
-  }
 }
