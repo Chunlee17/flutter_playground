@@ -57,7 +57,7 @@ class _StreamBuilderPlaygroundState extends State<StreamBuilderPlayground> {
                       return Text("Stream value: $snapshot", style: Theme.of(context).textTheme.title);
                     })
                 : Text("Stream has been hide", style: Theme.of(context).textTheme.title),
-            WidgetHelper.verticalSpace(32),
+            UIHelper.verticalSpace(32),
             ActionButton(
               stretch: false,
               onPressed: () {
