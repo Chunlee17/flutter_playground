@@ -5,6 +5,7 @@ import 'package:flutter_playground/playground_pages/firebase_face_detection.dart
 import 'package:flutter_playground/playground_pages/flutter_audio_player_demo.dart';
 import 'package:flutter_playground/playground_pages/flutter_bloc_get_it.dart';
 import 'package:flutter_playground/playground_pages/flutter_pageview_enlarge.dart';
+import 'package:flutter_playground/playground_pages/flutter_provider.dart';
 import 'package:flutter_playground/playground_pages/flutter_sound_recorder.dart';
 import 'package:flutter_playground/playground_pages/google_map_polyline.dart';
 import 'package:flutter_playground/playground_pages/half_circle_clipper.dart';
@@ -58,4 +59,5 @@ final List<PageModel> pages = [
   PageModel(page: HalfCircleClipper()),
   PageModel(page: NewLocalization()),
   PageModel(page: FlutterSoundRecoder()),
+  PageModel(page: FlutterProvider()),
 ];

@@ -5,8 +5,10 @@ import 'package:flutter_playground/bloc/counter_bloc.dart';
 import 'package:flutter_playground/bloc/real_counter_bloc.dart';
 import 'package:flutter_playground/home_page.dart';
 import 'package:flutter_playground/models/counter_model.dart';
+import 'package:flutter_playground/models/counter_provider.dart';
 import 'package:get_it/get_it.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:provider/provider.dart';
 import 'package:states_rebuilder/states_rebuilder.dart';
 
 GetIt getIt = GetIt.instance;
@@ -32,20 +34,23 @@ class MyApp extends StatelessWidget {
             Inject(() => Counter()),
           ],
           builder: (context) {
-            return MaterialApp(
-              title: 'Flutter Playground',
-              debugShowCheckedModeBanner: false,
-              localizationsDelegates: [
-                GlobalMaterialLocalizations.delegate,
-                GlobalWidgetsLocalizations.delegate,
-                EasyLocalization.of(context).delegate,
-              ],
-              supportedLocales: EasyLocalization.of(context).supportedLocales,
-              locale: EasyLocalization.of(context).locale,
-              theme: ThemeData(
-                primarySwatch: Colors.pink,
+            return ChangeNotifierProvider(
+              create: (context) => CounterProvider(),
+              child: MaterialApp(
+                title: 'Flutter Playground',
+                debugShowCheckedModeBanner: false,
+                localizationsDelegates: [
+                  GlobalMaterialLocalizations.delegate,
+                  GlobalWidgetsLocalizations.delegate,
+                  EasyLocalization.of(context).delegate,
+                ],
+                supportedLocales: EasyLocalization.of(context).supportedLocales,
+                locale: EasyLocalization.of(context).locale,
+                theme: ThemeData(
+                  primarySwatch: Colors.pink,
+                ),
+                home: MyHomePage(),
               ),
-              home: MyHomePage(),
             );
           }),
     );
