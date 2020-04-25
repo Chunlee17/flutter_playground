@@ -7,6 +7,7 @@ import 'package:flutter_playground/playground_pages/flutter_bloc_get_it.dart';
 import 'package:flutter_playground/playground_pages/flutter_pageview_enlarge.dart';
 import 'package:flutter_playground/playground_pages/flutter_provider.dart';
 import 'package:flutter_playground/playground_pages/flutter_sound_recorder.dart';
+import 'package:flutter_playground/playground_pages/flutter_stateful.dart';
 import 'package:flutter_playground/playground_pages/google_map_polyline.dart';
 import 'package:flutter_playground/playground_pages/half_circle_clipper.dart';
 import 'package:flutter_playground/playground_pages/interval_animation.dart';
@@ -41,7 +42,10 @@ class PageModel {
 //pages
 final List<PageModel> pages = [
   PageModel(page: StreamBuilderPlayground()),
-  PageModel(page: ScalingPage("https://picsum.photos/300"), shouldHaveTransition: true, image: "https://picsum.photos/300"),
+  PageModel(
+      page: ScalingPage("https://picsum.photos/300"),
+      shouldHaveTransition: true,
+      image: "https://picsum.photos/300"),
   PageModel(page: IntervalAnimationPlayground()),
   PageModel(page: FirebaseFaceDetectionDemo()),
   PageModel(page: SliverPersistentHeaderDemo()),
@@ -60,4 +64,5 @@ final List<PageModel> pages = [
   PageModel(page: NewLocalization()),
   PageModel(page: FlutterSoundRecoder()),
   PageModel(page: FlutterProvider()),
+  PageModel(page: FlutterStatefulWidget()),
 ];
