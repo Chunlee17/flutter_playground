@@ -20,6 +20,7 @@ import 'package:flutter_playground/playground_pages/scaling_page.dart';
 import 'package:flutter_playground/playground_pages/sliver_persistent_header.dart';
 import 'package:flutter_playground/playground_pages/state_rebuilder_demo.dart';
 import 'package:flutter_playground/playground_pages/streambuilder.dart';
+import 'package:flutter_playground/playground_pages/telegram_sliver.dart';
 
 class PageModel {
   Widget page;
@@ -65,4 +66,5 @@ final List<PageModel> pages = [
   PageModel(page: FlutterSoundRecoder()),
   PageModel(page: FlutterProvider()),
   PageModel(page: FlutterStatefulWidget()),
+  PageModel(page: TelegramSliver()),
 ];
