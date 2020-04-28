@@ -4,7 +4,6 @@ import 'dart:typed_data';
 import 'package:dio/dio.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_playground/models/attraction_model.dart';
 import 'package:flutter_playground/models/route_model.dart';
 import 'package:flutter_playground/utils/color_utils.dart';
 import 'package:flutter_playground/utils/map_utils.dart';
@@ -19,7 +18,7 @@ class GoogleMapPolyLineDemo extends StatefulWidget {
 }
 
 class GoogleMapPolyLineDemoState extends State<GoogleMapPolyLineDemo> {
-  GoogleMapController googleMapController;
+  Completer<GoogleMapController> _controller = Completer();
   final String token = 'pk.eyJ1IjoiY2h1bmxlZS10aG9uZyIsImEiOiJjazU3anl4ZzMwNHByM29vNHQ3aXVvZWxvIn0.5myktqzdMYAtWW9l3QUxCg';
 
   Map<MarkerId, Marker> markers = <MarkerId, Marker>{};
@@ -34,56 +33,45 @@ class GoogleMapPolyLineDemoState extends State<GoogleMapPolyLineDemo> {
   double mapPaddingBottom = 150;
   double mapPaddingLeft = 12;
 
-  Future<AttractionModel> getAllAttraction() async {
-    Response response = await Dio().get("https://travona-api.myoptistech.com/v1/services/mobile?count=5");
-    print(response.data);
-    return AttractionModel.fromJson(response.data);
-  }
-
   Future<CameraPosition> getCurrentLocationService() async {
-    MapUtils.index = 1;
     Location location = Location();
 
     bool _serviceEnabled;
     PermissionStatus _permissionGranted;
     LocationData _locationData;
 
-    // _serviceEnabled = await location.serviceEnabled();
-    // if (!_serviceEnabled) {
-    //   _serviceEnabled = await location.requestService();
-    //   if (!_serviceEnabled) {
-    //     throw "Location service disable";
-    //   }
-    // }
-    // _permissionGranted = await location.hasPermission();
-    // if (_permissionGranted == PermissionStatus.DENIED) {
-    //   _permissionGranted = await location.requestPermission();
-    //   if (_permissionGranted != PermissionStatus.GRANTED) {
-    //     throw "Location permission denied";
-    //   }
-    // }
-    // _locationData = await location.getLocation();
-    AttractionModel attractionModel = await getAllAttraction();
+    _serviceEnabled = await location.serviceEnabled();
+    if (!_serviceEnabled) {
+      _serviceEnabled = await location.requestService();
+      if (!_serviceEnabled) {
+        throw "Location service disable";
+      }
+    }
+    _permissionGranted = await location.hasPermission();
+    if (_permissionGranted == PermissionStatus.DENIED) {
+      _permissionGranted = await location.requestPermission();
+      if (_permissionGranted != PermissionStatus.GRANTED) {
+        throw "Location permission denied";
+      }
+    }
+    _locationData = await location.getLocation();
     currentCameraPosition = CameraPosition(
-      target: LatLng(13.3633, 103.8564),
+      target: LatLng(_locationData.latitude, _locationData.longitude),
       zoom: 14.4746,
     );
-
-    for (var attraction in attractionModel.data) {
-      MarkerId markerId = MarkerId(attraction.id);
-      final Uint8List customMarker = await MapUtils.getBytesFromCanvas(imageUrl: attraction.thumbnails[0]);
-      final Marker marker = Marker(
-        markerId: markerId,
-        icon: BitmapDescriptor.fromBytes(customMarker),
-        position: LatLng(attraction.location.lat, attraction.location.long),
-        onTap: () {
-          print("I tap something");
-        },
-      );
+    MarkerId markerId = MarkerId("CurrentLocation");
+    final Uint8List customMarker = await MapUtils.getBytesFromCanvas();
+    final Marker marker = Marker(
+      markerId: markerId,
+      icon: BitmapDescriptor.fromBytes(customMarker),
+      position: LatLng(_locationData.latitude, _locationData.longitude),
+      onTap: () {
+        print("I tap something");
+      },
+    );
+    setState(() {
       markers[markerId] = marker;
-    }
-    setState(() {});
-
+    });
     return currentCameraPosition;
   }
 
@@ -137,11 +125,6 @@ class GoogleMapPolyLineDemoState extends State<GoogleMapPolyLineDemo> {
   }
 
   @override
-  void dispose() {
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -152,13 +135,6 @@ class GoogleMapPolyLineDemoState extends State<GoogleMapPolyLineDemo> {
             onPressed: () => pos = getCurrentLocationService(),
           )
         ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          LatLngBounds latLngBounds = await googleMapController.getVisibleRegion();
-        },
-        backgroundColor: Colors.white,
-        child: Icon(Icons.map, color: Colors.pink),
       ),
       body: FutureBuilder<CameraPosition>(
         future: pos,
@@ -171,27 +147,21 @@ class GoogleMapPolyLineDemoState extends State<GoogleMapPolyLineDemo> {
                   padding: EdgeInsets.only(bottom: mapPaddingBottom, left: mapPaddingLeft),
                   markers: Set<Marker>.of(markers.values),
                   polylines: Set<Polyline>.of(polylines.values),
-                  trafficEnabled: true,
-                  buildingsEnabled: true,
-                  mapToolbarEnabled: false,
-                  tiltGesturesEnabled: true,
-                  indoorViewEnabled: true,
                   initialCameraPosition: snapshot.data,
                   onCameraMove: (cameraPosition) {
                     onInit = false;
                     cameraLatlng = LatLng(cameraPosition.target.latitude.toDouble(), cameraPosition.target.longitude.toDouble());
                   },
                   onCameraIdle: () {
-                    //if (onInit == false) onGenerateRoute(cameraLatlng);
+                    if (onInit == false) onGenerateRoute(cameraLatlng);
                   },
                   onMapCreated: (GoogleMapController controller) {
-                    googleMapController = controller;
-
+                    _controller.complete(controller);
                     setState(() {});
                   },
                 ),
-                //buildDistanceInfo(),
-                //buildPinAnimation(),
+                buildDistanceInfo(),
+                buildPinAnimation(),
               ],
             );
           } else if (snapshot.hasError) {
