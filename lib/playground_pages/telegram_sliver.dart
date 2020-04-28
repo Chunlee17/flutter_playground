@@ -9,29 +9,18 @@ class TelegramSliver extends StatefulWidget {
   _TelegramSliverState createState() => _TelegramSliverState();
 }
 
-class _TelegramSliverState extends State<TelegramSliver>
-    with SingleTickerProviderStateMixin {
+class _TelegramSliverState extends State<TelegramSliver> with SingleTickerProviderStateMixin {
   double maxSliverHeight = 200;
   double minimumShowIconHeight = 140;
   double height;
   StreamController<double> heightController = StreamController.broadcast();
   bool showIcon = true;
+  ScrollController scrollController;
 
   @override
   void initState() {
     height = maxSliverHeight;
-    heightController.stream.listen((data) {
-      if (data > minimumShowIconHeight && !showIcon) {
-        setState(() {
-          showIcon = true;
-        });
-      }
-      if (data < minimumShowIconHeight && showIcon) {
-        setState(() {
-          showIcon = false;
-        });
-      }
-    });
+    scrollController = ScrollController()..addListener(() {});
     super.initState();
   }
 
@@ -47,6 +36,7 @@ class _TelegramSliverState extends State<TelegramSliver>
     print("Rebuild page");
     return Scaffold(
       body: NestedScrollView(
+        controller: scrollController,
         headerSliverBuilder: (context, scrolled) => [
           SliverSafeArea(
             top: false,
@@ -66,10 +56,7 @@ class _TelegramSliverState extends State<TelegramSliver>
                 return FlexibleSpaceBar(
                   collapseMode: CollapseMode.pin,
                   stretchModes: [StretchMode.fadeTitle],
-                  titlePadding: EdgeInsets.only(
-                      left:
-                          (1 - height / (maxSliverHeight + safePadding)).abs() *
-                              80),
+                  titlePadding: EdgeInsets.only(left: (1 - height / (maxSliverHeight + safePadding)).abs() * 80),
                   title: Stack(
                     children: <Widget>[
                       Align(
@@ -79,9 +66,12 @@ class _TelegramSliverState extends State<TelegramSliver>
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
-                              CircleAvatar(child: Text("T")),
+                              CircleAvatar(
+                                child: Text("C"),
+                                backgroundColor: Colors.white,
+                              ),
                               UIHelper.horizontalSpace(),
-                              Text("Telegram Sliver"),
+                              Text("Chunlee Thong"),
                             ],
                           ),
                         ),
@@ -110,13 +100,15 @@ class _TelegramSliverState extends State<TelegramSliver>
 
   Widget sliverBottomWidget() {
     return PreferredSize(
-      preferredSize: Size.fromHeight(showIcon ? 32 : 0),
+      preferredSize: Size.fromHeight(0),
       child: StreamBuilder<double>(
         stream: heightController.stream,
         initialData: maxSliverHeight,
-        builder: (context, snapshot) {
+        builder: (context, height) {
+          double opacity = height.data < 140 ? 0 : 1;
           return Container(
-            height: showIcon ? 32 : 0,
+            height: 0,
+            color: Colors.transparent,
             child: Stack(
               overflow: Overflow.visible,
               alignment: AlignmentDirectional.center,
@@ -124,9 +116,13 @@ class _TelegramSliverState extends State<TelegramSliver>
                 Positioned(
                   bottom: -24,
                   right: 24,
-                  child: CircleAvatar(
-                    radius: 24,
-                    child: Icon(Icons.message),
+                  child: AnimatedOpacity(
+                    duration: const Duration(milliseconds: 100),
+                    opacity: opacity,
+                    child: CircleAvatar(
+                      radius: 24,
+                      child: Icon(Icons.message),
+                    ),
                   ),
                 ),
               ],
