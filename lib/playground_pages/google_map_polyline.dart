@@ -1,9 +1,13 @@
 import 'dart:async';
+import 'dart:typed_data';
 
 import 'package:dio/dio.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_playground/models/route_model.dart';
+import 'package:flutter_playground/utils/color_utils.dart';
+import 'package:flutter_playground/utils/map_utils.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 import 'package:toast/toast.dart';
@@ -15,7 +19,8 @@ class GoogleMapPolyLineDemo extends StatefulWidget {
 
 class GoogleMapPolyLineDemoState extends State<GoogleMapPolyLineDemo> {
   Completer<GoogleMapController> _controller = Completer();
-  final String token = 'pk.eyJ1IjoiY2h1bmxlZS10aG9uZyIsImEiOiJjazU3anl4ZzMwNHByM29vNHQ3aXVvZWxvIn0.5myktqzdMYAtWW9l3QUxCg';
+  final String token =
+      'pk.eyJ1IjoiY2h1bmxlZS10aG9uZyIsImEiOiJjazU3anl4ZzMwNHByM29vNHQ3aXVvZWxvIn0.5myktqzdMYAtWW9l3QUxCg';
 
   Map<MarkerId, Marker> markers = <MarkerId, Marker>{};
   Map<PolylineId, Polyline> polylines = <PolylineId, Polyline>{};
@@ -24,7 +29,10 @@ class GoogleMapPolyLineDemoState extends State<GoogleMapPolyLineDemo> {
   Future<CameraPosition> pos;
   LatLng cameraLatlng;
   bool onInit = true;
-  double distanceBetweenPoint;
+  String address = '';
+  double distanceBetweenPoint = 0;
+  double mapPaddingBottom = 150;
+  double mapPaddingLeft = 12;
 
   Future<CameraPosition> getCurrentLocationService() async {
     Location location = Location();
@@ -53,10 +61,14 @@ class GoogleMapPolyLineDemoState extends State<GoogleMapPolyLineDemo> {
       zoom: 14.4746,
     );
     MarkerId markerId = MarkerId("CurrentLocation");
+    final Uint8List customMarker = await MapUtils.getBytesFromCanvas();
     final Marker marker = Marker(
       markerId: markerId,
+      icon: BitmapDescriptor.fromBytes(customMarker),
       position: LatLng(_locationData.latitude, _locationData.longitude),
-      infoWindow: InfoWindow(title: "Current location"),
+      onTap: () {
+        print("I tap something");
+      },
     );
     setState(() {
       markers[markerId] = marker;
@@ -85,13 +97,13 @@ class GoogleMapPolyLineDemoState extends State<GoogleMapPolyLineDemo> {
 
   Future<void> getRoute(LatLng position, LatLng desc) async {
     latLngList.clear();
-    String requestUrl = 'https://api.mapbox.com/directions/v5/mapbox/driving/${desc.longitude},${desc.latitude};${position.longitude},'
+    String requestUrl =
+        'https://api.mapbox.com/directions/v5/mapbox/driving/${desc.longitude},${desc.latitude};${position.longitude},'
         '${position.latitude}.json?access_token=$token&geometries=geojson&overview=simplified';
     var response = await Dio().get(requestUrl);
     RouteModel routeModel = RouteModel.fromJson(response.data);
     print(requestUrl);
     distanceBetweenPoint = routeModel.routes[0].distance;
-    //MyWay welcome = MyWay.fromJson(response.data);
     for (var coordinate in routeModel.routes[0].geometry.coordinates) {
       double lat = coordinate[1];
       double lng = coordinate[0];
@@ -126,29 +138,32 @@ class GoogleMapPolyLineDemoState extends State<GoogleMapPolyLineDemo> {
               children: <Widget>[
                 GoogleMap(
                   mapType: MapType.normal,
+                  padding: EdgeInsets.only(
+                      bottom: mapPaddingBottom, left: mapPaddingLeft),
                   markers: Set<Marker>.of(markers.values),
                   polylines: Set<Polyline>.of(polylines.values),
                   initialCameraPosition: snapshot.data,
                   onCameraMove: (cameraPosition) {
                     onInit = false;
-                    cameraLatlng = LatLng(cameraPosition.target.latitude.toDouble(), cameraPosition.target.longitude.toDouble());
+                    cameraLatlng = LatLng(
+                        cameraPosition.target.latitude.toDouble(),
+                        cameraPosition.target.longitude.toDouble());
                   },
                   onCameraIdle: () {
                     if (onInit == false) onGenerateRoute(cameraLatlng);
                   },
                   onMapCreated: (GoogleMapController controller) {
                     _controller.complete(controller);
-                    controller.showMarkerInfoWindow(MarkerId("CurrentLocation"));
+                    setState(() {});
                   },
                 ),
-                buildInstructionText(),
                 buildDistanceInfo(),
                 buildPinAnimation(),
               ],
             );
           } else if (snapshot.hasError) {
             return Center(
-              child: Text(snapshot.error),
+              child: Text(snapshot.error.toString()),
             );
           } else {
             return Center(
@@ -177,7 +192,8 @@ class GoogleMapPolyLineDemoState extends State<GoogleMapPolyLineDemo> {
       child: Container(
         width: 80,
         height: 80,
-        margin: EdgeInsets.only(bottom: 12),
+        margin: EdgeInsets.only(
+            bottom: 12.0 + mapPaddingBottom, left: mapPaddingLeft),
         child: FlareActor(
           "assets/pin.flr",
           alignment: Alignment.center,
@@ -189,49 +205,66 @@ class GoogleMapPolyLineDemoState extends State<GoogleMapPolyLineDemo> {
   }
 
   Widget buildDistanceInfo() {
-    return distanceBetweenPoint == null
-        ? Container()
-        : Align(
-            alignment: Alignment.topCenter,
-            child: Container(
-              margin: const EdgeInsets.symmetric(vertical: 16, horizontal: 32),
-              padding: const EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                color: Theme.of(context).primaryColor,
-                borderRadius: BorderRadius.circular(8),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black26,
-                    spreadRadius: 4,
-                    offset: Offset.zero,
-                    blurRadius: 10,
-                  ),
-                ],
-              ),
-              child: Text(
-                "Distance: ${(distanceBetweenPoint / 1000).toStringAsFixed(2)} km",
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.subtitle.copyWith(color: Colors.white),
-              ),
-            ),
-          );
-  }
-
-  Widget buildInstructionText() {
     return Align(
-      alignment: Alignment.bottomCenter,
-      child: Container(
-        margin: const EdgeInsets.symmetric(vertical: 16, horizontal: 32),
-        padding: const EdgeInsets.all(8),
-        decoration: BoxDecoration(
-          color: Theme.of(context).primaryColor,
-          borderRadius: BorderRadius.circular(16),
-        ),
-        child: Text(
-          "Move the map generate route between your current location and destination",
-          textAlign: TextAlign.center,
-          style: Theme.of(context).textTheme.subtitle.copyWith(color: Colors.white),
-        ),
+      alignment: Alignment(1.0, .95),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          Container(
+            margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+            padding: const EdgeInsets.all(8),
+            decoration: BoxDecoration(
+              color: Theme.of(context).primaryColor,
+              borderRadius: BorderRadius.circular(8),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black26,
+                  spreadRadius: 4,
+                  offset: Offset.zero,
+                  blurRadius: 10,
+                ),
+              ],
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Flexible(
+                  flex: 6,
+                  child: Text(
+                    "Destination: $address",
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context)
+                        .textTheme
+                        .subtitle
+                        .copyWith(color: Colors.white),
+                  ),
+                ),
+                Text(
+                  "${(distanceBetweenPoint / 1000).toStringAsFixed(2)} km",
+                  style: Theme.of(context)
+                      .textTheme
+                      .title
+                      .copyWith(color: Colors.white),
+                )
+              ],
+            ),
+          ),
+          Container(
+            margin: const EdgeInsets.symmetric(horizontal: 16),
+            child: RaisedButton(
+              onPressed: () {},
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12)),
+              padding: const EdgeInsets.all(12),
+              child: Text(
+                "BOOK NOW",
+                style: TextStyle(color: Colors.black),
+              ),
+              color: ColorUtils.getColorFromCode("ffeb50"),
+            ),
+          ),
+        ],
       ),
     );
   }
