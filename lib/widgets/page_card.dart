@@ -16,9 +16,13 @@ class PageCard extends StatelessWidget {
           pageBuilder: (context, animation, secondaryAnimation) => page.page,
           transitionDuration: Duration(milliseconds: 500),
           transitionsBuilder: (context, animation, _, child) {
-            return ScaleTransition(
+            var offset = Tween<Offset>(
+              begin: Offset(0, 1),
+              end: Offset.zero,
+            ).animate(animation);
+            return SlideTransition(
               child: child,
-              scale: animation,
+              position: offset,
             );
           },
         ),
@@ -37,6 +41,7 @@ class PageCard extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               if (page.image == null)
                 CircleAvatar(
@@ -52,6 +57,7 @@ class PageCard extends StatelessWidget {
               Text(
                 page.toString(),
                 maxLines: 2,
+                textAlign: TextAlign.center,
                 overflow: TextOverflow.ellipsis,
               )
             ],
