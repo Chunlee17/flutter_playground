@@ -28,7 +28,10 @@ class _FlutterStatefulWidgetState extends State<FlutterStatefulWidget> {
               },
               child: Text("Show/Hide child"),
             ),
-            if (showChild) AnotherStateFulWidget() else Text("Hide child"),
+            if (showChild)
+              AnotherStateFulWidget(key: ValueKey(1))
+            else
+              Text("Hide child"),
           ],
         ),
       ),
@@ -37,6 +40,7 @@ class _FlutterStatefulWidgetState extends State<FlutterStatefulWidget> {
 }
 
 class AnotherStateFulWidget extends StatefulWidget {
+  AnotherStateFulWidget({Key key}) : super(key: key);
   @override
   _AnotherStateFulWidgetState createState() => _AnotherStateFulWidgetState();
 }

@@ -9,7 +9,8 @@ class TelegramSliver extends StatefulWidget {
   _TelegramSliverState createState() => _TelegramSliverState();
 }
 
-class _TelegramSliverState extends State<TelegramSliver> with SingleTickerProviderStateMixin {
+class _TelegramSliverState extends State<TelegramSliver>
+    with SingleTickerProviderStateMixin {
   double maxSliverHeight = 200;
   double minimumShowIconHeight = 140;
   double height;
@@ -56,7 +57,10 @@ class _TelegramSliverState extends State<TelegramSliver> with SingleTickerProvid
                 return FlexibleSpaceBar(
                   collapseMode: CollapseMode.pin,
                   stretchModes: [StretchMode.fadeTitle],
-                  titlePadding: EdgeInsets.only(left: (1 - height / (maxSliverHeight + safePadding)).abs() * 80),
+                  titlePadding: EdgeInsets.only(
+                      left:
+                          (1 - height / (maxSliverHeight + safePadding)).abs() *
+                              80),
                   title: Stack(
                     children: <Widget>[
                       Align(
@@ -107,7 +111,7 @@ class _TelegramSliverState extends State<TelegramSliver> with SingleTickerProvid
         builder: (context, height) {
           double opacity = height.data < 140 ? 0 : 1;
           return Container(
-            height: 0,
+            height: 24,
             color: Colors.transparent,
             child: Stack(
               overflow: Overflow.visible,
@@ -119,9 +123,14 @@ class _TelegramSliverState extends State<TelegramSliver> with SingleTickerProvid
                   child: AnimatedOpacity(
                     duration: const Duration(milliseconds: 100),
                     opacity: opacity,
-                    child: CircleAvatar(
-                      radius: 24,
-                      child: Icon(Icons.message),
+                    child: InkWell(
+                      onTap: () {
+                        print("Message click");
+                      },
+                      child: CircleAvatar(
+                        radius: 24,
+                        child: Icon(Icons.message),
+                      ),
                     ),
                   ),
                 ),
