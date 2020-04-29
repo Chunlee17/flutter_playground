@@ -1,19 +1,20 @@
 import 'dart:async';
 import 'dart:io';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_playground/widgets/ui_helper.dart';
 import 'package:flutter_sound/flauto.dart';
 import 'package:flutter_sound/flutter_sound_player.dart';
 import 'package:flutter_sound/flutter_sound_recorder.dart';
+import 'package:jin_widget_helper/jin_widget_helper.dart';
 import 'package:path_provider/path_provider.dart' show getTemporaryDirectory;
 
-class FlutterSoundRecoder extends StatefulWidget {
+class SoundRecorderDemo extends StatefulWidget {
   @override
-  _FlutterSoundRecoderState createState() => _FlutterSoundRecoderState();
+  _SoundRecorderDemoState createState() => _SoundRecorderDemoState();
 }
 
-class _FlutterSoundRecoderState extends State<FlutterSoundRecoder> {
+class _SoundRecorderDemoState extends State<SoundRecorderDemo> {
   FlutterSoundRecorder recorderModule;
   FlutterSoundPlayer playerModule;
   t_CODEC _codec = t_CODEC.CODEC_AAC;
@@ -42,7 +43,9 @@ class _FlutterSoundRecoderState extends State<FlutterSoundRecoder> {
 
     _recorderSubscription = recorderModule.onRecorderStateChanged.listen((e) {
       if (e != null && e.currentPosition != null) {
-        DateTime date = new DateTime.fromMillisecondsSinceEpoch(e.currentPosition.toInt(), isUtc: true);
+        DateTime date = new DateTime.fromMillisecondsSinceEpoch(
+            e.currentPosition.toInt(),
+            isUtc: true);
         String txt = DateFormat('mm:ss:SS', 'en_GB').format(date);
         this.setState(() {
           this._recorderTxt = txt.substring(0, 8);
@@ -50,7 +53,8 @@ class _FlutterSoundRecoderState extends State<FlutterSoundRecoder> {
       }
     });
 
-    _dbPeakSubscription = recorderModule.onRecorderDbPeakChanged.listen((value) {
+    _dbPeakSubscription =
+        recorderModule.onRecorderDbPeakChanged.listen((value) {
       print("got update -> $value");
       setState(() {
         this._dbLevel = value;

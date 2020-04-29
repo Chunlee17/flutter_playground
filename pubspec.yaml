@@ -34,8 +34,13 @@ dependencies:
   jin_widget_helper: ^1.0.11
   flutter_sound: ^3.1.10
   audio_recorder: ^1.0.2
+  font_awesome_flutter: ^8.8.1
+  hive_flutter: ^0.3.0+2
+  hive: ^1.4.1+1
 
 dev_dependencies:
+  hive_generator: any
+  build_runner: any
   flutter_test:
     sdk: flutter
   flutter_localizations:

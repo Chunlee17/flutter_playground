@@ -8,7 +8,8 @@ class LerpAnimationDemo extends StatefulWidget {
   _LerpAnimationDemoState createState() => _LerpAnimationDemoState();
 }
 
-class _LerpAnimationDemoState extends State<LerpAnimationDemo> with SingleTickerProviderStateMixin {
+class _LerpAnimationDemoState extends State<LerpAnimationDemo>
+    with SingleTickerProviderStateMixin {
   AnimationController _controller;
   double maxHeight;
   double minHeight;
@@ -26,9 +27,11 @@ class _LerpAnimationDemoState extends State<LerpAnimationDemo> with SingleTicker
   }
 
   void _handleDragEnd(DragEndDetails details) {
-    if (_controller.isAnimating || _controller.status == AnimationStatus.completed) return;
+    if (_controller.isAnimating ||
+        _controller.status == AnimationStatus.completed) return;
 
-    final double flingVelocity = details.velocity.pixelsPerSecond.dy / maxHeight;
+    final double flingVelocity =
+        details.velocity.pixelsPerSecond.dy / maxHeight;
     if (flingVelocity < 0.0)
       _controller.fling(velocity: 1);
     else if (flingVelocity > 0.0)
@@ -41,7 +44,8 @@ class _LerpAnimationDemoState extends State<LerpAnimationDemo> with SingleTicker
   void initState() {
     minHeight = 32;
     super.initState();
-    _controller = AnimationController(vsync: this, duration: Duration(seconds: 1));
+    _controller =
+        AnimationController(vsync: this, duration: Duration(seconds: 1));
   }
 
   @override
@@ -81,7 +85,8 @@ class _LerpAnimationDemoState extends State<LerpAnimationDemo> with SingleTicker
                 child: Container(
                   decoration: BoxDecoration(
                     color: bottomSheetColor,
-                    borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+                    borderRadius:
+                        BorderRadius.vertical(top: Radius.circular(16)),
                   ),
                   child: Column(
                     children: <Widget>[
@@ -90,7 +95,7 @@ class _LerpAnimationDemoState extends State<LerpAnimationDemo> with SingleTicker
                         padding: const EdgeInsets.symmetric(horizontal: 32),
                         shrinkWrap: true,
                         primary: false,
-                        itemCount: 15,
+                        itemCount: 5,
                         itemBuilder: (context, index) => ListTile(
                           title: Text("HELLO $index"),
                         ),

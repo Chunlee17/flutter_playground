@@ -1,8 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/diagnostics.dart';
-import 'package:flutter_playground/widgets/ui_helper.dart';
+import 'package:jin_widget_helper/jin_widget_helper.dart';
 
 class TelegramSliver extends StatefulWidget {
   @override
@@ -49,7 +48,7 @@ class _TelegramSliverState extends State<TelegramSliver>
               bottom: sliverBottomWidget(),
               actions: <Widget>[
                 IconButton(icon: Icon(Icons.call), onPressed: () {}),
-                IconButton(icon: Icon(Icons.video_call), onPressed: () {}),
+                IconButton(icon: Icon(Icons.more_vert), onPressed: () {}),
               ],
               flexibleSpace: LayoutBuilder(builder: (context, constraint) {
                 height = constraint.biggest.height;
@@ -75,7 +74,19 @@ class _TelegramSliverState extends State<TelegramSliver>
                                 backgroundColor: Colors.white,
                               ),
                               UIHelper.horizontalSpace(),
-                              Text("Chunlee Thong"),
+                              Column(
+                                mainAxisSize: MainAxisSize.min,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Text("Chunlee Thong"),
+                                  Text(
+                                    "last seen recenlty",
+                                    style: TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.normal),
+                                  )
+                                ],
+                              ),
                             ],
                           ),
                         ),
@@ -87,14 +98,14 @@ class _TelegramSliverState extends State<TelegramSliver>
             ),
           )
         ],
-        body: ListView.builder(
+        body: ListView.separated(
           itemCount: 15,
+          separatorBuilder: (context, index) => Divider(height: 0),
           itemBuilder: (BuildContext context, int index) {
             return ListTile(
               title: Text("Hello"),
-              leading: CircleAvatar(
-                child: Text('T'),
-              ),
+              leading: CircleAvatar(child: Text('T')),
+              onTap: () {},
             );
           },
         ),
@@ -111,7 +122,7 @@ class _TelegramSliverState extends State<TelegramSliver>
         builder: (context, height) {
           double opacity = height.data < 140 ? 0 : 1;
           return Container(
-            height: 24,
+            height: opacity == 1 ? 24 : 0,
             color: Colors.transparent,
             child: Stack(
               overflow: Overflow.visible,

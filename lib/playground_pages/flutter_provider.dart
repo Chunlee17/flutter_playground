@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_playground/models/counter_provider.dart';
+import 'package:flutter_playground/provider/counter_provider.dart';
 import 'package:provider/provider.dart';
 
 class FlutterProvider extends StatefulWidget {
@@ -11,12 +11,12 @@ class _FlutterProviderState extends State<FlutterProvider> {
   CounterProvider counterProvider;
   @override
   void initState() {
-    counterProvider = Provider.of<CounterProvider>(context, listen: false)..increment();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    counterProvider = Provider.of<CounterProvider>(context, listen: false);
     print("Build page");
     return Scaffold(
       appBar: AppBar(

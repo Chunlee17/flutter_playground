@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_playground/widgets/ui_helper.dart';
+import 'package:jin_widget_helper/jin_widget_helper.dart';
 
 class NewLocalization extends StatefulWidget {
   NewLocalization({Key key}) : super(key: key);
