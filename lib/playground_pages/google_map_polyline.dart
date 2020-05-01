@@ -6,10 +6,10 @@ import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_playground/constant/app_constant.dart';
 import 'package:flutter_playground/models/route_model.dart';
-import 'package:flutter_playground/utils/color_utils.dart';
 import 'package:flutter_playground/utils/map_utils.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:jin_widget_helper/jin_widget_helper.dart';
 import 'package:location/location.dart';
 import 'package:toast/toast.dart';
 
@@ -95,18 +95,15 @@ class GoogleMapPolylineState extends State<GoogleMapPolyline> {
   }
 
   Future<void> getLocationAddress(double lat, double lng) async {
-    List<Placemark> placeMarks =
-        await Geolocator().placemarkFromCoordinates(lat, lng);
+    List<Placemark> placeMarks = await Geolocator().placemarkFromCoordinates(lat, lng);
     if (placeMarks.length > 0) {
-      address =
-          '${placeMarks[0].name}, ${placeMarks[0].thoroughfare}, ${placeMarks[0].subLocality}, ${placeMarks[0].locality}';
+      address = '${placeMarks[0].name}, ${placeMarks[0].thoroughfare}, ${placeMarks[0].subLocality}, ${placeMarks[0].locality}';
     }
   }
 
   Future<void> getRoute(LatLng position, LatLng desc) async {
     latLngList.clear();
-    String requestUrl =
-        'https://api.mapbox.com/directions/v5/mapbox/driving/${desc.longitude},${desc.latitude};${position.longitude},'
+    String requestUrl = 'https://api.mapbox.com/directions/v5/mapbox/driving/${desc.longitude},${desc.latitude};${position.longitude},'
         '${position.latitude}.json?access_token=$token&geometries=geojson&overview=simplified';
     var response = await Dio().get(requestUrl);
     RouteModel routeModel = RouteModel.fromJson(response.data);
@@ -146,16 +143,13 @@ class GoogleMapPolylineState extends State<GoogleMapPolyline> {
               children: <Widget>[
                 GoogleMap(
                   mapType: MapType.normal,
-                  padding: EdgeInsets.only(
-                      bottom: mapPaddingBottom, left: mapPaddingLeft),
+                  padding: EdgeInsets.only(bottom: mapPaddingBottom, left: mapPaddingLeft),
                   markers: Set<Marker>.of(markers.values),
                   polylines: Set<Polyline>.of(polylines.values),
                   initialCameraPosition: snapshot.data,
                   onCameraMove: (cameraPosition) {
                     onInit = false;
-                    cameraLatlng = LatLng(
-                        cameraPosition.target.latitude.toDouble(),
-                        cameraPosition.target.longitude.toDouble());
+                    cameraLatlng = LatLng(cameraPosition.target.latitude.toDouble(), cameraPosition.target.longitude.toDouble());
                   },
                   onCameraIdle: () {
                     if (onInit == false) onGenerateRoute(cameraLatlng);
@@ -200,8 +194,7 @@ class GoogleMapPolylineState extends State<GoogleMapPolyline> {
       child: Container(
         width: 80,
         height: 80,
-        margin: EdgeInsets.only(
-            bottom: 12.0 + mapPaddingBottom, left: mapPaddingLeft),
+        margin: EdgeInsets.only(bottom: 12.0 + mapPaddingBottom, left: mapPaddingLeft),
         child: FlareActor(
           "assets/pin.flr",
           alignment: Alignment.center,
@@ -242,18 +235,12 @@ class GoogleMapPolylineState extends State<GoogleMapPolyline> {
                   child: Text(
                     "Destination: $address",
                     textAlign: TextAlign.center,
-                    style: Theme.of(context)
-                        .textTheme
-                        .subtitle
-                        .copyWith(color: Colors.white),
+                    style: Theme.of(context).textTheme.subtitle.copyWith(color: Colors.white),
                   ),
                 ),
                 Text(
                   "${(distanceBetweenPoint / 1000).toStringAsFixed(2)} km",
-                  style: Theme.of(context)
-                      .textTheme
-                      .title
-                      .copyWith(color: Colors.white),
+                  style: Theme.of(context).textTheme.title.copyWith(color: Colors.white),
                 )
               ],
             ),
@@ -262,8 +249,7 @@ class GoogleMapPolylineState extends State<GoogleMapPolyline> {
             margin: const EdgeInsets.symmetric(horizontal: 16),
             child: RaisedButton(
               onPressed: () {},
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12)),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
               padding: const EdgeInsets.all(12),
               child: Text(
                 "BOOK NOW",

@@ -10,6 +10,7 @@ import 'package:flutter_playground/pages/home_page.dart';
 import 'package:flutter_playground/provider/counter_provider.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hive/hive.dart';
+import 'package:jin_widget_helper/jin_widget_helper.dart';
 import 'package:provider/provider.dart';
 import 'package:states_rebuilder/states_rebuilder.dart';
 import 'package:path_provider/path_provider.dart';
@@ -45,8 +46,10 @@ class MyApp extends StatelessWidget {
           Inject(() => Counter()),
         ],
         builder: (context) {
-          return ChangeNotifierProvider(
-            create: (context) => CounterProvider(),
+          return MultiProvider(
+            providers: [
+              ChangeNotifierProvider(create: (context) => CounterProvider()),
+            ],
             child: MaterialApp(
               title: 'Flutter Playground',
               debugShowCheckedModeBanner: false,
@@ -58,7 +61,8 @@ class MyApp extends StatelessWidget {
               supportedLocales: EasyLocalization.of(context).supportedLocales,
               locale: EasyLocalization.of(context).locale,
               theme: ThemeData(
-                primarySwatch: Colors.lightGreen,
+                primarySwatch: ColorUtils.hexColorToMaterialColor(0xFF00569E),
+                accentColor: ColorUtils.hexColorToMaterialColor(0xFF47C5FB),
               ),
               home: MyHomePage(),
             ),

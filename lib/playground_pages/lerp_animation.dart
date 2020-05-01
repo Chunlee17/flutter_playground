@@ -1,15 +1,13 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_playground/utils/color_utils.dart';
+import 'package:jin_widget_helper/jin_widget_helper.dart';
 
 class LerpAnimationDemo extends StatefulWidget {
   @override
   _LerpAnimationDemoState createState() => _LerpAnimationDemoState();
 }
 
-class _LerpAnimationDemoState extends State<LerpAnimationDemo>
-    with SingleTickerProviderStateMixin {
+class _LerpAnimationDemoState extends State<LerpAnimationDemo> with SingleTickerProviderStateMixin {
   AnimationController _controller;
   double maxHeight;
   double minHeight;
@@ -27,11 +25,9 @@ class _LerpAnimationDemoState extends State<LerpAnimationDemo>
   }
 
   void _handleDragEnd(DragEndDetails details) {
-    if (_controller.isAnimating ||
-        _controller.status == AnimationStatus.completed) return;
+    if (_controller.isAnimating || _controller.status == AnimationStatus.completed) return;
 
-    final double flingVelocity =
-        details.velocity.pixelsPerSecond.dy / maxHeight;
+    final double flingVelocity = details.velocity.pixelsPerSecond.dy / maxHeight;
     if (flingVelocity < 0.0)
       _controller.fling(velocity: 1);
     else if (flingVelocity > 0.0)
@@ -44,8 +40,7 @@ class _LerpAnimationDemoState extends State<LerpAnimationDemo>
   void initState() {
     minHeight = 32;
     super.initState();
-    _controller =
-        AnimationController(vsync: this, duration: Duration(seconds: 1));
+    _controller = AnimationController(vsync: this, duration: Duration(seconds: 1));
   }
 
   @override
@@ -85,8 +80,7 @@ class _LerpAnimationDemoState extends State<LerpAnimationDemo>
                 child: Container(
                   decoration: BoxDecoration(
                     color: bottomSheetColor,
-                    borderRadius:
-                        BorderRadius.vertical(top: Radius.circular(16)),
+                    borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
                   ),
                   child: Column(
                     children: <Widget>[
