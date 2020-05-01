@@ -9,16 +9,34 @@ class TelegramSliver extends StatefulWidget {
 }
 
 class _TelegramSliverState extends State<TelegramSliver> with SingleTickerProviderStateMixin {
-  double maxSliverHeight = 200;
-  double minimumShowIconHeight = 140;
+  double maxSliverHeight = 220;
+  double minimumShowIconHeight = 150;
   double height;
+  double safePadding;
   StreamController<double> heightController = StreamController.broadcast();
-  bool showIcon = true;
+  StreamController<bool> bgController = StreamController.broadcast();
+  AnimationController controller;
   ScrollController scrollController;
+
+  bool get showIcon => height < (maxSliverHeight + safePadding) / 2;
+  Future<void> onStretching() async {
+    controller.forward();
+    bgController.add(true);
+    return;
+  }
+
+  void onReverseStretching() {
+    controller.reverse();
+    bgController.add(false);
+  }
 
   @override
   void initState() {
     height = maxSliverHeight;
+    controller = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 200),
+    );
     scrollController = ScrollController()..addListener(() {});
     super.initState();
   }
@@ -26,25 +44,24 @@ class _TelegramSliverState extends State<TelegramSliver> with SingleTickerProvid
   @override
   void dispose() {
     heightController.close();
+    bgController.close();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    var safePadding = MediaQuery.of(context).padding.top;
+    safePadding = MediaQuery.of(context).padding.top;
     print("Rebuild page");
     return Scaffold(
       body: CustomScrollView(
+        physics: BouncingScrollPhysics(),
         slivers: <Widget>[
           SliverAppBar(
             expandedHeight: maxSliverHeight,
             pinned: true,
             stretch: true,
-            stretchTriggerOffset: 100,
-            onStretchTrigger: () {
-              print("Stretch");
-              return;
-            },
+            onStretchTrigger: onStretching,
+            stretchTriggerOffset: 24,
             snap: false,
             floating: false,
             bottom: sliverBottomWidget(),
@@ -55,44 +72,23 @@ class _TelegramSliverState extends State<TelegramSliver> with SingleTickerProvid
             flexibleSpace: LayoutBuilder(builder: (context, constraint) {
               height = constraint.biggest.height;
               heightController.add(height);
+              if (showIcon && controller.isCompleted) onReverseStretching();
+              //
               return FlexibleSpaceBar(
                 collapseMode: CollapseMode.parallax,
                 stretchModes: [StretchMode.zoomBackground],
-                background: Image.network(
-                  "https://picsum.photos/200",
-                  fit: BoxFit.cover,
+                background: ScaleTransition(
+                  scale: controller,
+                  alignment: Alignment(-0.8, 0.8),
+                  child: Image.network("http://picsum.photos/100", fit: BoxFit.cover),
                 ),
                 titlePadding: EdgeInsets.only(left: (1 - height / (maxSliverHeight + safePadding)).abs() * 80),
-                title: Stack(
-                  children: <Widget>[
-                    Align(
-                      alignment: Alignment.bottomLeft,
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: <Widget>[
-                            CircleAvatar(
-                              child: Text("C"),
-                              backgroundColor: Colors.white,
-                            ),
-                            UIHelper.horizontalSpace(),
-                            Column(
-                              mainAxisSize: MainAxisSize.min,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Text("Chunlee Thong"),
-                                Text(
-                                  "last seen recenlty",
-                                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.normal),
-                                )
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
+                title: StreamBuilder<bool>(
+                  initialData: false,
+                  stream: bgController.stream,
+                  builder: (context, snapshot) {
+                    return buildTitle(snapshot.data);
+                  },
                 ),
               );
             }),
@@ -111,6 +107,48 @@ class _TelegramSliverState extends State<TelegramSliver> with SingleTickerProvid
           )
         ],
       ),
+    );
+  }
+
+  Widget buildTitle(bool isStrech) {
+    return Stack(
+      children: <Widget>[
+        Align(
+          alignment: Alignment.bottomLeft,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                AnimatedContainer(
+                  width: isStrech ? 0 : 40,
+                  height: isStrech ? 0 : 40,
+                  duration: Duration(milliseconds: 100),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: NetworkImage("http://picsum.photos/100"),
+                    ),
+                  ),
+                ),
+                UIHelper.horizontalSpace(),
+                Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text("Chunlee Thong"),
+                    Text(
+                      "last seen recenlty",
+                      style: TextStyle(fontSize: 12, fontWeight: FontWeight.normal),
+                    )
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
     );
   }
 
@@ -141,7 +179,8 @@ class _TelegramSliverState extends State<TelegramSliver> with SingleTickerProvid
                       },
                       child: CircleAvatar(
                         radius: 24,
-                        child: Icon(Icons.message),
+                        backgroundColor: Theme.of(context).accentColor,
+                        child: Icon(Icons.message, color: Colors.white),
                       ),
                     ),
                   ),
