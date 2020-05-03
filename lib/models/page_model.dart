@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_playground/playground_pages/api_consumer.dart';
+import 'package:flutter_playground/playground_pages/api_consumer_with_cache.dart';
 import 'package:flutter_playground/playground_pages/audio_player_demo.dart';
 import 'package:flutter_playground/playground_pages/bloc_with_get_It.dart';
 import 'package:flutter_playground/playground_pages/container_shadow.dart';
@@ -71,5 +71,5 @@ final List<PageModel> pages = [
   PageModel(page: FlutterStatefulWidget()),
   PageModel(page: TelegramSliver()),
   PageModel(page: HiveDatabase()),
-  PageModel(page: ApiConsumer()),
+  PageModel(page: ApiConsumerWithCache()),
 ];

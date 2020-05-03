@@ -36,6 +36,7 @@ dependencies:
   audio_recorder: ^1.0.2
   font_awesome_flutter: ^8.8.1
   hive_flutter: ^0.3.0+2
+  dio_http_cache: ^0.2.6
   hive: ^1.4.1+1
 
 dev_dependencies:

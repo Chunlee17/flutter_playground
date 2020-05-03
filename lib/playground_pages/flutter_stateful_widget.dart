@@ -28,10 +28,7 @@ class _FlutterStatefulWidgetState extends State<FlutterStatefulWidget> {
               },
               child: Text("Show/Hide child"),
             ),
-            if (showChild)
-              AnotherStateFulWidget(key: ValueKey(1))
-            else
-              Text("Hide child"),
+            if (showChild) AnotherStateFulWidget(key: UniqueKey()) else Text("Hide child"),
           ],
         ),
       ),
@@ -45,7 +42,7 @@ class AnotherStateFulWidget extends StatefulWidget {
   _AnotherStateFulWidgetState createState() => _AnotherStateFulWidgetState();
 }
 
-class _AnotherStateFulWidgetState extends State<AnotherStateFulWidget> {
+class _AnotherStateFulWidgetState extends State<AnotherStateFulWidget> with AutomaticKeepAliveClientMixin {
   int count = 0;
 
   @override
@@ -56,6 +53,7 @@ class _AnotherStateFulWidgetState extends State<AnotherStateFulWidget> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     print("Child stateful build");
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -76,4 +74,7 @@ class _AnotherStateFulWidgetState extends State<AnotherStateFulWidget> {
       ],
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

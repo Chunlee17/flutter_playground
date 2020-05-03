@@ -3,12 +3,12 @@ import 'package:flutter_playground/models/post_model.dart';
 import 'package:flutter_playground/service/api_provider.dart';
 import 'package:jin_widget_helper/jin_widget_helper.dart';
 
-class ApiConsumer extends StatefulWidget {
+class ApiConsumerWithCache extends StatefulWidget {
   @override
-  _ApiConsumerState createState() => _ApiConsumerState();
+  _ApiConsumerWithCacheState createState() => _ApiConsumerWithCacheState();
 }
 
-class _ApiConsumerState extends State<ApiConsumer> {
+class _ApiConsumerWithCacheState extends State<ApiConsumerWithCache> {
   Future<List<PostModel>> ftPost;
   ApiProvider apiProvider = ApiProvider();
 
@@ -24,7 +24,6 @@ class _ApiConsumerState extends State<ApiConsumer> {
 
   @override
   Widget build(BuildContext context) {
-    print("Rebuild api consumer");
     return Scaffold(
       appBar: AppBar(
         title: Text("Api Consumer"),
@@ -41,7 +40,6 @@ class _ApiConsumerState extends State<ApiConsumer> {
           return Center(child: Text(error));
         },
         ready: (data) {
-          print("Rebuild data");
           return ListView.separated(
             separatorBuilder: (context, index) => Divider(),
             itemCount: data.length,
