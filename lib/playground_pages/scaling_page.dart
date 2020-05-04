@@ -9,15 +9,23 @@ class ScalingPage extends StatefulWidget {
   _ScalingPageState createState() => _ScalingPageState();
 }
 
-class _ScalingPageState extends State<ScalingPage> with SingleTickerProviderStateMixin {
+class _ScalingPageState extends State<ScalingPage>
+    with SingleTickerProviderStateMixin {
   AnimationController _controller;
   Animation<double> scale;
+  Animation<Offset> offset;
 
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(vsync: this, duration: Duration(milliseconds: 300));
+    _controller =
+        AnimationController(vsync: this, duration: Duration(milliseconds: 300));
     scale = Tween(begin: 1.0, end: 0.5).animate(CurvedAnimation(
+      curve: Curves.linear,
+      parent: _controller,
+    ));
+    offset =
+        Tween(begin: Offset.zero, end: Offset(0, 0.5)).animate(CurvedAnimation(
       curve: Curves.linear,
       parent: _controller,
     ));
@@ -35,34 +43,34 @@ class _ScalingPageState extends State<ScalingPage> with SingleTickerProviderStat
   @override
   Widget build(BuildContext context) {
     double maxHeight = MediaQuery.of(context).size.height;
-    return ScaleTransition(
-      scale: scale,
-      child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-        child: Scaffold(
-          appBar: AppBar(
-            title: Text("Scaling page"),
-          ),
-          body: GestureDetector(
-            onVerticalDragUpdate: (detail) {
-              print(detail.primaryDelta);
-              _controller.value += detail.primaryDelta / maxHeight * 2;
-            },
-            onVerticalDragEnd: (detail) {
-              if (scale.value > 0.65) {
-                _controller.reverse();
-              } else {
-                Navigator.of(context).pop();
-              }
-            },
-            child: Container(
-              width: double.infinity,
-              height: double.infinity,
-              alignment: Alignment.center,
-              color: Colors.white,
-              child: Hero(
-                tag: "Image",
-                child: Image.network(widget.image),
+    return SlideTransition(
+      position: offset,
+      child: ScaleTransition(
+        scale: scale,
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+          child: Scaffold(
+            appBar: AppBar(title: Text("Scaling page")),
+            body: GestureDetector(
+              onVerticalDragUpdate: (detail) {
+                _controller.value += detail.primaryDelta / maxHeight * 2;
+              },
+              onVerticalDragEnd: (detail) {
+                if (scale.value < 0.9) {
+                  Navigator.of(context).pop();
+                } else {
+                  _controller.reverse();
+                }
+              },
+              child: Container(
+                width: double.infinity,
+                height: double.infinity,
+                alignment: Alignment.center,
+                color: Colors.white,
+                child: Hero(
+                  tag: "Image",
+                  child: Image.network(widget.image),
+                ),
               ),
             ),
           ),

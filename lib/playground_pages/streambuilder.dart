@@ -1,12 +1,11 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:jin_widget_helper/jin_widget_helper.dart';
 import 'package:rxdart/rxdart.dart';
 
 class StreamBuilderPlayground extends StatefulWidget {
   @override
-  _StreamBuilderPlaygroundState createState() => _StreamBuilderPlaygroundState();
+  _StreamBuilderPlaygroundState createState() =>
+      _StreamBuilderPlaygroundState();
 }
 
 class _StreamBuilderPlaygroundState extends State<StreamBuilderPlayground> {
@@ -54,9 +53,11 @@ class _StreamBuilderPlaygroundState extends State<StreamBuilderPlayground> {
                 ? StreamHandler<int>(
                     stream: streamController.stream,
                     ready: (snapshot) {
-                      return Text("Stream value: $snapshot", style: Theme.of(context).textTheme.title);
+                      return Text("Stream value: $snapshot",
+                          style: Theme.of(context).textTheme.title);
                     })
-                : Text("Stream has been hide", style: Theme.of(context).textTheme.title),
+                : Text("Stream has been hide",
+                    style: Theme.of(context).textTheme.title),
             UIHelper.verticalSpace(32),
             ActionButton(
               stretch: false,

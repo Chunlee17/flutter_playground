@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_playground/bloc/counter_bloc.dart';
 import 'package:flutter_playground/main.dart';
 
-class FlutterBlocWithGetIt extends StatefulWidget {
+class BlocWithGetIt extends StatefulWidget {
   @override
-  _FlutterBlocWithGetItState createState() => _FlutterBlocWithGetItState();
+  _BlocWithGetItState createState() => _BlocWithGetItState();
 }
 
-class _FlutterBlocWithGetItState extends State<FlutterBlocWithGetIt> {
+class _BlocWithGetItState extends State<BlocWithGetIt> {
   CounterBloc counterBloc;
   @override
   void initState() {
@@ -21,7 +21,16 @@ class _FlutterBlocWithGetItState extends State<FlutterBlocWithGetIt> {
       appBar: AppBar(
         title: Text("Flutter Bloc With GetIt"),
       ),
-      body: Center(child: CounterDisplay()),
+      body: Center(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text("You have push the button many times: "),
+            CounterDisplay(),
+          ],
+        ),
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => counterBloc.increment(),
         child: Icon(Icons.add),
@@ -36,13 +45,14 @@ class CounterDisplay extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: StreamBuilder<int>(
-          stream: counterBloc.streamController,
-          builder: (context, snapshot) {
-            return Text(
-              "${counterBloc.count}",
-              style: TextStyle(fontSize: 18),
-            );
-          }),
+        stream: counterBloc.streamController,
+        builder: (context, snapshot) {
+          return Text(
+            "${counterBloc.count}",
+            style: TextStyle(fontSize: 18),
+          );
+        },
+      ),
     );
   }
 }

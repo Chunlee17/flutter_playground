@@ -4,24 +4,22 @@ import 'dart:typed_data';
 import 'package:dio/dio.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_playground/constant/app_constant.dart';
 import 'package:flutter_playground/models/route_model.dart';
-import 'package:flutter_playground/utils/color_utils.dart';
 import 'package:flutter_playground/utils/map_utils.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:jin_widget_helper/jin_widget_helper.dart';
 import 'package:location/location.dart';
 import 'package:toast/toast.dart';
 
-class GoogleMapPolyLineDemo extends StatefulWidget {
+class GoogleMapPolyline extends StatefulWidget {
   @override
-  State<GoogleMapPolyLineDemo> createState() => GoogleMapPolyLineDemoState();
+  State<GoogleMapPolyline> createState() => GoogleMapPolylineState();
 }
 
-class GoogleMapPolyLineDemoState extends State<GoogleMapPolyLineDemo> {
+class GoogleMapPolylineState extends State<GoogleMapPolyline> {
   Completer<GoogleMapController> _controller = Completer();
-  final String token =
-      'pk.eyJ1IjoiY2h1bmxlZS10aG9uZyIsImEiOiJjazU3anl4ZzMwNHByM29vNHQ3aXVvZWxvIn0.5myktqzdMYAtWW9l3QUxCg';
-
   Map<MarkerId, Marker> markers = <MarkerId, Marker>{};
   Map<PolylineId, Polyline> polylines = <PolylineId, Polyline>{};
   List<LatLng> latLngList = List();

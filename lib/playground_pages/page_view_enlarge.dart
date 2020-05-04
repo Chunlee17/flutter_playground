@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class FlutterPageViewEnlarge extends StatefulWidget {
+class PageViewEnlarge extends StatefulWidget {
   @override
-  _FlutterPageViewEnlargeState createState() => _FlutterPageViewEnlargeState();
+  _PageViewEnlargeState createState() => _PageViewEnlargeState();
 }
 
-class _FlutterPageViewEnlargeState extends State<FlutterPageViewEnlarge> {
+class _PageViewEnlargeState extends State<PageViewEnlarge> {
   PageController pageController;
   static const images = [
     "https://picsum.photos/200",

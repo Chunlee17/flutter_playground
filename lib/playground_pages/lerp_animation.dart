@@ -1,7 +1,7 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_playground/utils/color_utils.dart';
+import 'package:flutter/rendering.dart';
+import 'package:jin_widget_helper/jin_widget_helper.dart';
 
 class LerpAnimationDemo extends StatefulWidget {
   @override
@@ -10,9 +10,9 @@ class LerpAnimationDemo extends StatefulWidget {
 
 class _LerpAnimationDemoState extends State<LerpAnimationDemo> with SingleTickerProviderStateMixin {
   AnimationController _controller;
-  double maxHeight;
-  double minHeight;
-  Color bottomSheetColor = ColorUtils.getColorFromCode("#d59ed6");
+  ScrollController scrollController;
+  double maxHeight = 100;
+  Animation<Offset> position;
 
   void toggleBottomSheet() {
     if (_controller.status == AnimationStatus.completed) {
@@ -22,26 +22,38 @@ class _LerpAnimationDemoState extends State<LerpAnimationDemo> with SingleTicker
   }
 
   void _handleDragUpdate(DragUpdateDetails details) {
-    _controller.value -= details.primaryDelta / maxHeight;
+    _controller.value += details.primaryDelta / maxHeight;
   }
 
   void _handleDragEnd(DragEndDetails details) {
     if (_controller.isAnimating || _controller.status == AnimationStatus.completed) return;
 
     final double flingVelocity = details.velocity.pixelsPerSecond.dy / maxHeight;
+    print("Fling velocity: $flingVelocity");
     if (flingVelocity < 0.0)
-      _controller.fling(velocity: 1);
-    else if (flingVelocity > 0.0)
       _controller.fling(velocity: -1);
+    else if (flingVelocity > 0.0)
+      _controller.fling(velocity: 1);
     else
-      _controller.fling(velocity: _controller.value < 0.5 ? -2.0 : 2.0);
+      _controller.fling(velocity: _controller.value < 0.5 ? -1.0 : 1.0);
   }
 
   @override
   void initState() {
-    minHeight = 32;
     super.initState();
-    _controller = AnimationController(vsync: this, duration: Duration(seconds: 1));
+    _controller = AnimationController(vsync: this, duration: Duration(milliseconds: 250))..forward();
+    position = Tween(begin: Offset.zero, end: Offset(0, -1)).animate(
+      CurvedAnimation(parent: _controller, curve: Curves.linear),
+    );
+
+    scrollController = ScrollController();
+    scrollController.addListener(() {
+      if (scrollController.position.userScrollDirection == ScrollDirection.reverse) {
+        if (_controller.isCompleted && !_controller.isAnimating) {
+          _controller.reverse();
+        }
+      }
+    });
   }
 
   @override
@@ -52,10 +64,10 @@ class _LerpAnimationDemoState extends State<LerpAnimationDemo> with SingleTicker
 
   @override
   Widget build(BuildContext context) {
-    maxHeight = MediaQuery.of(context).size.height - 200;
     return Scaffold(
       appBar: AppBar(
         title: Text("Flutter lerp animation"),
+        elevation: 0.0,
         actions: <Widget>[
           IconButton(
             onPressed: toggleBottomSheet,
@@ -67,53 +79,46 @@ class _LerpAnimationDemoState extends State<LerpAnimationDemo> with SingleTicker
           )
         ],
       ),
-      body: AnimatedBuilder(
-        animation: _controller,
-        builder: (context, value) => Stack(
-          children: <Widget>[
-            Positioned(
-              top: lerpDouble(maxHeight, minHeight, _controller.value),
-              right: 0,
-              left: 0,
+      body: Column(
+        children: <Widget>[
+          SizeTransition(
+            sizeFactor: _controller,
+            child: Container(
+              color: Theme.of(context).primaryColor,
               child: GestureDetector(
                 onVerticalDragUpdate: _handleDragUpdate,
                 onVerticalDragEnd: _handleDragEnd,
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: bottomSheetColor,
-                    borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
-                  ),
-                  child: Column(
-                    children: <Widget>[
-                      handler(),
-                      ListView.builder(
-                        padding: const EdgeInsets.symmetric(horizontal: 32),
-                        shrinkWrap: true,
-                        primary: false,
-                        itemCount: 15,
-                        itemBuilder: (context, index) => ListTile(
-                          title: Text("HELLO $index"),
-                        ),
-                      ),
-                    ],
-                  ),
+                child: GridView.builder(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 5),
+                  shrinkWrap: true,
+                  primary: false,
+                  itemCount: 20,
+                  itemBuilder: (context, index) {
+                    return SmallIconButton(
+                      onTap: () {},
+                      backgroundColor: Colors.red.shade200,
+                      icon: Icon(Icons.account_balance_wallet, color: Colors.white),
+                    );
+                  },
                 ),
               ),
             ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget handler() {
-    return Container(
-      width: 54,
-      height: 5,
-      margin: const EdgeInsets.only(top: 8),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
-        color: Colors.white.withOpacity(0.7),
+          ),
+          Expanded(
+            child: NotificationListener<ScrollNotification>(
+              onNotification: (scrollNotification) {
+                return true;
+              },
+              child: ListView.builder(
+                itemCount: 20,
+                controller: scrollController,
+                itemBuilder: (context, index) {
+                  return ListTile(title: Text("Hello Chunlee"));
+                },
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

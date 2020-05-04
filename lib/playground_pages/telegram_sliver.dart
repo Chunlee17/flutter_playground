@@ -1,26 +1,42 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/diagnostics.dart';
-import 'package:flutter_playground/widgets/ui_helper.dart';
+import 'package:jin_widget_helper/jin_widget_helper.dart';
 
 class TelegramSliver extends StatefulWidget {
   @override
   _TelegramSliverState createState() => _TelegramSliverState();
 }
 
-class _TelegramSliverState extends State<TelegramSliver>
-    with SingleTickerProviderStateMixin {
-  double maxSliverHeight = 200;
-  double minimumShowIconHeight = 140;
+class _TelegramSliverState extends State<TelegramSliver> with SingleTickerProviderStateMixin {
+  double maxSliverHeight = 220;
+  double minimumShowIconHeight = 150;
   double height;
+  double safePadding;
   StreamController<double> heightController = StreamController.broadcast();
-  bool showIcon = true;
+  StreamController<bool> bgController = StreamController.broadcast();
+  AnimationController controller;
   ScrollController scrollController;
+
+  bool get showIcon => height < (maxSliverHeight + safePadding) / 2;
+  Future<void> onStretching() async {
+    controller.forward();
+    bgController.add(true);
+    return;
+  }
+
+  void onReverseStretching() {
+    controller.reverse();
+    bgController.add(false);
+  }
 
   @override
   void initState() {
     height = maxSliverHeight;
+    controller = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 200),
+    );
     scrollController = ScrollController()..addListener(() {});
     super.initState();
   }
@@ -28,77 +44,111 @@ class _TelegramSliverState extends State<TelegramSliver>
   @override
   void dispose() {
     heightController.close();
+    bgController.close();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    var safePadding = MediaQuery.of(context).padding.top;
+    safePadding = MediaQuery.of(context).padding.top;
     print("Rebuild page");
     return Scaffold(
-      body: NestedScrollView(
-        controller: scrollController,
-        headerSliverBuilder: (context, scrolled) => [
-          SliverSafeArea(
-            top: false,
-            sliver: SliverAppBar(
-              expandedHeight: maxSliverHeight,
-              pinned: true,
-              snap: false,
-              floating: false,
-              bottom: sliverBottomWidget(),
-              actions: <Widget>[
-                IconButton(icon: Icon(Icons.call), onPressed: () {}),
-                IconButton(icon: Icon(Icons.video_call), onPressed: () {}),
-              ],
-              flexibleSpace: LayoutBuilder(builder: (context, constraint) {
-                height = constraint.biggest.height;
-                heightController.add(height);
-                return FlexibleSpaceBar(
-                  collapseMode: CollapseMode.pin,
-                  stretchModes: [StretchMode.fadeTitle],
-                  titlePadding: EdgeInsets.only(
-                      left:
-                          (1 - height / (maxSliverHeight + safePadding)).abs() *
-                              80),
-                  title: Stack(
-                    children: <Widget>[
-                      Align(
-                        alignment: Alignment.bottomLeft,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: <Widget>[
-                              CircleAvatar(
-                                child: Text("C"),
-                                backgroundColor: Colors.white,
-                              ),
-                              UIHelper.horizontalSpace(),
-                              Text("Chunlee Thong"),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                );
-              }),
+      body: CustomScrollView(
+        physics: BouncingScrollPhysics(),
+        slivers: <Widget>[
+          SliverAppBar(
+            expandedHeight: maxSliverHeight,
+            pinned: true,
+            stretch: true,
+            onStretchTrigger: onStretching,
+            stretchTriggerOffset: 24,
+            snap: false,
+            floating: false,
+            bottom: sliverBottomWidget(),
+            actions: <Widget>[
+              IconButton(icon: Icon(Icons.call), onPressed: () {}),
+              IconButton(icon: Icon(Icons.more_vert), onPressed: () {}),
+            ],
+            flexibleSpace: LayoutBuilder(builder: (context, constraint) {
+              height = constraint.biggest.height;
+              heightController.add(height);
+              if (showIcon && controller.isCompleted) onReverseStretching();
+              //
+              return FlexibleSpaceBar(
+                collapseMode: CollapseMode.parallax,
+                stretchModes: [StretchMode.zoomBackground],
+                background: ScaleTransition(
+                  scale: controller,
+                  alignment: Alignment(-0.8, 0.8),
+                  child: Image.network("http://picsum.photos/100", fit: BoxFit.cover),
+                ),
+                titlePadding: EdgeInsets.only(left: (1 - height / (maxSliverHeight + safePadding)).abs() * 80),
+                title: StreamBuilder<bool>(
+                  initialData: false,
+                  stream: bgController.stream,
+                  builder: (context, snapshot) {
+                    return buildTitle(snapshot.data);
+                  },
+                ),
+              );
+            }),
+          ),
+          SliverPadding(
+            padding: EdgeInsets.only(top: 32),
+            sliver: SliverGrid.count(
+              crossAxisCount: 2,
+              children: List.generate(
+                20,
+                (index) => Card(
+                  child: Center(child: Text("Hello World")),
+                ),
+              ),
             ),
           )
         ],
-        body: ListView.builder(
-          itemCount: 15,
-          itemBuilder: (BuildContext context, int index) {
-            return ListTile(
-              title: Text("Hello"),
-              leading: CircleAvatar(
-                child: Text('T'),
-              ),
-            );
-          },
-        ),
       ),
+    );
+  }
+
+  Widget buildTitle(bool isStrech) {
+    return Stack(
+      children: <Widget>[
+        Align(
+          alignment: Alignment.bottomLeft,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                AnimatedContainer(
+                  width: isStrech ? 0 : 40,
+                  height: isStrech ? 0 : 40,
+                  duration: Duration(milliseconds: 100),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: NetworkImage("http://picsum.photos/100"),
+                    ),
+                  ),
+                ),
+                UIHelper.horizontalSpace(),
+                Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text("Chunlee Thong"),
+                    Text(
+                      "last seen recenlty",
+                      style: TextStyle(fontSize: 12, fontWeight: FontWeight.normal),
+                    )
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
     );
   }
 
@@ -111,7 +161,7 @@ class _TelegramSliverState extends State<TelegramSliver>
         builder: (context, height) {
           double opacity = height.data < 140 ? 0 : 1;
           return Container(
-            height: 24,
+            height: opacity == 1 ? 24 : 0,
             color: Colors.transparent,
             child: Stack(
               overflow: Overflow.visible,
@@ -129,7 +179,8 @@ class _TelegramSliverState extends State<TelegramSliver>
                       },
                       child: CircleAvatar(
                         radius: 24,
-                        child: Icon(Icons.message),
+                        backgroundColor: Theme.of(context).accentColor,
+                        child: Icon(Icons.message, color: Colors.white),
                       ),
                     ),
                   ),

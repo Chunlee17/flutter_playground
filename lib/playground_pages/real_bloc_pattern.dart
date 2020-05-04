@@ -11,7 +11,8 @@ class _RealBlocPatternState extends State<RealBlocPattern> {
   RealCounterBloc counterBloc;
   @override
   void initState() {
-    counterBloc = BlocProvider.of<RealCounterBloc>(context)..add(CounterEvent.increment);
+    counterBloc = BlocProvider.of<RealCounterBloc>(context)
+      ..add(CounterEvent.increment);
     super.initState();
   }
 
@@ -20,9 +21,18 @@ class _RealBlocPatternState extends State<RealBlocPattern> {
     print("Rebuild page");
     return Scaffold(
       appBar: AppBar(
-        title: Text("Flutter Bloc With GetIt"),
+        title: Text("Real Bloc Pattern"),
       ),
-      body: Center(child: CounterDisplay()),
+      body: Center(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text("You have push the button many times: "),
+            CounterDisplay(),
+          ],
+        ),
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => counterBloc.add(CounterEvent.increment),
         child: Icon(Icons.add),

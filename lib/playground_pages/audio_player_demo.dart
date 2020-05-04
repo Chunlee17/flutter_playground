@@ -1,12 +1,13 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 
-class FlutterAudioPlayerDemo extends StatefulWidget {
+class AudioPlayerDemo extends StatefulWidget {
   @override
-  _FlutterAudioPlayerDemoState createState() => _FlutterAudioPlayerDemoState();
+  _AudioPlayerDemoState createState() => _AudioPlayerDemoState();
 }
 
-class _FlutterAudioPlayerDemoState extends State<FlutterAudioPlayerDemo> with SingleTickerProviderStateMixin {
+class _AudioPlayerDemoState extends State<AudioPlayerDemo>
+    with SingleTickerProviderStateMixin {
   final String url = "https://www.chunleethong.com/vannda.mp3";
   AudioPlayer audioPlayer = AudioPlayer(mode: PlayerMode.MEDIA_PLAYER);
   AudioPlayerState playerState = AudioPlayerState.STOPPED;
@@ -71,7 +72,8 @@ class _FlutterAudioPlayerDemoState extends State<FlutterAudioPlayerDemo> with Si
         maxDuration = d;
       });
     });
-    animationController = AnimationController(vsync: this, duration: Duration(seconds: 4));
+    animationController =
+        AnimationController(vsync: this, duration: Duration(seconds: 4));
     super.initState();
   }
 
@@ -93,7 +95,8 @@ class _FlutterAudioPlayerDemoState extends State<FlutterAudioPlayerDemo> with Si
           children: <Widget>[
             Container(
               margin: EdgeInsets.symmetric(vertical: 32),
-              child: Text("Vannda - J+O", style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+              child: Text("Vannda - J+O",
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
             ),
             RotationTransition(
               alignment: Alignment.center,
@@ -105,7 +108,9 @@ class _FlutterAudioPlayerDemoState extends State<FlutterAudioPlayerDemo> with Si
                   color: Colors.red,
                   shape: BoxShape.circle,
                   border: Border.all(width: 5.0, color: Colors.pink),
-                  image: DecorationImage(image: AssetImage("assets/vannda.jpg"), fit: BoxFit.cover),
+                  image: DecorationImage(
+                      image: AssetImage("assets/vannda.jpg"),
+                      fit: BoxFit.cover),
                 ),
               ),
             ),
@@ -119,7 +124,8 @@ class _FlutterAudioPlayerDemoState extends State<FlutterAudioPlayerDemo> with Si
                     max: maxDuration.inSeconds.toDouble(),
                     value: value,
                     onChanged: (duration) {
-                      Duration seekDuration = Duration(seconds: duration.floor());
+                      Duration seekDuration =
+                          Duration(seconds: duration.floor());
                       audioPlayer.seek(seekDuration);
                     },
                   ),
@@ -135,7 +141,9 @@ class _FlutterAudioPlayerDemoState extends State<FlutterAudioPlayerDemo> with Si
   }
 
   Widget buildIcon() {
-    if (playerState == AudioPlayerState.COMPLETED || playerState == AudioPlayerState.PAUSED || playerState == AudioPlayerState.STOPPED) {
+    if (playerState == AudioPlayerState.COMPLETED ||
+        playerState == AudioPlayerState.PAUSED ||
+        playerState == AudioPlayerState.STOPPED) {
       return FloatingActionButton(
         onPressed: playAudio,
         child: Icon(Icons.play_arrow),

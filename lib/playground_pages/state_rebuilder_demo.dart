@@ -13,9 +13,6 @@ class _StateRebuilderDemoState extends State<StateRebuilderDemo> {
   @override
   void initState() {
     counterModel = Injector.get<Counter>();
-    Future.microtask(() {
-      counterModel.increment();
-    });
     super.initState();
   }
 
@@ -46,10 +43,13 @@ class CounterDisplay extends StatelessWidget {
       child: StateBuilderHandler<Counter>(
         model: counterModel,
         loading: CircularProgressIndicator(),
+        onInitState: () {
+          counterModel.increment();
+        },
         error: (error) => Text(error, style: Theme.of(context).textTheme.title),
         builder: (context) {
           return Text(
-            "You Have the counter: ${counterModel.count}",
+            "You have the counter: ${counterModel.count}",
             style: Theme.of(context).textTheme.title,
           );
         },
