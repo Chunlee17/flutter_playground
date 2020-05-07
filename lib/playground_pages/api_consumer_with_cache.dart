@@ -36,7 +36,7 @@ class _ApiConsumerWithCacheState extends State<ApiConsumerWithCache> {
       ),
       body: FutureHandler<List<PostModel>>(
         future: ftPost,
-        error: (error, _) {
+        error: (error) {
           return Center(
             child: Text(
               error,

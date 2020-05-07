@@ -15,6 +15,7 @@ class _ApiConsumerWithStreamState extends State<ApiConsumerWithStream> {
 
   void fetchPost() async {
     try {
+      baseBloc.addData(null);
       var data = await apiProvider.getPosts();
       baseBloc.addData(data);
     } catch (e) {
@@ -42,7 +43,7 @@ class _ApiConsumerWithStreamState extends State<ApiConsumerWithStream> {
       ),
       body: StreamHandler<List<PostModel>>(
         stream: baseBloc.stream,
-        error: (error, _) {
+        error: (error) {
           return Center(
             child: Text(
               error,
