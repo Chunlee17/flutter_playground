@@ -6,6 +6,7 @@ import 'package:flutter_playground/playground_pages/bloc_with_get_It.dart';
 import 'package:flutter_playground/playground_pages/container_shadow.dart';
 import 'package:flutter_playground/playground_pages/draggable_scrollable_sheet.dart';
 import 'package:flutter_playground/playground_pages/firebase_face_detection.dart';
+import 'package:flutter_playground/playground_pages/flutter_inherited_widget.dart';
 import 'package:flutter_playground/playground_pages/flutter_provider.dart';
 import 'package:flutter_playground/playground_pages/flutter_stateful_widget.dart';
 import 'package:flutter_playground/playground_pages/google_map_polyline.dart';
@@ -77,4 +78,5 @@ final List<PageModel> pages = [
   PageModel(page: HiveDatabase()),
   PageModel(page: ApiConsumerWithCache()),
   PageModel(page: ApiConsumerWithStream()),
+  PageModel(page: FlutterInheritedWidget()),
 ];

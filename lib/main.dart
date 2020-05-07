@@ -8,6 +8,7 @@ import 'package:flutter_playground/models/contact.dart';
 import 'package:flutter_playground/models/counter_model.dart';
 import 'package:flutter_playground/pages/home_page.dart';
 import 'package:flutter_playground/provider/counter_provider.dart';
+import 'package:flutter_playground/widgets/counter_inherited_widget.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hive/hive.dart';
 import 'package:jin_widget_helper/jin_widget_helper.dart';
@@ -46,25 +47,28 @@ class MyApp extends StatelessWidget {
           Inject(() => Counter()),
         ],
         builder: (context) {
-          return MultiProvider(
-            providers: [
-              ChangeNotifierProvider(create: (context) => CounterProvider()),
-            ],
-            child: MaterialApp(
-              title: 'Flutter Playground',
-              debugShowCheckedModeBanner: false,
-              localizationsDelegates: [
-                GlobalMaterialLocalizations.delegate,
-                GlobalWidgetsLocalizations.delegate,
-                EasyLocalization.of(context).delegate,
+          return CounterInherited(
+            count: 20,
+            child: MultiProvider(
+              providers: [
+                ChangeNotifierProvider(create: (context) => CounterProvider()),
               ],
-              supportedLocales: EasyLocalization.of(context).supportedLocales,
-              locale: EasyLocalization.of(context).locale,
-              theme: ThemeData(
-                primarySwatch: ColorUtils.hexColorToMaterialColor(0xFF00569E),
-                accentColor: ColorUtils.hexColorToMaterialColor(0xFF47C5FB),
+              child: MaterialApp(
+                title: 'Flutter Playground',
+                debugShowCheckedModeBanner: false,
+                localizationsDelegates: [
+                  GlobalMaterialLocalizations.delegate,
+                  GlobalWidgetsLocalizations.delegate,
+                  EasyLocalization.of(context).delegate,
+                ],
+                supportedLocales: EasyLocalization.of(context).supportedLocales,
+                locale: EasyLocalization.of(context).locale,
+                theme: ThemeData(
+                  primarySwatch: ColorUtils.hexColorToMaterialColor(0xFF00569E),
+                  accentColor: ColorUtils.hexColorToMaterialColor(0xFF47C5FB),
+                ),
+                home: MyHomePage(),
               ),
-              home: MyHomePage(),
             ),
           );
         },
