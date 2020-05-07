@@ -1,19 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_playground/bloc/base_extend_bloc.dart';
 import 'package:flutter_playground/models/post_model.dart';
 import 'package:flutter_playground/service/api_provider.dart';
 import 'package:jin_widget_helper/jin_widget_helper.dart';
 
-class ApiConsumerWithCache extends StatefulWidget {
+class ApiConsumerWithStream extends StatefulWidget {
   @override
-  _ApiConsumerWithCacheState createState() => _ApiConsumerWithCacheState();
+  _ApiConsumerWithStreamState createState() => _ApiConsumerWithStreamState();
 }
 
-class _ApiConsumerWithCacheState extends State<ApiConsumerWithCache> {
-  Future<List<PostModel>> ftPost;
+class _ApiConsumerWithStreamState extends State<ApiConsumerWithStream> {
   ApiProvider apiProvider = ApiProvider();
+  BaseExtendBloc<List<PostModel>> baseBloc = BaseExtendBloc();
 
   void fetchPost() async {
-    ftPost = apiProvider.getPosts();
+    try {
+      var data = await apiProvider.getPosts();
+      baseBloc.addData(data);
+    } catch (e) {
+      baseBloc.addError(e);
+    }
   }
 
   @override
@@ -26,7 +32,7 @@ class _ApiConsumerWithCacheState extends State<ApiConsumerWithCache> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Api Consumer with Future"),
+        title: Text("Api Consumer With Stream"),
         actions: <Widget>[
           SmallIconButton(
             icon: Icon(Icons.refresh),
@@ -34,8 +40,8 @@ class _ApiConsumerWithCacheState extends State<ApiConsumerWithCache> {
           )
         ],
       ),
-      body: FutureHandler<List<PostModel>>(
-        future: ftPost,
+      body: StreamHandler<List<PostModel>>(
+        stream: baseBloc.stream,
         error: (error, _) {
           return Center(
             child: Text(

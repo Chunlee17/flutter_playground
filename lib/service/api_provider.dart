@@ -7,7 +7,9 @@ class ApiProvider {
 
   //#region Singletion
   ApiProvider._privateConstructor() {
-    dio.interceptors.add(DioCacheManager(CacheConfig(baseUrl: "https://jsonplaceholder.typicode.com")).interceptor);
+    dio.interceptors.add(DioCacheManager(
+            CacheConfig(baseUrl: "https://jsonplaceholder.typicode.com"))
+        .interceptor);
   }
   static final ApiProvider _instance = ApiProvider._privateConstructor();
 
@@ -19,14 +21,25 @@ class ApiProvider {
   Future<List<PostModel>> getPosts() async {
     try {
       Response response = await dio.get(
-        "https://jsonplaceholder.typicode.com/posts",
-        options: buildCacheOptions(
-          Duration(minutes: 10),
-        ),
+        "https://jsonplaceholder.typicode.com/posts/5",
       );
-      return List<PostModel>.from(response.data.map((x) => PostModel.fromJson(x)));
-    } catch (e) {
-      throw e;
+      return List<PostModel>.from(
+          response.data.map((x) => PostModel.fromJson(x)));
+    } catch (err) {
+      handleExceptionError(err);
+      return null;
     }
+  }
+
+  void handleExceptionError(dynamic error) {
+    print(error.toString());
+    String errorMessage = "An unexpected error occur.";
+    if (error is DioError) {
+      if (error.message.contains('SocketException')) {
+        errorMessage = 'No internet connection!';
+      }
+      throw error.error;
+    }
+    throw errorMessage;
   }
 }
