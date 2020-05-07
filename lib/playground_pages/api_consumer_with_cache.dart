@@ -34,27 +34,49 @@ class _ApiConsumerWithCacheState extends State<ApiConsumerWithCache> {
           )
         ],
       ),
-      body: FutureHandler<List<PostModel>>(
+      body: FutureBuilder<List<PostModel>>(
         future: ftPost,
-        error: (error, _) {
-          return Center(child: Text(error));
-        },
-        ready: (data) {
-          return ListView.separated(
-            separatorBuilder: (context, index) => Divider(),
-            itemCount: data.length,
-            itemBuilder: (BuildContext context, int index) {
-              final post = data[index];
-              return ListTile(
-                leading: Text(post.id.toString()),
-                title: Text(post.title),
-                subtitle: Text(post.body),
-                onTap: () {},
-              );
-            },
-          );
+        builder: (context, snapshot) {
+          print(snapshot.connectionState);
+          if (snapshot.hasData) {
+            return ListView.separated(
+              separatorBuilder: (context, index) => Divider(),
+              itemCount: snapshot.data.length,
+              itemBuilder: (BuildContext context, int index) {
+                final post = snapshot.data[index];
+                return ListTile(
+                  leading: Text(post.id.toString()),
+                  title: Text(post.title),
+                  subtitle: Text(post.body),
+                  onTap: () {},
+                );
+              },
+            );
+          }
+          return Center(child: CircularProgressIndicator());
         },
       ),
+      // body: FutureHandler<List<PostModel>>(
+      //   future: ftPost,
+      //   error: (error, _) {
+      //     return Center(child: Text(error));
+      //   },
+      //   ready: (data) {
+      //     return ListView.separated(
+      //       separatorBuilder: (context, index) => Divider(),
+      //       itemCount: data.length,
+      //       itemBuilder: (BuildContext context, int index) {
+      //         final post = data[index];
+      //         return ListTile(
+      //           leading: Text(post.id.toString()),
+      //           title: Text(post.title),
+      //           subtitle: Text(post.body),
+      //           onTap: () {},
+      //         );
+      //       },
+      //     );
+      //   },
+      // ),
     );
   }
 }
