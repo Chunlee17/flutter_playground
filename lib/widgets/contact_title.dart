@@ -14,13 +14,17 @@ class ContactTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       leading: CircleAvatar(
-        child:
-            Text(contact.name[0].toUpperCase(), style: TextStyle(fontSize: 16)),
+        child: Text(contact.name.firstUpperCase()[0],
+            style: TextStyle(fontSize: 16)),
       ),
       title: Text(contact.name),
       subtitle: Text(contact.age.toString()),
       onLongPress: () {
         Box box = Hive.box(ContactBox);
+        var con = box.values.firstWhere((c) {
+          return c.name == contact.name;
+        });
+        int index = box.values.toList().indexOf(con);
         box.deleteAt(index);
       },
       trailing: SmallIconButton(

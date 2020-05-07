@@ -54,6 +54,8 @@ class _HiveDatabaseState extends State<HiveDatabase> {
                       );
                     },
                   );
+                } else if (snapshot.hasError) {
+                  return Center(child: Text(snapshot.error.toString()));
                 }
                 return Center(child: CircularProgressIndicator());
               },
