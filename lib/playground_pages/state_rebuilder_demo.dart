@@ -46,11 +46,12 @@ class CounterDisplay extends StatelessWidget {
         onInitState: () {
           counterModel.increment();
         },
-        error: (error) => Text(error, style: Theme.of(context).textTheme.title),
+        error: (error) =>
+            Text(error, style: Theme.of(context).textTheme.headline6),
         builder: (context) {
           return Text(
             "You have the counter: ${counterModel.count}",
-            style: Theme.of(context).textTheme.title,
+            style: Theme.of(context).textTheme.headline6,
           );
         },
       ),

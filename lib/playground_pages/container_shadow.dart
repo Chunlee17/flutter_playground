@@ -57,7 +57,7 @@ class _ContainerShadowDemoState extends State<ContainerShadowDemo> {
           SizedBox(height: 45),
           Text(
             "Offset: X: ${rangeValues.start.toStringAsFixed(4)} Y: ${rangeValues.end.toStringAsFixed(4)}",
-            style: Theme.of(context).textTheme.title,
+            style: Theme.of(context).textTheme.headline6,
           ),
           RangeSlider(
             values: rangeValues,
@@ -91,7 +91,8 @@ class _ContainerShadowDemoState extends State<ContainerShadowDemo> {
               child: Image.network("https://picsum.photos/200"),
             ),
           ),
-          Text("Blur radius: ${blurRadius.toStringAsFixed(4)}", style: Theme.of(context).textTheme.title),
+          Text("Blur radius: ${blurRadius.toStringAsFixed(4)}",
+              style: Theme.of(context).textTheme.headline6),
           Slider(
             onChanged: (value) {
               setState(() {
@@ -102,7 +103,8 @@ class _ContainerShadowDemoState extends State<ContainerShadowDemo> {
             max: 20,
             value: blurRadius,
           ),
-          Text("Spread radius: ${spread.toStringAsFixed(4)}", style: Theme.of(context).textTheme.title),
+          Text("Spread radius: ${spread.toStringAsFixed(4)}",
+              style: Theme.of(context).textTheme.headline6),
           Slider(
             onChanged: (value) {
               setState(() {

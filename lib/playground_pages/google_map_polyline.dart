@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_playground/constant/app_constant.dart';
 import 'package:flutter_playground/models/route_model.dart';
 import 'package:flutter_playground/utils/map_utils.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:jin_widget_helper/jin_widget_helper.dart';
 import 'package:location/location.dart';
@@ -234,7 +233,7 @@ class GoogleMapPolylineState extends State<GoogleMapPolyline> {
                     textAlign: TextAlign.center,
                     style: Theme.of(context)
                         .textTheme
-                        .subtitle
+                        .subtitle1
                         .copyWith(color: Colors.white),
                   ),
                 ),
@@ -242,7 +241,7 @@ class GoogleMapPolylineState extends State<GoogleMapPolyline> {
                   "${(distanceBetweenPoint / 1000).toStringAsFixed(2)} km",
                   style: Theme.of(context)
                       .textTheme
-                      .title
+                      .headline6
                       .copyWith(color: Colors.white),
                 )
               ],
