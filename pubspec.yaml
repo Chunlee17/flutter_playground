@@ -31,7 +31,6 @@ dependencies:
   get_it: ^4.0.0
   flutter_bloc: ^3.2.0
   easy_localization: ^2.0.1+3
-  jin_widget_helper: ^1.2.0
   flutter_sound: ^3.1.10
   audio_recorder: ^1.0.2
   font_awesome_flutter: ^8.8.1
@@ -42,6 +41,11 @@ dependencies:
 dev_dependencies:
   hive_generator: any
   build_runner: any
+  jin_widget_helper:
+    git:
+      url: https://github.com/Chunlee17/jin_widget_helper.git
+      ref: master
+
   flutter_test:
     sdk: flutter
   flutter_localizations:
