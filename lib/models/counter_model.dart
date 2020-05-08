@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter_playground/models/base_model.dart';
 
 class Counter extends BaseViewModel {

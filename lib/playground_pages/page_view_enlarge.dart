@@ -7,14 +7,6 @@ class PageViewEnlarge extends StatefulWidget {
 
 class _PageViewEnlargeState extends State<PageViewEnlarge> {
   PageController pageController;
-  static const images = [
-    "https://picsum.photos/200",
-    "https://picsum.photos/210",
-    "https://picsum.photos/220",
-    "https://picsum.photos/230",
-    "https://picsum.photos/240",
-    "https://picsum.photos/260",
-  ];
 
   @override
   void initState() {
@@ -36,7 +28,8 @@ class _PageViewEnlargeState extends State<PageViewEnlarge> {
           controller: pageController,
           scrollDirection: Axis.horizontal,
           itemBuilder: (BuildContext context, int index) {
-            if (pageController.position.minScrollExtent == null || pageController.position.maxScrollExtent == null) {
+            if (pageController.position.minScrollExtent == null ||
+                pageController.position.maxScrollExtent == null) {
               Future.delayed(Duration(microseconds: 1), () {
                 setState(() {});
               });

@@ -115,14 +115,14 @@ class _HalfCircleClipperState extends State<HalfCircleClipper> {
               ],
             ),
             UIHelper.verticalSpace(24),
-            FoodCard(),
+            foodCard(),
           ],
         ),
       ),
     );
   }
 
-  Widget FoodCard() {
+  Widget foodCard() {
     return ClipRRect(
       borderRadius: BorderRadius.circular(16),
       child: Container(
