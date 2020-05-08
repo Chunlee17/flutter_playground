@@ -9,6 +9,21 @@ class FlutterNavigationRails extends StatefulWidget {
 class _FlutterNavigationRailsState extends State<FlutterNavigationRails> {
   int _selectedIndex = 0;
   bool _isExtend = false;
+  PageController pageController = PageController();
+
+  void onPageChange(int index) {
+    pageController.jumpToPage(index);
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  @override
+  void dispose() {
+    pageController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +39,15 @@ class _FlutterNavigationRailsState extends State<FlutterNavigationRails> {
             onTap: () {
               setState(() => _isExtend = false);
             },
-            child: Center(child: Text("Current index: $_selectedIndex")),
+            child: PageView.builder(
+              itemCount: 3,
+              controller: pageController,
+              scrollDirection: Axis.vertical,
+              physics: NeverScrollableScrollPhysics(),
+              itemBuilder: (context, i) {
+                return Center(child: Text("Current index: $i"));
+              },
+            ),
           ).expanded,
         ],
       ),
@@ -39,12 +62,8 @@ class _FlutterNavigationRailsState extends State<FlutterNavigationRails> {
       child: NavigationRail(
         extended: _isExtend,
         selectedIndex: _selectedIndex,
-        groupAlignment: 1,
-        onDestinationSelected: (int index) {
-          setState(() {
-            _selectedIndex = index;
-          });
-        },
+        groupAlignment: -1,
+        onDestinationSelected: onPageChange,
         destinations: [
           NavigationRailDestination(
             icon: Icon(Icons.add_alert),
