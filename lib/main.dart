@@ -9,6 +9,7 @@ import 'package:flutter_playground/models/counter_model.dart';
 import 'package:flutter_playground/pages/home_page.dart';
 import 'package:flutter_playground/provider/counter_provider.dart';
 import 'package:flutter_playground/widgets/counter_inherited_widget.dart';
+import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hive/hive.dart';
 import 'package:jin_widget_helper/jin_widget_helper.dart';
@@ -53,7 +54,7 @@ class MyApp extends StatelessWidget {
               providers: [
                 ChangeNotifierProvider(create: (context) => CounterProvider()),
               ],
-              child: MaterialApp(
+              child: GetMaterialApp(
                 title: 'Flutter Playground',
                 debugShowCheckedModeBanner: false,
                 localizationsDelegates: [

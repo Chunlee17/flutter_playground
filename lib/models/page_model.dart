@@ -10,6 +10,7 @@ import 'package:flutter_playground/playground_pages/flutter_inherited_widget.dar
 import 'package:flutter_playground/playground_pages/flutter_navigation_rails.dart';
 import 'package:flutter_playground/playground_pages/flutter_provider.dart';
 import 'package:flutter_playground/playground_pages/flutter_stateful_widget.dart';
+import 'package:flutter_playground/playground_pages/get_package_state_management.dart';
 import 'package:flutter_playground/playground_pages/google_map_polyline.dart';
 import 'package:flutter_playground/playground_pages/half_circle_clipper.dart';
 import 'package:flutter_playground/playground_pages/hive_database.dart';
@@ -81,4 +82,5 @@ final List<PageModel> pages = [
   PageModel(page: ApiConsumerWithStream()),
   PageModel(page: FlutterInheritedWidget()),
   PageModel(page: FlutterNavigationRails()),
+  PageModel(page: GetPackageStateManagement()),
 ];
