@@ -3,12 +3,12 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:jin_widget_helper/jin_widget_helper.dart';
 
-class HalfCircleClipper extends StatefulWidget {
+class FlutterClipper extends StatefulWidget {
   @override
-  _HalfCircleClipperState createState() => _HalfCircleClipperState();
+  _FlutterClipperState createState() => _FlutterClipperState();
 }
 
-class _HalfCircleClipperState extends State<HalfCircleClipper> {
+class _FlutterClipperState extends State<FlutterClipper> {
   final double circleRadius = 24;
   @override
   Widget build(BuildContext context) {
@@ -144,10 +144,8 @@ class _HalfCircleClipperState extends State<HalfCircleClipper> {
               children: <Widget>[
                 Icon(Icons.watch_later, color: Colors.white),
                 Text("20min", style: TextStyle(color: Colors.white)),
-                Divider(color: Colors.white, thickness: 1),
                 Icon(Icons.favorite, color: Colors.white),
                 Text("130cal", style: TextStyle(color: Colors.white)),
-                Divider(color: Colors.white, thickness: 1),
                 Container(
                   decoration: BoxDecoration(
                     color: Colors.white,

@@ -11,6 +11,11 @@ class GetPackageStateManagement extends StatefulWidget {
 
 class _GetPackageStateManagementState extends State<GetPackageStateManagement> {
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     print("Rebuild page");
     return Scaffold(
@@ -40,18 +45,18 @@ class _GetPackageStateManagementState extends State<GetPackageStateManagement> {
 }
 
 class GetCounterButton extends StatelessWidget {
-  final controller = CounterController.to;
+  //final controller = Get.find<CounterController>();
   @override
   Widget build(BuildContext context) {
-    return RaisedButton(
-      onPressed: () => controller.increment(),
-      child: Text("Increment"),
-    );
-    // return GetBuilder<CounterController>(
-    //   builder: (controller) => RaisedButton(
-    //     onPressed: () => controller.increment(),
-    //     child: Text("Increment"),
-    //   ),
+    // return RaisedButton(
+    //   onPressed: () => controller.increment(),
+    //   child: Text("Increment"),
     // );
+    return GetBuilder<CounterController>(
+      builder: (controller) => RaisedButton(
+        onPressed: () => controller.increment(),
+        child: Text("Increment"),
+      ),
+    );
   }
 }

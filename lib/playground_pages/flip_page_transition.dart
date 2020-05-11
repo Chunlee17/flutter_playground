@@ -1,8 +1,5 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_playground/widgets/scaffold_boiler_plate.dart';
-
 import 'dummy_page.dart';
 
 class FlipPageTransition extends StatefulWidget {
@@ -10,61 +7,66 @@ class FlipPageTransition extends StatefulWidget {
   _FlipPageTransitionState createState() => _FlipPageTransitionState();
 }
 
-class _FlipPageTransitionState extends State<FlipPageTransition> with SingleTickerProviderStateMixin {
-  AnimationController animationController;
-  Animation<double> parentRotation;
+class _FlipPageTransitionState extends State<FlipPageTransition>
+    with SingleTickerProviderStateMixin {
+  AnimationController controller;
+  Animation<double> parentScale;
+  Size size;
+  double minScale = 0.8;
 
-  static const transitionDuration = Duration(milliseconds: 500);
+  static const transitionDuration = Duration(milliseconds: 2500);
 
   void viewDetail() async {
-    animationController.forward();
-    await Future.delayed(transitionDuration);
+    controller.forward();
     await Navigator.of(context).push(PageRouteBuilder(
       transitionDuration: transitionDuration,
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
-        var angle = Tween(begin: pi / 2, end: 0.0).animate(
-          CurvedAnimation(
-            parent: animation,
-            curve: Curves.linear,
-          ),
-        );
-        var transform = Matrix4.rotationY(angle.value);
+        var scale = Tween(begin: minScale, end: 1.0)
+            .animate(CurvedAnimation(curve: Curves.linear, parent: animation));
+
+        var transform = Matrix4.identity()
+          ..setEntry(3, 2, 0.01)
+          ..translate((1 - controller.value) * size.width)
+          ..rotateY((1 - controller.value) * -0.1)
+          ..scale(1.0, scale.value, 1.0);
+
         return Transform(
           transform: transform,
-          alignment: Alignment.center,
+          alignment: Alignment.centerLeft,
           child: child,
         );
       },
       pageBuilder: (context, _, __) => DummyPage(),
     ));
-    await Future.delayed(transitionDuration);
-    animationController.reverse();
+    controller.reverse();
   }
 
   @override
   void initState() {
-    animationController = AnimationController(vsync: this, duration: transitionDuration);
-    parentRotation = Tween(begin: 0.0, end: pi / 2).animate(animationController);
+    controller = AnimationController(vsync: this, duration: transitionDuration);
+    parentScale = Tween(begin: 1.0, end: minScale).animate(controller);
     super.initState();
   }
 
   @override
   void dispose() {
-    animationController.dispose();
+    controller.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    size = MediaQuery.of(context).size;
     return AnimatedBuilder(
-      animation: animationController,
+      animation: controller,
       builder: (BuildContext context, Widget child) {
         return Transform(
-          transform: Matrix4.identity(),
-          // ..setEntry(3, 2, 0.01)
-          // ..scale(1 - animationController.value * .5)
-          // ..translate(animationController.value * -100)
-          // ..rotateY(animationController.value),
+          alignment: Alignment.centerRight,
+          transform: Matrix4.identity()
+            ..setEntry(3, 2, 0.01)
+            ..translate(controller.value * -size.width)
+            ..scale(1.0, parentScale.value, 1.0)
+            ..rotateY(controller.value * 0.1),
           child: Scaffold(
             appBar: AppBar(title: Text("Flip Page Transition")),
             body: Center(
@@ -76,12 +78,10 @@ class _FlipPageTransitionState extends State<FlipPageTransition> with SingleTick
                     child: Text("View Detail"),
                   ),
                   Transform(
-                    alignment: FractionalOffset.centerRight,
+                    alignment: FractionalOffset.center,
                     transform: Matrix4.identity()
-                      ..setEntry(3, 2, 0.01)
-                      ..scale(1 - animationController.value * .5)
-                      ..translate(animationController.value * -100)
-                      ..rotateY(animationController.value),
+                      ..setEntry(3, 2, 0.009)
+                      ..rotateY(0),
                     child: Container(
                       color: Colors.red,
                       width: 100,
@@ -91,15 +91,6 @@ class _FlipPageTransitionState extends State<FlipPageTransition> with SingleTick
                   )
                 ],
               ),
-            ),
-            floatingActionButton: FloatingActionButton(
-              onPressed: () {
-                if (animationController.isCompleted)
-                  animationController.reverse();
-                else
-                  animationController.forward();
-              },
-              child: Icon(Icons.play_arrow),
             ),
           ),
         );

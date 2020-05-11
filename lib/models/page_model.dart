@@ -7,13 +7,14 @@ import 'package:flutter_playground/playground_pages/container_shadow.dart';
 import 'package:flutter_playground/playground_pages/draggable_scrollable_sheet.dart';
 import 'package:flutter_playground/playground_pages/firebase_face_detection.dart';
 import 'package:flutter_playground/playground_pages/flip_page_transition.dart';
+import 'package:flutter_playground/playground_pages/flutter_animation_package.dart';
+import 'package:flutter_playground/playground_pages/flutter_clipper.dart';
 import 'package:flutter_playground/playground_pages/flutter_inherited_widget.dart';
 import 'package:flutter_playground/playground_pages/flutter_navigation_rails.dart';
 import 'package:flutter_playground/playground_pages/flutter_provider.dart';
 import 'package:flutter_playground/playground_pages/flutter_stateful_widget.dart';
 import 'package:flutter_playground/playground_pages/get_package_state_management.dart';
 import 'package:flutter_playground/playground_pages/google_map_polyline.dart';
-import 'package:flutter_playground/playground_pages/half_circle_clipper.dart';
 import 'package:flutter_playground/playground_pages/hive_database.dart';
 import 'package:flutter_playground/playground_pages/interval_animation.dart';
 import 'package:flutter_playground/playground_pages/lerp_animation.dart';
@@ -54,7 +55,10 @@ class PageModel {
 //pages
 final List<PageModel> pages = [
   PageModel(page: StreamBuilderPlayground()),
-  PageModel(page: ScalingPage("https://picsum.photos/300"), shouldHaveTransition: true, image: "https://picsum.photos/300"),
+  PageModel(
+      page: ScalingPage("https://picsum.photos/300"),
+      shouldHaveTransition: true,
+      image: "https://picsum.photos/300"),
   PageModel(page: IntervalAnimation()),
   PageModel(page: FirebaseFaceDetectionDemo()),
   PageModel(page: SliverPersistentHeaderDemo()),
@@ -69,7 +73,7 @@ final List<PageModel> pages = [
   PageModel(page: AudioPlayerDemo()),
   PageModel(page: BlocWithGetIt()),
   PageModel(page: PageViewEnlarge()),
-  PageModel(page: HalfCircleClipper()),
+  PageModel(page: FlutterClipper()),
   PageModel(page: NewLocalization()),
   PageModel(page: SoundRecorderDemo()),
   PageModel(page: FlutterProvider()),
@@ -82,4 +86,5 @@ final List<PageModel> pages = [
   PageModel(page: FlutterNavigationRails()),
   PageModel(page: GetPackageStateManagement()),
   PageModel(page: FlipPageTransition()),
+  PageModel(page: FlutterAnimationPackage()),
 ];
