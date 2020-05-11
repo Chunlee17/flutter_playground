@@ -40,6 +40,7 @@ class MyClipper extends CustomClipper<Path> {
     path.conicTo(size.width / 2, 1, size.width, size.height, 1.0);
     path.lineTo(size.width, size.height);
     path.lineTo(size.width, 0);
+    path.quadraticBezierTo(size.width / 2, 54, 0, 0);
     return path;
   }
 
