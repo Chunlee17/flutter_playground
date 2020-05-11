@@ -3,6 +3,7 @@ import 'package:flutter_playground/playground_pages/api_consumer_with_cache.dart
 import 'package:flutter_playground/playground_pages/api_consumer_with_stream.dart';
 import 'package:flutter_playground/playground_pages/audio_player_demo.dart';
 import 'package:flutter_playground/playground_pages/bloc_with_get_It.dart';
+import 'package:flutter_playground/playground_pages/clipper_playground.dart';
 import 'package:flutter_playground/playground_pages/container_shadow.dart';
 import 'package:flutter_playground/playground_pages/draggable_scrollable_sheet.dart';
 import 'package:flutter_playground/playground_pages/firebase_face_detection.dart';
@@ -87,4 +88,5 @@ final List<PageModel> pages = [
   PageModel(page: GetPackageStateManagement()),
   PageModel(page: FlipPageTransition()),
   PageModel(page: FlutterAnimationPackage()),
+  PageModel(page: ClipperPlayground()),
 ];
