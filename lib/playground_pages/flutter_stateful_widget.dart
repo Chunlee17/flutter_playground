@@ -28,7 +28,10 @@ class _FlutterStatefulWidgetState extends State<FlutterStatefulWidget> {
               },
               child: Text("Show/Hide child"),
             ),
-            if (showChild) AnotherStateFulWidget(key: UniqueKey()) else Text("Hide child"),
+            if (showChild)
+              AnotherStateFulWidget(key: UniqueKey())
+            else
+              Text("Hide child"),
           ],
         ),
       ),
@@ -42,7 +45,8 @@ class AnotherStateFulWidget extends StatefulWidget {
   _AnotherStateFulWidgetState createState() => _AnotherStateFulWidgetState();
 }
 
-class _AnotherStateFulWidgetState extends State<AnotherStateFulWidget> with AutomaticKeepAliveClientMixin {
+class _AnotherStateFulWidgetState extends State<AnotherStateFulWidget>
+    with AutomaticKeepAliveClientMixin {
   int count = 0;
 
   @override

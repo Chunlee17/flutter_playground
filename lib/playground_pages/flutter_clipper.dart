@@ -14,7 +14,7 @@ class _FlutterClipperState extends State<FlutterClipper> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Haft Circle Clipper"),
+        title: Text("Flutter Clipper"),
       ),
       body: Center(
         child: Column(
