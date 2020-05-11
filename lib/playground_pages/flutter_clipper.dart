@@ -131,36 +131,44 @@ class _FlutterClipperState extends State<FlutterClipper> {
         decoration: BoxDecoration(color: Color(0xFF06B79D)),
         child: Row(
           children: <Widget>[
-            ClipPath(
-              clipper: FoodClipper(),
-              child: Image.network(
-                "https://picsum.photos/500",
-                fit: BoxFit.cover,
-              ),
-            ).expanded,
-            Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                Icon(Icons.watch_later, color: Colors.white),
-                Text("20min", style: TextStyle(color: Colors.white)),
-                Icon(Icons.favorite, color: Colors.white),
-                Text("130cal", style: TextStyle(color: Colors.white)),
-                Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  padding: EdgeInsets.all(12),
-                  child: Column(
-                    children: <Widget>[
-                      Icon(Icons.shopping_cart),
-                      Text("3/6"),
-                    ],
-                  ),
+            Flexible(
+              fit: FlexFit.tight,
+              flex: 3,
+              child: ClipPath(
+                clipper: FoodClipper(),
+                child: Image.network(
+                  "https://picsum.photos/500",
+                  fit: BoxFit.cover,
                 ),
-              ],
-            ).padding(EdgeInsets.symmetric(horizontal: 16, vertical: 16))
+              ),
+            ),
+            Flexible(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Icon(Icons.watch_later, color: Colors.white),
+                  Text("20min", style: TextStyle(color: Colors.white)),
+                  Divider(color: Colors.white),
+                  Icon(Icons.favorite, color: Colors.white),
+                  Text("130cal", style: TextStyle(color: Colors.white)),
+                  Divider(color: Colors.white),
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    padding: EdgeInsets.all(12),
+                    child: Column(
+                      children: <Widget>[
+                        Icon(Icons.shopping_cart),
+                        Text("3/6"),
+                      ],
+                    ),
+                  ),
+                ],
+              ).padding(EdgeInsets.symmetric(horizontal: 16, vertical: 16)),
+            )
           ],
         ),
       ),
