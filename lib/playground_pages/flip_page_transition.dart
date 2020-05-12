@@ -57,44 +57,47 @@ class _FlipPageTransitionState extends State<FlipPageTransition>
   @override
   Widget build(BuildContext context) {
     size = MediaQuery.of(context).size;
-    return AnimatedBuilder(
-      animation: controller,
-      builder: (BuildContext context, Widget child) {
-        return Transform(
-          alignment: Alignment.centerRight,
-          transform: Matrix4.identity()
-            ..setEntry(3, 2, 0.01)
-            ..translate(controller.value * -size.width)
-            ..scale(1.0, parentScale.value, 1.0)
-            ..rotateY(controller.value * 0.1),
-          child: Scaffold(
-            appBar: AppBar(title: Text("Flip Page Transition")),
-            body: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  RaisedButton(
-                    onPressed: viewDetail,
-                    child: Text("View Detail"),
-                  ),
-                  Transform(
-                    alignment: FractionalOffset.center,
-                    transform: Matrix4.identity()
-                      ..setEntry(3, 2, 0.009)
-                      ..rotateY(0),
-                    child: Container(
-                      color: Colors.red,
-                      width: 100,
-                      height: 100,
-                      margin: EdgeInsets.only(top: 24),
+    return Container(
+      color: Colors.blueGrey,
+      child: AnimatedBuilder(
+        animation: controller,
+        builder: (BuildContext context, Widget child) {
+          return Transform(
+            alignment: Alignment.centerRight,
+            transform: Matrix4.identity()
+              ..setEntry(3, 2, 0.01)
+              ..translate(controller.value * -size.width)
+              ..scale(1.0, parentScale.value, 1.0)
+              ..rotateY(controller.value * 0.1),
+            child: Scaffold(
+              appBar: AppBar(title: Text("Flip Page Transition")),
+              body: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    RaisedButton(
+                      onPressed: viewDetail,
+                      child: Text("View Detail"),
                     ),
-                  )
-                ],
+                    Transform(
+                      alignment: FractionalOffset.center,
+                      transform: Matrix4.identity()
+                        ..setEntry(3, 2, 0.009)
+                        ..rotateY(0),
+                      child: Container(
+                        color: Colors.red,
+                        width: 100,
+                        height: 100,
+                        margin: EdgeInsets.only(top: 24),
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 }

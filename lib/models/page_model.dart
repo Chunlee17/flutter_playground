@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_playground/playground_pages/3d_drawer.dart';
 import 'package:flutter_playground/playground_pages/api_consumer_with_cache.dart';
 import 'package:flutter_playground/playground_pages/api_consumer_with_stream.dart';
 import 'package:flutter_playground/playground_pages/audio_player_demo.dart';
@@ -89,4 +90,5 @@ final List<PageModel> pages = [
   PageModel(page: FlipPageTransition()),
   PageModel(page: FlutterAnimationPackage()),
   PageModel(page: ClipperPlayground()),
+  PageModel(page: ThreeDDrawer()),
 ];
