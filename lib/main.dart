@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_playground/bloc/counter_bloc.dart';
 import 'package:flutter_playground/bloc/real_counter_bloc.dart';
+import 'package:flutter_playground/constant/app_constant.dart';
 import 'package:flutter_playground/models/contact.dart';
 import 'package:flutter_playground/models/counter_model.dart';
 import 'package:flutter_playground/pages/home_page.dart';
@@ -65,7 +66,7 @@ class MyApp extends StatelessWidget {
                 supportedLocales: EasyLocalization.of(context).supportedLocales,
                 locale: EasyLocalization.of(context).locale,
                 theme: ThemeData(
-                  primarySwatch: ColorUtils.hexColorToMaterialColor(0xFF00569E),
+                  primarySwatch: primaryColor,
                   accentColor: ColorUtils.hexColorToMaterialColor(0xFF47C5FB),
                 ),
                 home: MyHomePage(),

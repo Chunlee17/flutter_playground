@@ -16,10 +16,31 @@ class _ThreeDDrawerState extends State<ThreeDDrawer>
   Size size;
   double maxSlide;
 
+  onHorizontalDrag(DragUpdateDetails details) {
+    controller.value += details.primaryDelta / size.width;
+  }
+
+  onHorizontalDragEnd(DragEndDetails details) {
+    if (controller.isAnimating ||
+        controller.status == AnimationStatus.completed) return;
+
+    final double flingVelocity =
+        details.velocity.pixelsPerSecond.dx / size.height;
+    print("Fling velocity: $flingVelocity");
+    if (flingVelocity < 0.0)
+      //reverse
+      controller.fling(velocity: -1);
+    else if (flingVelocity > 0)
+      //forward
+      controller.fling(velocity: 1);
+    else
+      controller.fling(velocity: controller.value < 0.5 ? -1.0 : 1.0);
+  }
+
   @override
   void initState() {
     controller =
-        AnimationController(vsync: this, duration: Duration(seconds: 1));
+        AnimationController(vsync: this, duration: Duration(milliseconds: 200));
 
     animation = Tween(begin: 0.0, end: 1.0)
         .animate(CurvedAnimation(curve: Curves.linear, parent: controller));
@@ -45,13 +66,19 @@ class _ThreeDDrawerState extends State<ThreeDDrawer>
                   transform: Matrix4.identity()
                     ..setEntry(3, 2, 0.001)
                     ..rotateY(-pi / 2.5 * animation.value),
-                  child: Scaffold(
-                    body: Center(
-                      child: RaisedButton(
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                        child: Text("GO BACK"),
+                  child: GestureDetector(
+                    onHorizontalDragUpdate: onHorizontalDrag,
+                    onHorizontalDragEnd: onHorizontalDragEnd,
+                    child: Scaffold(
+                      body: SizedBox.expand(
+                        child: Center(
+                          child: RaisedButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: Text("GO BACK"),
+                          ),
+                        ),
                       ),
                     ),
                   ),
@@ -77,17 +104,20 @@ class _ThreeDDrawerState extends State<ThreeDDrawer>
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                InkWell(
-                  onTap: () {
-                    if (controller.isCompleted)
-                      controller.reverse();
-                    else
-                      controller.forward();
-                  },
-                  child: AnimatedIcon(
-                    icon: AnimatedIcons.menu_close,
-                    progress: animation,
-                  ).padding(),
+                Container(
+                  margin: EdgeInsets.only(left: 8),
+                  child: InkWell(
+                    onTap: () {
+                      if (controller.isCompleted)
+                        controller.reverse();
+                      else
+                        controller.forward();
+                    },
+                    child: AnimatedIcon(
+                      icon: AnimatedIcons.menu_close,
+                      progress: animation,
+                    ).padding(),
+                  ),
                 ),
                 Opacity(
                   opacity: (1 - animation.value),
