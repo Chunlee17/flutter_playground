@@ -38,16 +38,12 @@ dependencies:
   dio_http_cache: ^0.2.6
   hive: ^1.4.1+1
   get: ^2.1.1
+  jin_widget_helper: ^1.2.1+1
   animations: ^1.0.0+5
 
 dev_dependencies:
   hive_generator: any
   build_runner: any
-  jin_widget_helper:
-    git:
-      url: https://github.com/Chunlee17/jin_widget_helper.git
-      ref: master
-
   flutter_test:
     sdk: flutter
   flutter_localizations:

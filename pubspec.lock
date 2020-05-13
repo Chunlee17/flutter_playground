@@ -498,14 +498,12 @@ packages:
     source: hosted
     version: "0.3.4"
   jin_widget_helper:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
-      path: "."
-      ref: master
-      resolved-ref: "8879c6075b1f8ef24baf35e0b3bf2b6ec6cc94dc"
-      url: "https://github.com/Chunlee17/jin_widget_helper.git"
-    source: git
-    version: "1.2.0"
+      name: jin_widget_helper
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.2.1+1"
   js:
     dependency: transitive
     description:

@@ -104,19 +104,16 @@ class _ThreeDDrawerState extends State<ThreeDDrawer>
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                Container(
-                  margin: EdgeInsets.only(left: 8),
-                  child: InkWell(
-                    onTap: () {
-                      if (controller.isCompleted)
-                        controller.reverse();
-                      else
-                        controller.forward();
-                    },
-                    child: AnimatedIcon(
-                      icon: AnimatedIcons.menu_close,
-                      progress: animation,
-                    ).padding(),
+                SmallIconButton(
+                  onTap: () {
+                    if (controller.isCompleted)
+                      controller.reverse();
+                    else
+                      controller.forward();
+                  },
+                  icon: AnimatedIcon(
+                    icon: AnimatedIcons.menu_close,
+                    progress: animation,
                   ),
                 ),
                 Opacity(
