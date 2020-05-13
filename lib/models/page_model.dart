@@ -26,6 +26,7 @@ import 'package:flutter_playground/playground_pages/new_localization.dart';
 import 'package:flutter_playground/playground_pages/page_view_enlarge.dart';
 import 'package:flutter_playground/playground_pages/real_bloc_pattern.dart';
 import 'package:flutter_playground/playground_pages/scaling_page.dart';
+import 'package:flutter_playground/playground_pages/shared_element_transition.dart';
 import 'package:flutter_playground/playground_pages/sliver_persistent_header.dart';
 import 'package:flutter_playground/playground_pages/sound_recorder_demo.dart';
 import 'package:flutter_playground/playground_pages/state_rebuilder_demo.dart';
@@ -91,4 +92,5 @@ final List<PageModel> pages = [
   PageModel(page: FlutterAnimationPackage()),
   PageModel(page: ClipperPlayground()),
   PageModel(page: ThreeDDrawer()),
+  PageModel(page: SharedElementTransition()),
 ];
