@@ -63,7 +63,7 @@ final List<PageModel> pages = [
       shouldHaveTransition: true,
       image: "https://picsum.photos/300"),
   PageModel(page: IntervalAnimation()),
-  PageModel(page: FirebaseFaceDetectionDemo()),
+  //PageModel(page: FirebaseFaceDetectionDemo()),
   PageModel(page: SliverPersistentHeaderDemo()),
   PageModel(page: LookRotation()),
   PageModel(page: LocalAuthenthicationDemo()),
