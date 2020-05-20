@@ -103,7 +103,7 @@ class _AddContactPageState extends State<AddContactPage> {
                     onSaved: (value) => _name = value,
                   ),
                 ),
-                UIHelper.horizontalSpace(),
+                JinWidget.horizontalSpace(),
                 Expanded(
                   child: TextFormField(
                     decoration: InputDecoration(labelText: 'Age'),
@@ -113,7 +113,7 @@ class _AddContactPageState extends State<AddContactPage> {
                 ),
               ],
             ),
-            UIHelper.verticalSpace(),
+            JinWidget.verticalSpace(),
             RaisedButton(
               child: Text('Add New Contact'),
               onPressed: () {

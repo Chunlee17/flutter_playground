@@ -114,7 +114,7 @@ class _FlutterClipperState extends State<FlutterClipper> {
                 ),
               ],
             ),
-            UIHelper.verticalSpace(24),
+            JinWidget.verticalSpace(24),
             foodCard(),
           ],
         ),

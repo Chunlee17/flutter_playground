@@ -53,7 +53,7 @@ class PageCard extends StatelessWidget {
                   child:
                       CircleAvatar(backgroundImage: NetworkImage(page.image)),
                 ),
-              UIHelper.verticalSpace(16),
+              JinWidget.verticalSpace(16),
               Text(
                 page.toString(),
                 maxLines: 2,

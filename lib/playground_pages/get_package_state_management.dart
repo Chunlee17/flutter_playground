@@ -35,7 +35,7 @@ class _GetPackageStateManagementState extends State<GetPackageStateManagement> {
                 return Text(controller.counter.toString());
               },
             ),
-            UIHelper.verticalSpace(),
+            JinWidget.verticalSpace(),
             GetCounterButton(),
           ],
         ),
