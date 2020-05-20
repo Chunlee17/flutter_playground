@@ -67,7 +67,8 @@ class MyApp extends StatelessWidget {
                 locale: EasyLocalization.of(context).locale,
                 theme: ThemeData(
                   primarySwatch: primaryColor,
-                  accentColor: ColorUtils.hexColorToMaterialColor(0xFF47C5FB),
+                  accentColor:
+                      JinColorUtils.hexColorToMaterialColor(0xFF47C5FB),
                 ),
                 home: MyHomePage(),
               ),

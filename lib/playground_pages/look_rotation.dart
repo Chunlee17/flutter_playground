@@ -57,7 +57,7 @@ class _LookRotationState extends State<LookRotation> {
             children: <Widget>[
               Center(
                 child: Transform.rotate(
-                  angle: degreeToRadian(-angle),
+                  angle: JinUtils.degreeToRadian(-angle),
                   child: ClipPath(
                     clipper: ArrowClipper(),
                     child: Container(
@@ -85,7 +85,8 @@ class _LookRotationState extends State<LookRotation> {
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {},
-        label: Text(newOffset.toString()), // This trailing comma makes auto-formatting nicer for build methods.
+        label: Text(newOffset
+            .toString()), // This trailing comma makes auto-formatting nicer for build methods.
       ),
     );
   }

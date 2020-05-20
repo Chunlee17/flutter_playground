@@ -258,7 +258,7 @@ class GoogleMapPolylineState extends State<GoogleMapPolyline> {
                 "BOOK NOW",
                 style: TextStyle(color: Colors.black),
               ),
-              color: ColorUtils.getColorFromCode("ffeb50"),
+              color: JinColorUtils.getColorFromCode("ffeb50"),
             ),
           ),
         ],
