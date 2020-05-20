@@ -5,18 +5,18 @@ import 'package:jin_widget_helper/jin_widget_helper.dart';
 import 'package:rect_getter/rect_getter.dart';
 
 List<String> images = [
-  randomStringImage(212),
-  randomStringImage(211),
-  randomStringImage(210),
-  randomStringImage(209),
-  randomStringImage(208),
-  randomStringImage(207),
-  randomStringImage(206),
-  randomStringImage(205),
-  randomStringImage(204),
-  randomStringImage(203),
-  randomStringImage(202),
-  randomStringImage(201),
+  JinUtils.randomStringImage(212),
+  JinUtils.randomStringImage(211),
+  JinUtils.randomStringImage(210),
+  JinUtils.randomStringImage(209),
+  JinUtils.randomStringImage(208),
+  JinUtils.randomStringImage(207),
+  JinUtils.randomStringImage(206),
+  JinUtils.randomStringImage(205),
+  JinUtils.randomStringImage(204),
+  JinUtils.randomStringImage(203),
+  JinUtils.randomStringImage(202),
+  JinUtils.randomStringImage(201),
 ];
 
 class SharedElementTransition extends StatefulWidget {

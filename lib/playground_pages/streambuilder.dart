@@ -58,7 +58,7 @@ class _StreamBuilderPlaygroundState extends State<StreamBuilderPlayground> {
                     })
                 : Text("Stream has been hide",
                     style: Theme.of(context).textTheme.headline6),
-            UIHelper.verticalSpace(32),
+            JinWidget.verticalSpace(32),
             ActionButton(
               stretch: false,
               onPressed: () {

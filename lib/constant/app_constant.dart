@@ -6,4 +6,4 @@ const String token = "MAPBOX_TOKEN";
 
 const String ContactBox = 'contacts';
 
-Color primaryColor = ColorUtils.hexColorToMaterialColor(0xFF00569E);
+Color primaryColor = JinColorUtils.hexColorToMaterialColor(0xFF00569E);

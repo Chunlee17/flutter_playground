@@ -8,7 +8,8 @@ class TelegramSliver extends StatefulWidget {
   _TelegramSliverState createState() => _TelegramSliverState();
 }
 
-class _TelegramSliverState extends State<TelegramSliver> with SingleTickerProviderStateMixin {
+class _TelegramSliverState extends State<TelegramSliver>
+    with SingleTickerProviderStateMixin {
   double maxSliverHeight = 220;
   double minimumShowIconHeight = 150;
   double height;
@@ -80,9 +81,12 @@ class _TelegramSliverState extends State<TelegramSliver> with SingleTickerProvid
                 background: ScaleTransition(
                   scale: controller,
                   alignment: Alignment(-0.8, 0.8),
-                  child: Image.network("http://picsum.photos/100", fit: BoxFit.cover),
+                  child: Image.network("http://picsum.photos/100",
+                      fit: BoxFit.cover),
                 ),
-                titlePadding: EdgeInsets.only(left: (1 - height / (maxSliverHeight + safePadding)).abs() * 80),
+                titlePadding: EdgeInsets.only(
+                    left: (1 - height / (maxSliverHeight + safePadding)).abs() *
+                        80),
                 title: StreamBuilder<bool>(
                   initialData: false,
                   stream: bgController.stream,
@@ -132,7 +136,7 @@ class _TelegramSliverState extends State<TelegramSliver> with SingleTickerProvid
                     ),
                   ),
                 ),
-                UIHelper.horizontalSpace(),
+                JinWidget.horizontalSpace(),
                 Column(
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -140,7 +144,8 @@ class _TelegramSliverState extends State<TelegramSliver> with SingleTickerProvid
                     Text("Chunlee Thong"),
                     Text(
                       "last seen recenlty",
-                      style: TextStyle(fontSize: 12, fontWeight: FontWeight.normal),
+                      style: TextStyle(
+                          fontSize: 12, fontWeight: FontWeight.normal),
                     )
                   ],
                 ),

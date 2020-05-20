@@ -133,9 +133,9 @@ class _SoundRecorderDemoState extends State<SoundRecorderDemo> {
                   child: Text(_dbLevel.toStringAsFixed(2)),
                 ),
               ),
-            UIHelper.verticalSpace(24),
+            JinWidget.verticalSpace(24),
             Text(_recorderTxt),
-            UIHelper.verticalSpace(24),
+            JinWidget.verticalSpace(24),
             RaisedButton(
               onPressed: () async {
                 if (_isRecording) {
