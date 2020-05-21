@@ -34,6 +34,19 @@ class ApiProvider {
     }
   }
 
+  Future<PostModel> getSinglePost() async {
+    try {
+      Response response = await dio.get(
+        "https://jsonplaceholder.typicode.com/posts/x",
+        options: buildCacheOptions(Duration(days: 10)),
+      );
+      return PostModel.fromJson(response.data);
+    } catch (err) {
+      handleExceptionError(err);
+      return null;
+    }
+  }
+
   void handleExceptionError(dynamic error) {
     print("Exception caught: ${error.toString()}");
     String errorMessage = "An unexpected error occur!";

@@ -2,12 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_playground/playground_pages/3d_drawer.dart';
 import 'package:flutter_playground/playground_pages/api_consumer_with_cache.dart';
 import 'package:flutter_playground/playground_pages/api_consumer_with_stream.dart';
-import 'package:flutter_playground/playground_pages/audio_player_demo.dart';
 import 'package:flutter_playground/playground_pages/bloc_with_get_It.dart';
 import 'package:flutter_playground/playground_pages/clipper_playground.dart';
 import 'package:flutter_playground/playground_pages/container_shadow.dart';
 import 'package:flutter_playground/playground_pages/draggable_scrollable_sheet.dart';
-import 'package:flutter_playground/playground_pages/firebase_face_detection.dart';
 import 'package:flutter_playground/playground_pages/flip_page_transition.dart';
 import 'package:flutter_playground/playground_pages/flutter_animation_package.dart';
 import 'package:flutter_playground/playground_pages/flutter_clipper.dart';
@@ -28,9 +26,9 @@ import 'package:flutter_playground/playground_pages/real_bloc_pattern.dart';
 import 'package:flutter_playground/playground_pages/scaling_page.dart';
 import 'package:flutter_playground/playground_pages/shared_element_transition.dart';
 import 'package:flutter_playground/playground_pages/sliver_persistent_header.dart';
-import 'package:flutter_playground/playground_pages/sound_recorder_demo.dart';
 import 'package:flutter_playground/playground_pages/state_rebuilder_demo.dart';
 import 'package:flutter_playground/playground_pages/streambuilder.dart';
+import 'package:flutter_playground/playground_pages/swipe_card.dart';
 import 'package:flutter_playground/playground_pages/telegram_sliver.dart';
 
 class PageModel {
@@ -93,4 +91,5 @@ final List<PageModel> pages = [
   PageModel(page: ClipperPlayground()),
   PageModel(page: ThreeDDrawer()),
   PageModel(page: SharedElementTransition()),
+  PageModel(page: SwipeCard()),
 ];

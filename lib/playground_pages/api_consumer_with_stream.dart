@@ -11,12 +11,14 @@ class ApiConsumerWithStream extends StatefulWidget {
 
 class _ApiConsumerWithStreamState extends State<ApiConsumerWithStream> {
   ApiProvider apiProvider = ApiProvider();
+  PostModel postModel;
   BaseExtendBloc<List<PostModel>> baseBloc = BaseExtendBloc();
 
   void fetchPost() async {
     try {
       baseBloc.addData(null);
       var data = await apiProvider.getPosts();
+      postModel = await apiProvider.getSinglePost();
       baseBloc.addData(data);
     } catch (e) {
       baseBloc.addError(e);
@@ -52,18 +54,27 @@ class _ApiConsumerWithStreamState extends State<ApiConsumerWithStream> {
           );
         },
         ready: (data) {
-          return ListView.separated(
-            separatorBuilder: (context, index) => Divider(),
-            itemCount: data.length,
-            itemBuilder: (BuildContext context, int index) {
-              final post = data[index];
-              return ListTile(
-                leading: Text(post.id.toString()),
-                title: Text(post.title),
-                subtitle: Text(post.body),
-                onTap: () {},
-              );
-            },
+          return Column(
+            children: <Widget>[
+              Card(
+                child: Text(postModel.body),
+              ),
+              Expanded(
+                child: ListView.separated(
+                  separatorBuilder: (context, index) => Divider(),
+                  itemCount: data.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    final post = data[index];
+                    return ListTile(
+                      leading: Text(post.id.toString()),
+                      title: Text(post.title),
+                      subtitle: Text(post.body),
+                      onTap: () {},
+                    );
+                  },
+                ),
+              ),
+            ],
           );
         },
       ),
