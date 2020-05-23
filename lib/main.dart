@@ -9,6 +9,7 @@ import 'package:flutter_playground/models/contact.dart';
 import 'package:flutter_playground/models/counter_model.dart';
 import 'package:flutter_playground/pages/home_page.dart';
 import 'package:flutter_playground/provider/counter_provider.dart';
+import 'package:flutter_playground/provider/proxy_state_provider.dart';
 import 'package:flutter_playground/widgets/counter_inherited_widget.dart';
 import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
@@ -54,6 +55,11 @@ class MyApp extends StatelessWidget {
             child: MultiProvider(
               providers: [
                 ChangeNotifierProvider(create: (context) => CounterProvider()),
+                Provider(create: (context) => CheckNumberProvider()),
+                ProxyProvider<CounterProvider, CheckNumberProvider>(
+                  update: (context, counter, depender) =>
+                      CheckNumberProvider(counter: counter),
+                ),
               ],
               child: GetMaterialApp(
                 title: 'Flutter Playground',

@@ -22,6 +22,7 @@ import 'package:flutter_playground/playground_pages/local_auth.dart';
 import 'package:flutter_playground/playground_pages/look_rotation.dart';
 import 'package:flutter_playground/playground_pages/new_localization.dart';
 import 'package:flutter_playground/playground_pages/page_view_enlarge.dart';
+import 'package:flutter_playground/playground_pages/proxy_provider_demo.dart';
 import 'package:flutter_playground/playground_pages/real_bloc_pattern.dart';
 import 'package:flutter_playground/playground_pages/scaling_page.dart';
 import 'package:flutter_playground/playground_pages/shared_element_transition.dart';
@@ -92,4 +93,5 @@ final List<PageModel> pages = [
   PageModel(page: ThreeDDrawer()),
   PageModel(page: SharedElementTransition()),
   PageModel(page: SwipeCard()),
+  PageModel(page: ProxyProviderDemo()),
 ];
