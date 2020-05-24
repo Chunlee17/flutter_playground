@@ -27,6 +27,7 @@ import 'package:flutter_playground/playground_pages/real_bloc_pattern.dart';
 import 'package:flutter_playground/playground_pages/scaling_page.dart';
 import 'package:flutter_playground/playground_pages/shared_element_transition.dart';
 import 'package:flutter_playground/playground_pages/sliver_persistent_header.dart';
+import 'package:flutter_playground/playground_pages/sliver_with_tabbar.dart';
 import 'package:flutter_playground/playground_pages/state_rebuilder_demo.dart';
 import 'package:flutter_playground/playground_pages/streambuilder.dart';
 import 'package:flutter_playground/playground_pages/swipe_card.dart';
@@ -94,4 +95,5 @@ final List<PageModel> pages = [
   PageModel(page: SharedElementTransition()),
   PageModel(page: SwipeCard()),
   PageModel(page: ProxyProviderDemo()),
+  PageModel(page: SilverAppBarWithTabBarScreen()),
 ];
