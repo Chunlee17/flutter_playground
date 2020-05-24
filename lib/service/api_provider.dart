@@ -47,7 +47,7 @@ class ApiProvider {
     }
   }
 
-  void handleExceptionError(dynamic error) {
+  String handleExceptionError(dynamic error) {
     print("Exception caught: ${error.toString()}");
     String errorMessage = "An unexpected error occur!";
     //Dio Error

@@ -64,6 +64,7 @@ class MyApp extends StatelessWidget {
               child: GetMaterialApp(
                 title: 'Flutter Playground',
                 debugShowCheckedModeBanner: false,
+                enableLog: false,
                 localizationsDelegates: [
                   GlobalMaterialLocalizations.delegate,
                   GlobalWidgetsLocalizations.delegate,
