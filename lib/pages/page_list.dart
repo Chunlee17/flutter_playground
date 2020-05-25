@@ -8,6 +8,7 @@ import 'package:flutter_playground/playground_pages/bloc_with_get_It.dart';
 import 'package:flutter_playground/playground_pages/clipper_playground.dart';
 import 'package:flutter_playground/playground_pages/container_shadow.dart';
 import 'package:flutter_playground/playground_pages/draggable_scrollable_sheet.dart';
+import 'package:flutter_playground/playground_pages/facebook_story_ui.dart';
 import 'package:flutter_playground/playground_pages/flip_page_transition.dart';
 import 'package:flutter_playground/playground_pages/flutter_animation_package.dart';
 import 'package:flutter_playground/playground_pages/flutter_clipper.dart';
@@ -77,4 +78,5 @@ final List<PageModel> pages = [
   PageModel(page: ProxyProviderDemo()),
   PageModel(page: SilverAppBarWithTabBarScreen()),
   PageModel(page: GoogleMapInsideScrollView()),
+  PageModel(page: FacebookStoryUI()),
 ];
