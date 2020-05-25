@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_playground/models/page_model.dart';
+import 'package:flutter_playground/pages/page_list.dart';
 import 'package:flutter_playground/widgets/page_card.dart';
 
 class MyHomePage extends StatefulWidget {
