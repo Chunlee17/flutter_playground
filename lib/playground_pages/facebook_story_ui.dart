@@ -150,18 +150,21 @@ class _FacebookStoryUIState extends State<FacebookStoryUI>
                     JinUtils.randomCategoryStringImage(
                         dimension: 500, category: "man"),
                   ),
-                ).opacity(1 - animation.value),
-                Container(
-                  width: 16 + (animation.value * 48),
-                  height: 16 + (animation.value * 48),
-                  child: FittedBox(child: Icon(Icons.add)),
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Colors.blue,
+                  child: Align(
+                    alignment: Alignment.bottomRight,
+                    child: Container(
+                      width: 16 + (animation.value * 48),
+                      height: 16 + (animation.value * 48),
+                      child: FittedBox(child: Icon(Icons.add)),
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.blue,
+                      ),
+                    ),
                   ),
                 ).opacity(1 - animation.value),
                 Align(
-                  alignment: Alignment.centerLeft,
+                  alignment: Alignment.center,
                   child: Icon(
                     Icons.add,
                     color: Colors.blue,
