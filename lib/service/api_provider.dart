@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:dio_http_cache/dio_http_cache.dart';
 import 'package:flutter_playground/models/post_model.dart';
+import 'package:jin_widget_helper/jin_widget_helper.dart';
 
 class ApiProvider {
   final dio = Dio()..options.connectTimeout = 10000;
@@ -29,47 +30,47 @@ class ApiProvider {
       return List<PostModel>.from(
           response.data.map((x) => PostModel.fromJson(x)));
     } catch (err) {
-      handleExceptionError(err);
-      return null;
+      throw handleExceptionError(err);
     }
   }
 
   Future<PostModel> getSinglePost() async {
     try {
       Response response = await dio.get(
-        "https://jsonplaceholder.typicode.com/posts/x",
+        "https://jsonplaceholder.typicode.com/post/sd/sd",
         options: buildCacheOptions(Duration(days: 10)),
       );
       return PostModel.fromJson(response.data);
     } catch (err) {
-      handleExceptionError(err);
-      return null;
+      throw await handleExceptionError(err);
     }
   }
 
-  String handleExceptionError(dynamic error) {
+  Future<String> handleExceptionError(dynamic error) async {
     print("Exception caught: ${error.toString()}");
     String errorMessage = "An unexpected error occur!";
     //Dio Error
     if (error is DioError) {
+      bool hasConnection = await JinUtils.checkConnection();
       if (error.error is SocketException) {
         errorMessage =
             'Error connecting to server. Please check your internet connection or Try again later!';
       } else if (error.type == DioErrorType.CONNECT_TIMEOUT) {
-        errorMessage =
-            "Connection timeout. Please check your internet connection!";
+        errorMessage = hasConnection
+            ? "Connection timeout. Please try again later"
+            : "Connection timeout. Please check your internet connection!";
       } else if (error.type == DioErrorType.RESPONSE) {
         errorMessage = "${error.response.statusCode}: $errorMessage";
       }
-      throw errorMessage;
+      return errorMessage;
 
       //Json convert error
     } else if (error is TypeError) {
       errorMessage = "Convertion error";
-      throw errorMessage;
+      return errorMessage;
       //Error message from server
     } else {
-      throw error;
+      return error;
     }
   }
 }

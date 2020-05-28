@@ -11,7 +11,9 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     pages.sort((page1, page2) {
-      return page1.page.toStringShort().compareTo(page2.page.toStringShort());
+      return page1.page.runtimeType
+          .toString()
+          .compareTo(page2.page.runtimeType.toString());
     });
     super.initState();
   }

@@ -52,11 +52,11 @@ class _FacebookStoryUIState extends State<FacebookStoryUI>
                 ListView.builder(
                   padding: EdgeInsets.all(12),
                   controller: scrollController,
-                  itemCount: peoples.length,
+                  itemCount: peoples.length + 1,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) {
-                    final person = peoples[index];
                     if (index == 0) return myAddStoryCard();
+                    final person = peoples[index - 1];
                     return Container(
                       width: size.width / 3.5,
                       padding: EdgeInsets.all(8),
@@ -103,7 +103,8 @@ class _FacebookStoryUIState extends State<FacebookStoryUI>
       decoration: BoxDecoration(
         color: Colors.grey,
         image: DecorationImage(
-          image: NetworkImage(JinUtils.randomStringImage(400)),
+          image: NetworkImage(JinUtils.randomCategoryStringImage(
+              dimension: 300, category: "man")),
           fit: BoxFit.cover,
         ),
         borderRadius: JinWidget.radius(12),
