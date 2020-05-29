@@ -4,12 +4,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_playground/bloc/counter_bloc.dart';
 import 'package:flutter_playground/bloc/real_counter_bloc.dart';
+import 'package:flutter_playground/bloc/todo_bloc.dart';
 import 'package:flutter_playground/constant/app_constant.dart';
 import 'package:flutter_playground/models/contact.dart';
 import 'package:flutter_playground/models/counter_model.dart';
 import 'package:flutter_playground/pages/home_page.dart';
 import 'package:flutter_playground/provider/counter_provider.dart';
 import 'package:flutter_playground/provider/proxy_state_provider.dart';
+import 'package:flutter_playground/provider/todo_provider.dart';
 import 'package:flutter_playground/widgets/counter_inherited_widget.dart';
 import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
@@ -25,6 +27,8 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   setupHive();
   getIt.registerLazySingleton(() => CounterBloc());
+  getIt.registerLazySingleton(() => TodoProvider());
+  getIt.registerLazySingleton(() => TodoBloc());
   return runApp(
     EasyLocalization(
       child: MyApp(),
@@ -55,6 +59,7 @@ class MyApp extends StatelessWidget {
             child: MultiProvider(
               providers: [
                 ChangeNotifierProvider(create: (context) => CounterProvider()),
+                InheritedProvider(create: (context) => 20),
                 Provider(create: (context) => CheckNumberProvider()),
                 ProxyProvider<CounterProvider, CheckNumberProvider>(
                   update: (context, counter, depender) =>

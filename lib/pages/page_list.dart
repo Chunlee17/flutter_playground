@@ -20,6 +20,7 @@ import 'package:flutter_playground/playground_pages/get_package_state_management
 import 'package:flutter_playground/playground_pages/google_map_inside_scrollview.dart';
 import 'package:flutter_playground/playground_pages/google_map_polyline.dart';
 import 'package:flutter_playground/playground_pages/hive_database.dart';
+import 'package:flutter_playground/playground_pages/inherited_provider.dart';
 import 'package:flutter_playground/playground_pages/interval_animation.dart';
 import 'package:flutter_playground/playground_pages/lerp_animation.dart';
 import 'package:flutter_playground/playground_pages/local_auth.dart';
@@ -32,6 +33,7 @@ import 'package:flutter_playground/playground_pages/scaling_page.dart';
 import 'package:flutter_playground/playground_pages/shared_element_transition.dart';
 import 'package:flutter_playground/playground_pages/sliver_persistent_header.dart';
 import 'package:flutter_playground/playground_pages/sliver_with_tabbar.dart';
+import 'package:flutter_playground/playground_pages/sqflite_todo.dart';
 import 'package:flutter_playground/playground_pages/state_rebuilder_demo.dart';
 import 'package:flutter_playground/playground_pages/streambuilder.dart';
 import 'package:flutter_playground/playground_pages/swipe_card.dart';
@@ -79,4 +81,6 @@ final List<PageModel> pages = [
   PageModel(page: SilverAppBarWithTabBarScreen()),
   PageModel(page: GoogleMapInsideScrollView()),
   PageModel(page: FacebookStoryUI()),
+  PageModel(page: SqfLiteTodoApp()),
+  PageModel(page: InheritedProviderDemo()),
 ];
