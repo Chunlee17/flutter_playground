@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_playground/utils/app_utils.dart';
 
 class PageModel {
-  final beforeCapitalLetter = RegExp(r"(?=[A-Z])");
   Widget page;
   Duration animationDuration;
   String image;

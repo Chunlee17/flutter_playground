@@ -38,6 +38,7 @@ import 'package:flutter_playground/playground_pages/state_rebuilder_demo.dart';
 import 'package:flutter_playground/playground_pages/streambuilder.dart';
 import 'package:flutter_playground/playground_pages/swipe_card.dart';
 import 'package:flutter_playground/playground_pages/telegram_sliver.dart';
+import 'package:flutter_playground/playground_pages/value_listenable_boiler_plate.dart';
 
 final List<PageModel> pages = [
   PageModel(page: StreamBuilderPlayground()),
@@ -83,4 +84,5 @@ final List<PageModel> pages = [
   PageModel(page: FacebookStoryUI()),
   PageModel(page: SqfLiteTodoApp()),
   PageModel(page: InheritedProviderDemo()),
+  PageModel(page: ValueListenableBoilerPlate()),
 ];
