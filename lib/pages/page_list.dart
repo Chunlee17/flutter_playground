@@ -1,5 +1,6 @@
 //pages
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_playground/models/page_model.dart';
 import 'package:flutter_playground/playground_pages/3d_drawer.dart';
 import 'package:flutter_playground/playground_pages/api_consumer_with_cache.dart';
@@ -39,6 +40,7 @@ import 'package:flutter_playground/playground_pages/streambuilder.dart';
 import 'package:flutter_playground/playground_pages/swipe_card.dart';
 import 'package:flutter_playground/playground_pages/telegram_sliver.dart';
 import 'package:flutter_playground/playground_pages/test_internet.dart';
+import 'package:flutter_playground/playground_pages/video_player_demo.dart';
 
 final List<PageModel> pages = [
   PageModel(page: StreamBuilderPlayground()),
@@ -47,7 +49,6 @@ final List<PageModel> pages = [
       shouldHaveTransition: true,
       image: "https://picsum.photos/300"),
   PageModel(page: IntervalAnimation()),
-  //PageModel(page: FirebaseFaceDetectionDemo()),
   PageModel(page: SliverPersistentHeaderDemo()),
   PageModel(page: LookRotation()),
   PageModel(page: LocalAuthenthicationDemo()),
@@ -57,12 +58,10 @@ final List<PageModel> pages = [
   PageModel(page: LerpAnimationDemo()),
   PageModel(page: DraggableSrollableSheetDemo()),
   PageModel(page: GoogleMapPolyline()),
-  //PageModel(page: AudioPlayerDemo()),
   PageModel(page: BlocWithGetIt()),
   PageModel(page: PageViewEnlarge()),
   PageModel(page: FlutterClipper()),
   PageModel(page: NewLocalization()),
-  //PageModel(page: SoundRecorderDemo()),
   PageModel(page: FlutterProvider()),
   PageModel(page: FlutterStatefulWidget()),
   PageModel(page: TelegramSliver()),
@@ -85,4 +84,5 @@ final List<PageModel> pages = [
   PageModel(page: SqfLiteTodoApp()),
   PageModel(page: InheritedProviderDemo()),
   PageModel(page: TestInternetConnection()),
+  PageModel(page: VideoPlayerDemo())
 ];
