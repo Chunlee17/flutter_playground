@@ -115,45 +115,40 @@ class _TelegramSliverState extends State<TelegramSliver>
   }
 
   Widget buildTitle(bool isStrech) {
-    return Stack(
-      children: <Widget>[
-        Align(
-          alignment: Alignment.bottomLeft,
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
+    return Align(
+      alignment: Alignment.bottomLeft,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            AnimatedContainer(
+              width: isStrech ? 0 : 40,
+              height: isStrech ? 0 : 40,
+              duration: Duration(milliseconds: 100),
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: NetworkImage("http://picsum.photos/100"),
+                ),
+              ),
+            ),
+            JinWidget.horizontalSpace(),
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                AnimatedContainer(
-                  width: isStrech ? 0 : 40,
-                  height: isStrech ? 0 : 40,
-                  duration: Duration(milliseconds: 100),
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: NetworkImage("http://picsum.photos/100"),
-                    ),
-                  ),
-                ),
-                JinWidget.horizontalSpace(),
-                Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text("Chunlee Thong"),
-                    Text(
-                      "last seen recenlty",
-                      style: TextStyle(
-                          fontSize: 12, fontWeight: FontWeight.normal),
-                    )
-                  ],
-                ),
+                Text("Chunlee Thong"),
+                Text(
+                  "last seen recenlty",
+                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.normal),
+                )
               ],
             ),
-          ),
+          ],
         ),
-      ],
+      ),
     );
   }
 

@@ -9,6 +9,11 @@ class DraggableSrollableSheetDemo extends StatelessWidget {
       ),
       body: Column(
         children: <Widget>[
+          ListTile(
+            title: Text("Hello Flutter"),
+            subtitle: Text("Hi my name is Chunlee"),
+            leading: CircleAvatar(child: Text("T")),
+          ),
           Expanded(
             child: DraggableScrollableSheet(
               minChildSize: 0.1,

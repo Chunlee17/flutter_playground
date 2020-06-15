@@ -13,7 +13,7 @@ class _FlipPageTransitionState extends State<FlipPageTransition>
   Size size;
   double minScale = 0.8;
 
-  static const transitionDuration = Duration(milliseconds: 2500);
+  static const transitionDuration = Duration(milliseconds: 200);
 
   void viewDetail() async {
     controller.forward();

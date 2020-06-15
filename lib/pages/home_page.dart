@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_playground/models/page_model.dart';
+import 'package:flutter_playground/main.dart';
+import 'package:flutter_playground/pages/page_list.dart';
+import 'package:flutter_playground/provider/todo_provider.dart';
 import 'package:flutter_playground/widgets/page_card.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -8,10 +10,14 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  TodoProvider todoProvider = getIt<TodoProvider>();
   @override
   void initState() {
+    todoProvider.open('todo_db.db');
     pages.sort((page1, page2) {
-      return page1.page.toStringShort().compareTo(page2.page.toStringShort());
+      return page1.page.runtimeType
+          .toString()
+          .compareTo(page2.page.runtimeType.toString());
     });
     super.initState();
   }

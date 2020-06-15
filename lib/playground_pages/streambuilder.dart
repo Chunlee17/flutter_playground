@@ -9,22 +9,22 @@ class StreamBuilderPlayground extends StatefulWidget {
 }
 
 class _StreamBuilderPlaygroundState extends State<StreamBuilderPlayground> {
-  //publish subject can listen multiple time but not emit latest value
-  PublishSubject<int> streamController2 = PublishSubject();
+  //publish subject can listen multiple time but not emit latest value when streambuilder initial
+  PublishSubject<int> publishStream = PublishSubject();
 
   //###
   //replay subject can listen multiple time and emit all latest value
-  ReplaySubject<int> streamController3 = ReplaySubject();
+  ReplaySubject<int> replayStream = ReplaySubject();
 
   //##
   //behavior subject can listen multiple time and single latest value
-  BehaviorSubject<int> streamController = BehaviorSubject();
+  BehaviorSubject<int> behaviorStream = BehaviorSubject();
 
   bool showStream = true;
   int value = 0;
   @override
   void initState() {
-    streamController.stream.listen((data) {
+    behaviorStream.stream.listen((data) {
       print("stream data: $data");
     });
     super.initState();
@@ -32,9 +32,9 @@ class _StreamBuilderPlaygroundState extends State<StreamBuilderPlayground> {
 
   @override
   void dispose() {
-    streamController.close();
-    streamController2.close();
-    streamController3.close();
+    behaviorStream.close();
+    publishStream.close();
+    replayStream.close();
     super.dispose();
   }
 
@@ -51,7 +51,7 @@ class _StreamBuilderPlaygroundState extends State<StreamBuilderPlayground> {
           children: <Widget>[
             showStream
                 ? StreamHandler<int>(
-                    stream: streamController.stream,
+                    stream: publishStream.stream,
                     ready: (snapshot) {
                       return Text("Stream value: $snapshot",
                           style: Theme.of(context).textTheme.headline6);
@@ -73,7 +73,7 @@ class _StreamBuilderPlaygroundState extends State<StreamBuilderPlayground> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          streamController.add(++value);
+          publishStream.add(++value);
         },
         child: Icon(Icons.add),
       ),

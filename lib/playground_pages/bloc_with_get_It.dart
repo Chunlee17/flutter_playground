@@ -16,6 +16,12 @@ class _BlocWithGetItState extends State<BlocWithGetIt> {
   }
 
   @override
+  void dispose() {
+    counterBloc.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
