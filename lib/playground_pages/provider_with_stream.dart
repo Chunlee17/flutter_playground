@@ -15,11 +15,12 @@ class _ProviderWithStreamState extends State<ProviderWithStream> {
   @override
   void initState() {
     super.initState();
+    counterProviderStream =
+        Provider.of<CounterProviderStream>(context, listen: false)..increment();
   }
 
   @override
   Widget build(BuildContext context) {
-    counterProviderStream = Provider.of<CounterProviderStream>(context);
     print("Rebuild page");
     return Scaffold(
       appBar: AppBar(
@@ -40,12 +41,13 @@ class _ProviderWithStreamState extends State<ProviderWithStream> {
             );
           }),
       floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
-          FloatingActionButton(
+          RaisedButton(
             onPressed: () => counterProviderStream.increment(),
             child: Icon(Icons.add),
           ),
-          FloatingActionButton(
+          RaisedButton(
             onPressed: () => counterProviderStream.addError(),
             child: Icon(Icons.error),
           ),
