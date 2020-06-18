@@ -6,7 +6,7 @@ class CounterProviderStream {
 
   Stream get stream => controller.stream;
 
-  CounterProviderStream._();
+  CounterProviderStream();
 
   void increment() {
     _count++;

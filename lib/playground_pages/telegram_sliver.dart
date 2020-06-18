@@ -8,8 +8,7 @@ class TelegramSliver extends StatefulWidget {
   _TelegramSliverState createState() => _TelegramSliverState();
 }
 
-class _TelegramSliverState extends State<TelegramSliver>
-    with SingleTickerProviderStateMixin {
+class _TelegramSliverState extends State<TelegramSliver> with SingleTickerProviderStateMixin {
   double maxSliverHeight = 220;
   double minimumShowIconHeight = 150;
   double height;
@@ -67,7 +66,13 @@ class _TelegramSliverState extends State<TelegramSliver>
             floating: false,
             bottom: sliverBottomWidget(),
             actions: <Widget>[
-              IconButton(icon: Icon(Icons.call), onPressed: () {}),
+              IconButton(
+                  icon: Icon(Icons.call),
+                  onPressed: () {
+                    JinNavigator.dialog(JinSimpleDialog(
+                      content: "Hi",
+                    ));
+                  }),
               IconButton(icon: Icon(Icons.more_vert), onPressed: () {}),
             ],
             flexibleSpace: LayoutBuilder(builder: (context, constraint) {
@@ -81,12 +86,9 @@ class _TelegramSliverState extends State<TelegramSliver>
                 background: ScaleTransition(
                   scale: controller,
                   alignment: Alignment(-0.8, 0.8),
-                  child: Image.network("http://picsum.photos/100",
-                      fit: BoxFit.cover),
+                  child: Image.network("http://picsum.photos/100", fit: BoxFit.cover),
                 ),
-                titlePadding: EdgeInsets.only(
-                    left: (1 - height / (maxSliverHeight + safePadding)).abs() *
-                        80),
+                titlePadding: EdgeInsets.only(left: (1 - height / (maxSliverHeight + safePadding)).abs() * 80),
                 title: StreamBuilder<bool>(
                   initialData: false,
                   stream: bgController.stream,

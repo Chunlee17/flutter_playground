@@ -45,10 +45,7 @@ import 'package:flutter_playground/playground_pages/video_player_demo.dart';
 
 final List<PageModel> pages = [
   PageModel(page: StreamBuilderPlayground()),
-  PageModel(
-      page: ScalingPage("https://picsum.photos/300"),
-      shouldHaveTransition: true,
-      image: "https://picsum.photos/300"),
+  PageModel(page: ScalingPage("https://picsum.photos/300"), shouldHaveTransition: true, image: "https://picsum.photos/300"),
   PageModel(page: IntervalAnimation()),
   PageModel(page: SliverPersistentHeaderDemo()),
   PageModel(page: LookRotation()),
@@ -66,7 +63,7 @@ final List<PageModel> pages = [
   PageModel(page: FlutterProvider()),
   PageModel(page: FlutterStatefulWidget()),
   PageModel(page: TelegramSliver()),
-  PageModel(page: HiveDatabase()),
+  //PageModel(page: HiveDatabase()),
   PageModel(page: ApiConsumerWithCache()),
   PageModel(page: ApiConsumerWithStream()),
   PageModel(page: FlutterInheritedWidget()),

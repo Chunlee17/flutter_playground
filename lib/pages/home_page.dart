@@ -15,9 +15,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     todoProvider.open('todo_db.db');
     pages.sort((page1, page2) {
-      return page1.page.runtimeType
-          .toString()
-          .compareTo(page2.page.runtimeType.toString());
+      return page1.page.runtimeType.toString().compareTo(page2.page.runtimeType.toString());
     });
     super.initState();
   }
@@ -29,8 +27,7 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text("Flutter Playground"),
       ),
       body: GridView.builder(
-        gridDelegate:
-            SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
         padding: EdgeInsets.symmetric(horizontal: 4, vertical: 6),
         itemCount: pages.length,
         itemBuilder: (BuildContext context, int index) {
