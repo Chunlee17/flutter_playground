@@ -51,7 +51,7 @@ class _StreamBuilderPlaygroundState extends State<StreamBuilderPlayground> {
           children: <Widget>[
             showStream
                 ? StreamHandler<int>(
-                    stream: publishStream.stream,
+                    stream: behaviorStream.stream,
                     ready: (snapshot) {
                       return Text("Stream value: $snapshot",
                           style: Theme.of(context).textTheme.headline6);
@@ -73,7 +73,7 @@ class _StreamBuilderPlaygroundState extends State<StreamBuilderPlayground> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          publishStream.add(++value);
+          behaviorStream.add(++value);
         },
         child: Icon(Icons.add),
       ),

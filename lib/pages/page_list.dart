@@ -14,6 +14,7 @@ import 'package:flutter_playground/playground_pages/flip_page_transition.dart';
 import 'package:flutter_playground/playground_pages/flutter_animation_package.dart';
 import 'package:flutter_playground/playground_pages/flutter_clipper.dart';
 import 'package:flutter_playground/playground_pages/flutter_inherited_widget.dart';
+import 'package:flutter_playground/playground_pages/flutter_mixin_stateful_widget_example.dart';
 import 'package:flutter_playground/playground_pages/flutter_navigation_rails.dart';
 import 'package:flutter_playground/playground_pages/flutter_provider.dart';
 import 'package:flutter_playground/playground_pages/flutter_stateful_widget.dart';
@@ -27,6 +28,7 @@ import 'package:flutter_playground/playground_pages/lerp_animation.dart';
 import 'package:flutter_playground/playground_pages/local_auth.dart';
 import 'package:flutter_playground/playground_pages/look_rotation.dart';
 import 'package:flutter_playground/playground_pages/new_localization.dart';
+import 'package:flutter_playground/playground_pages/node_api_boilerplate_testing.dart';
 import 'package:flutter_playground/playground_pages/page_view_enlarge.dart';
 import 'package:flutter_playground/playground_pages/provider_with_stream.dart';
 import 'package:flutter_playground/playground_pages/proxy_provider_demo.dart';
@@ -45,7 +47,10 @@ import 'package:flutter_playground/playground_pages/video_player_demo.dart';
 
 final List<PageModel> pages = [
   PageModel(page: StreamBuilderPlayground()),
-  PageModel(page: ScalingPage("https://picsum.photos/300"), shouldHaveTransition: true, image: "https://picsum.photos/300"),
+  PageModel(
+      page: ScalingPage("https://picsum.photos/300"),
+      shouldHaveTransition: true,
+      image: "https://picsum.photos/300"),
   PageModel(page: IntervalAnimation()),
   PageModel(page: SliverPersistentHeaderDemo()),
   PageModel(page: LookRotation()),
@@ -83,5 +88,7 @@ final List<PageModel> pages = [
   PageModel(page: InheritedProviderDemo()),
   PageModel(page: TestInternetConnection()),
   PageModel(page: VideoPlayerDemo()),
-  PageModel(page: ProviderWithStream())
+  PageModel(page: ProviderWithStream()),
+  PageModel(page: NodeApiBoilerPlateTesting()),
+  PageModel(page: FlutterStatefulMixinExample())
 ];
