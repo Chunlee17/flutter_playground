@@ -40,6 +40,7 @@ import 'package:flutter_playground/playground_pages/sliver_with_tabbar.dart';
 import 'package:flutter_playground/playground_pages/sqflite_todo.dart';
 import 'package:flutter_playground/playground_pages/state_rebuilder_demo.dart';
 import 'package:flutter_playground/playground_pages/streambuilder.dart';
+import 'package:flutter_playground/playground_pages/swipe_action.dart';
 import 'package:flutter_playground/playground_pages/swipe_card.dart';
 import 'package:flutter_playground/playground_pages/telegram_sliver.dart';
 import 'package:flutter_playground/playground_pages/test_internet.dart';
@@ -90,5 +91,6 @@ final List<PageModel> pages = [
   PageModel(page: VideoPlayerDemo()),
   PageModel(page: ProviderWithStream()),
   PageModel(page: NodeApiBoilerPlateTesting()),
-  PageModel(page: FlutterStatefulMixinExample())
+  PageModel(page: FlutterStatefulMixinExample()),
+  PageModel(page: SwipeAction()),
 ];
