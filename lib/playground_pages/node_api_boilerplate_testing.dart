@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_playground/service/node-api-boilerplate.dart';
+import 'package:flutter_playground/service/node-api-boilerplate-api.dart';
 import 'package:jin_widget_helper/jin_widget_helper.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -12,7 +12,7 @@ class NodeApiBoilerPlateTesting extends StatefulWidget {
 }
 
 class _NodeApiBoilerPlateTestingState extends State<NodeApiBoilerPlateTesting> {
-  NodeApiBoilerPlate nodeApiBoilerPlate = NodeApiBoilerPlate();
+  NodeApiBoilerPlateApi nodeApiBoilerPlate = NodeApiBoilerPlateApi();
   BehaviorSubject<String> loginController = BehaviorSubject();
   BehaviorSubject<String> userController = BehaviorSubject();
 

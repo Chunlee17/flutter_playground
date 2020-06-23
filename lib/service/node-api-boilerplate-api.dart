@@ -1,12 +1,13 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_playground/service/base_api_provider.dart';
 
-class NodeApiBoilerPlate extends BaseApiProvider {
-  NodeApiBoilerPlate._privateConstructor() {}
-  static final NodeApiBoilerPlate _instance =
-      NodeApiBoilerPlate._privateConstructor();
+import 'node_api_boilerplatebase_api_provider.dart';
 
-  factory NodeApiBoilerPlate() {
+class NodeApiBoilerPlateApi extends NodeApiBoilerplateBaseApiProvider {
+  NodeApiBoilerPlateApi._privateConstructor() {}
+  static final NodeApiBoilerPlateApi _instance =
+      NodeApiBoilerPlateApi._privateConstructor();
+
+  factory NodeApiBoilerPlateApi() {
     return _instance;
   }
 
@@ -22,7 +23,7 @@ class NodeApiBoilerPlate extends BaseApiProvider {
           "password": "123456",
         },
       );
-      if (response.statusCode == 200 && response.data['status'] == 1)
+      if (response.data['status'] == 1)
         return response.data;
       else
         throw response.data['message'];
@@ -37,7 +38,7 @@ class NodeApiBoilerPlate extends BaseApiProvider {
           headers: {"Authorization": "Bearer $token"},
         ),
       );
-      if (response.statusCode == 200 && response.data['status'] == 1)
+      if (response.data['status'] == 1)
         return response.data;
       else
         throw response.data['message'];
