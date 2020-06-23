@@ -8,6 +8,7 @@ import 'package:flutter_playground/playground_pages/api_consumer_with_stream.dar
 import 'package:flutter_playground/playground_pages/bloc_with_get_It.dart';
 import 'package:flutter_playground/playground_pages/clipper_playground.dart';
 import 'package:flutter_playground/playground_pages/container_shadow.dart';
+import 'package:flutter_playground/playground_pages/dart_inheritance.dart';
 import 'package:flutter_playground/playground_pages/draggable_scrollable_sheet.dart';
 import 'package:flutter_playground/playground_pages/facebook_story_ui.dart';
 import 'package:flutter_playground/playground_pages/flip_page_transition.dart';
@@ -93,4 +94,5 @@ final List<PageModel> pages = [
   PageModel(page: NodeApiBoilerPlateTesting()),
   PageModel(page: FlutterStatefulMixinExample()),
   PageModel(page: SwipeAction()),
+  PageModel(page: DartInheritance())
 ];
