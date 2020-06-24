@@ -30,6 +30,7 @@ class _DartInheritanceState extends BaseState<DartInheritance> with BasicPage {
 }
 
 abstract class Animal {
+  int speed;
   String getName();
   void walk();
 }
@@ -46,6 +47,22 @@ class Cat extends Animal {
   @override
   void walk() {
     print("cat walk");
+  }
+}
+
+class Dog implements Animal {
+  @override
+  int speed;
+
+  @override
+  String getName() {
+    // TODO: implement getName
+    throw UnimplementedError();
+  }
+
+  @override
+  void walk() {
+    // TODO: implement walk
   }
 }
 
