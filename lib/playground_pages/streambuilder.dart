@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:jin_widget_helper/jin_widget_helper.dart';
 import 'package:rxdart/rxdart.dart';
@@ -13,20 +15,40 @@ class _StreamBuilderPlaygroundState extends State<StreamBuilderPlayground> {
   PublishSubject<int> publishStream = PublishSubject();
 
   //###
-  //replay subject can listen multiple time and emit all latest value
+  //replay subject can listen multiple time and store all latest value
   ReplaySubject<int> replayStream = ReplaySubject();
 
   //##
   //behavior subject can listen multiple time and single latest value
   BehaviorSubject<int> behaviorStream = BehaviorSubject();
 
+  List<StreamController<int>> streamList;
+
+  StreamController<int> selectedStream;
+
   bool showStream = true;
   int value = 0;
+
+  void initializeStreamListener() {
+    selectedStream.stream.listen(
+      (data) async {
+        print("stream data: $data");
+      },
+      onDone: () async {
+        int length = await selectedStream.stream.length;
+        int last = await selectedStream.stream.last;
+        print("stream done with length: $length and last value: $last");
+      },
+      onError: (err) {
+        print("stream error: $err");
+      },
+    );
+  }
+
   @override
   void initState() {
-    behaviorStream.stream.listen((data) {
-      print("stream data: $data");
-    });
+    selectedStream = behaviorStream;
+    initializeStreamListener();
     super.initState();
   }
 
@@ -44,23 +66,26 @@ class _StreamBuilderPlaygroundState extends State<StreamBuilderPlayground> {
       appBar: AppBar(
         title: Text("StreamBuilder playground"),
       ),
-      body: Center(
+      body: Container(
+        padding: EdgeInsets.symmetric(vertical: 32, horizontal: 16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             showStream
                 ? StreamHandler<int>(
-                    stream: behaviorStream.stream,
+                    stream: selectedStream.stream,
                     ready: (snapshot) {
-                      return Text("Stream value: $snapshot",
-                          style: Theme.of(context).textTheme.headline6);
+                      return Text(
+                        "Stream value: $snapshot",
+                        style: Theme.of(context).textTheme.headline6,
+                      );
                     })
-                : Text("Stream has been hide",
-                    style: Theme.of(context).textTheme.headline6),
+                : Text(
+                    "Stream has been hide",
+                    style: Theme.of(context).textTheme.headline6,
+                  ),
             JinWidget.verticalSpace(32),
             ActionButton(
-              stretch: false,
               onPressed: () {
                 setState(() {
                   showStream = !showStream;
@@ -71,11 +96,25 @@ class _StreamBuilderPlaygroundState extends State<StreamBuilderPlayground> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          behaviorStream.add(++value);
-        },
-        child: Icon(Icons.add),
+      floatingActionButton: Column(
+        crossAxisAlignment: CrossAxisAlignment.end,
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: <Widget>[
+          ActionButton(
+            stretch: false,
+            onPressed: () {
+              selectedStream.add(++value);
+            },
+            child: Text("Add Data to Stream"),
+          ),
+          ActionButton(
+            stretch: false,
+            onPressed: () {
+              selectedStream.close();
+            },
+            child: Text("Close Stream"),
+          ),
+        ],
       ),
     );
   }
