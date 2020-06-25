@@ -3,7 +3,7 @@ import 'package:dio/dio.dart';
 import 'node_api_boilerplatebase_api_provider.dart';
 
 class NodeApiBoilerPlateApi extends NodeApiBoilerplateBaseApiProvider {
-  NodeApiBoilerPlateApi._privateConstructor() {}
+  NodeApiBoilerPlateApi._privateConstructor();
   static final NodeApiBoilerPlateApi _instance =
       NodeApiBoilerPlateApi._privateConstructor();
 
