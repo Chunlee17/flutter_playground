@@ -53,7 +53,9 @@ class Delegate extends SliverPersistentHeaderDelegate {
   final String title;
   Delegate(this.title);
   @override
-  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) => Padding(
+  Widget build(
+          BuildContext context, double shrinkOffset, bool overlapsContent) =>
+      Padding(
         padding: EdgeInsets.symmetric(horizontal: 0),
         child: Container(
           height: maxExtent,

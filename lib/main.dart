@@ -59,12 +59,12 @@ class MyApp extends StatelessWidget {
             count: 20,
             child: MultiProvider(
               providers: [
-                ChangeNotifierProvider(create: (context) => CounterProvider()),
                 InheritedProvider(create: (context) => 20),
                 Provider(create: (context) => CheckNumberProvider()),
                 Provider(create: (context) => CounterProviderStream()),
                 ProxyProvider<CounterProvider, CheckNumberProvider>(
-                  update: (context, counter, depender) => CheckNumberProvider(counter: counter),
+                  update: (context, counter, depender) =>
+                      CheckNumberProvider(counter: counter),
                 ),
               ],
               child: GetMaterialApp(
@@ -81,7 +81,8 @@ class MyApp extends StatelessWidget {
                 locale: EasyLocalization.of(context).locale,
                 theme: ThemeData(
                   primarySwatch: primaryColor,
-                  accentColor: JinColorUtils.hexColorToMaterialColor(0xFF47C5FB),
+                  accentColor:
+                      JinColorUtils.hexColorToMaterialColor(0xFF47C5FB),
                 ),
                 home: MyHomePage(),
               ),

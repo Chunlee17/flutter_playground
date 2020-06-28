@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_playground/playground_pages/flutter_provider.dart';
 import 'package:jin_widget_helper/jin_widget_helper.dart';
 
 class TelegramSliver extends StatefulWidget {
@@ -8,7 +9,8 @@ class TelegramSliver extends StatefulWidget {
   _TelegramSliverState createState() => _TelegramSliverState();
 }
 
-class _TelegramSliverState extends State<TelegramSliver> with SingleTickerProviderStateMixin {
+class _TelegramSliverState extends State<TelegramSliver>
+    with SingleTickerProviderStateMixin {
   double maxSliverHeight = 220;
   double minimumShowIconHeight = 150;
   double height;
@@ -86,9 +88,12 @@ class _TelegramSliverState extends State<TelegramSliver> with SingleTickerProvid
                 background: ScaleTransition(
                   scale: controller,
                   alignment: Alignment(-0.8, 0.8),
-                  child: Image.network("http://picsum.photos/100", fit: BoxFit.cover),
+                  child: Image.network("http://picsum.photos/100",
+                      fit: BoxFit.cover),
                 ),
-                titlePadding: EdgeInsets.only(left: (1 - height / (maxSliverHeight + safePadding)).abs() * 80),
+                titlePadding: EdgeInsets.only(
+                    left: (1 - height / (maxSliverHeight + safePadding)).abs() *
+                        80),
                 title: StreamBuilder<bool>(
                   initialData: false,
                   stream: bgController.stream,

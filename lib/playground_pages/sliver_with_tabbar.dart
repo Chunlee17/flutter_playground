@@ -36,6 +36,8 @@ class _SilverAppBarWithTabBarState extends State<SilverAppBarWithTabBarScreen>
                   expandedHeight: 200.0,
                   floating: false,
                   pinned: true,
+                  stretch: true,
+                  stretchTriggerOffset: 25,
                   flexibleSpace: FlexibleSpaceBar(
                       centerTitle: true,
                       title: Text("Collapsing Toolbar",

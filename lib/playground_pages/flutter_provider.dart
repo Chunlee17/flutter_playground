@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_playground/provider/counter_provider.dart';
+import 'package:jin_widget_helper/jin_widget_helper.dart';
 import 'package:provider/provider.dart';
 
 class FlutterProvider extends StatefulWidget {
@@ -8,7 +9,6 @@ class FlutterProvider extends StatefulWidget {
 }
 
 class _FlutterProviderState extends State<FlutterProvider> {
-  CounterProvider counterProvider;
   @override
   void initState() {
     super.initState();
@@ -16,26 +16,39 @@ class _FlutterProviderState extends State<FlutterProvider> {
 
   @override
   Widget build(BuildContext context) {
-    counterProvider = Provider.of<CounterProvider>(context, listen: false);
     print("Build page");
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Flutter Provider"),
+    return ChangeNotifierProvider(
+      create: (_) => CounterProvider(),
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text("Flutter Provider"),
+        ),
+        body: Consumer<CounterProvider>(
+          builder: (context, counter, snapshot) {
+            print("Build Consumer with data: ${counter.count}");
+            return Center(
+              child: Text("Counter: ${counter.count}"),
+            );
+          },
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        floatingActionButton: IncrementButton(),
       ),
-      body: Consumer<CounterProvider>(
-        builder: (context, counter, snapshot) {
-          print("Build Consumer with data: ${counter.count}");
-          return Center(
-            child: Text("Counter: ${counter.count}"),
-          );
-        },
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          counterProvider.increment();
-        },
-        child: Icon(Icons.add),
-      ),
+    );
+  }
+}
+
+class IncrementButton extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    var counter = context.watch<CounterProvider>();
+    return RawMaterialButton(
+      onPressed: () {
+        counter.increment();
+      },
+      fillColor: JinColorUtils.fromRGB(255, 196, 0),
+      shape: StadiumBorder(),
+      child: Text("Increment"),
     );
   }
 }

@@ -7,4 +7,10 @@ class CounterProvider extends ChangeNotifier {
     count++;
     notifyListeners();
   }
+
+  @override
+  void dispose() {
+    print("Counter provider has been dispose");
+    super.dispose();
+  }
 }
