@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:jin_widget_helper/jin_widget_helper.dart';
 
@@ -42,6 +43,11 @@ class _ProgressLoadingIndicatorState extends State<ProgressLoadingIndicator> {
       body: Center(
         child: ActionButton(
           child: Text("Click me to process"),
+          loadingWidget: SizedBox(
+            height: 12,
+            width: 12,
+            child: CircularProgressIndicator(),
+          ),
           onPressed: () async {
             // As a function
             //showLoading(loading: isLoading, function: onProcessing);
