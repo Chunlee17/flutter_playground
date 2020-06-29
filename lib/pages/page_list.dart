@@ -32,6 +32,7 @@ import 'package:flutter_playground/playground_pages/look_rotation.dart';
 import 'package:flutter_playground/playground_pages/new_localization.dart';
 import 'package:flutter_playground/playground_pages/node_api_boilerplate_testing.dart';
 import 'package:flutter_playground/playground_pages/page_view_enlarge.dart';
+import 'package:flutter_playground/playground_pages/progress_loading_indicator.dart';
 import 'package:flutter_playground/playground_pages/provider_with_stream.dart';
 import 'package:flutter_playground/playground_pages/proxy_provider_demo.dart';
 import 'package:flutter_playground/playground_pages/real_bloc_pattern.dart';
@@ -97,4 +98,5 @@ final List<PageModel> pages = [
   PageModel(page: SwipeAction()),
   PageModel(page: DartInheritance()),
   PageModel(page: CustomDialogExample()),
+  PageModel(page: ProgressLoadingIndicator())
 ];
