@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_playground/bloc/counter_bloc.dart';
+import 'package:flutter_playground/bloc_provider_get_controller/counter_stream.dart';
 import 'package:flutter_playground/main.dart';
 
-class BlocWithGetIt extends StatefulWidget {
+class StreamWithGetIt extends StatefulWidget {
   @override
-  _BlocWithGetItState createState() => _BlocWithGetItState();
+  _StreamWithGetItState createState() => _StreamWithGetItState();
 }
 
-class _BlocWithGetItState extends State<BlocWithGetIt> {
-  CounterBloc counterBloc;
+class _StreamWithGetItState extends State<StreamWithGetIt> {
+  CounterStream counterBloc;
   @override
   void initState() {
-    counterBloc = getIt.get<CounterBloc>();
+    counterBloc = getIt.get<CounterStream>();
     super.initState();
   }
 
@@ -25,7 +25,7 @@ class _BlocWithGetItState extends State<BlocWithGetIt> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Flutter Bloc With GetIt"),
+        title: Text("Stream With GetIt"),
       ),
       body: Center(
         child: Column(
@@ -46,7 +46,7 @@ class _BlocWithGetItState extends State<BlocWithGetIt> {
 }
 
 class CounterDisplay extends StatelessWidget {
-  final CounterBloc counterBloc = getIt.get<CounterBloc>();
+  final CounterStream counterBloc = getIt.get<CounterStream>();
   @override
   Widget build(BuildContext context) {
     return Container(

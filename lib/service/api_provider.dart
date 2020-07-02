@@ -37,7 +37,7 @@ class ApiProvider {
   Future<PostModel> getSinglePost() async {
     try {
       Response response = await dio.get(
-        "https://jsonplaceholder.typicode.com/post/sd/sd",
+        "https://jsonplaceholder.typicode.com/posts/1",
         options: buildCacheOptions(Duration(days: 10)),
       );
       return PostModel.fromJson(response.data);

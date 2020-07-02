@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_playground/provider/counter_provider_stream.dart';
+import 'package:flutter_playground/bloc_provider_get_controller/counter_stream.dart';
 import 'package:jin_widget_helper/jin_widget_helper.dart';
 import 'package:provider/provider.dart';
 
@@ -9,12 +9,12 @@ class ProviderWithStream extends StatefulWidget {
 }
 
 class _ProviderWithStreamState extends State<ProviderWithStream> {
-  CounterProviderStream counterProviderStream;
+  CounterStream counterProviderStream;
   @override
   void initState() {
     super.initState();
-    counterProviderStream =
-        Provider.of<CounterProviderStream>(context, listen: false)..increment();
+    counterProviderStream = Provider.of<CounterStream>(context, listen: false)
+      ..increment();
   }
 
   @override
@@ -22,7 +22,7 @@ class _ProviderWithStreamState extends State<ProviderWithStream> {
     print("Rebuild page");
     return Scaffold(
       appBar: AppBar(
-        title: Text("Real Bloc Pattern"),
+        title: Text("Provider with Pure stream"),
       ),
       body: StreamHandler<Object>(
           stream: counterProviderStream.stream,
@@ -58,7 +58,7 @@ class _ProviderWithStreamState extends State<ProviderWithStream> {
 class CounterDisplay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Consumer<CounterProviderStream>(
+    return Consumer<CounterStream>(
       builder: (context, counter, _) => StreamHandler<Object>(
           stream: counter.stream,
           ready: (snapshot) {

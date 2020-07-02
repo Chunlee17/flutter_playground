@@ -6,10 +6,12 @@ class PageModel {
   Duration animationDuration;
   String image;
   bool shouldHaveTransition;
+  PageType pageType;
   PageModel({
     this.animationDuration = const Duration(milliseconds: 500),
     this.image,
     @required this.page,
+    this.pageType,
     this.shouldHaveTransition = false,
   });
 
@@ -21,4 +23,13 @@ class PageModel {
     titles.forEach((t) => title += "$t ");
     return title;
   }
+}
+
+enum PageType {
+  Widget,
+  CodePlayground,
+  StateManagement,
+  Database,
+  Utility,
+  Package,
 }

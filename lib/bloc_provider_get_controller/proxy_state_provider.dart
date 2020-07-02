@@ -1,4 +1,4 @@
-import 'package:flutter_playground/provider/counter_provider.dart';
+import 'package:flutter_playground/bloc_provider_get_controller/counter_provider.dart';
 
 enum CheckNumber {
   IsOdd,

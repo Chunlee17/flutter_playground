@@ -1,27 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_playground/bloc/real_counter_bloc.dart';
+import 'package:flutter_playground/bloc_provider_get_controller/counter_bloc.dart';
 
-class RealBlocPattern extends StatefulWidget {
+class BlocStateManagement extends StatefulWidget {
   @override
-  _RealBlocPatternState createState() => _RealBlocPatternState();
+  _BlocStateManagementState createState() => _BlocStateManagementState();
 }
 
-class _RealBlocPatternState extends State<RealBlocPattern> {
-  RealCounterBloc counterBloc;
+class _BlocStateManagementState extends State<BlocStateManagement> {
+  CounterBloc counterBloc;
   @override
   void initState() {
-    counterBloc = BlocProvider.of<RealCounterBloc>(context)
+    counterBloc = BlocProvider.of<CounterBloc>(context)
       ..add(CounterEvent.increment);
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    print("Rebuild page");
     return Scaffold(
       appBar: AppBar(
-        title: Text("Real Bloc Pattern"),
+        title: Text("Bloc State Mangement"),
       ),
       body: Center(
         child: Column(
@@ -45,7 +44,7 @@ class CounterDisplay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: BlocConsumer<RealCounterBloc, dynamic>(
+      child: BlocConsumer<CounterBloc, dynamic>(
         listener: (context, data) {
           print("We get data: $data");
         },

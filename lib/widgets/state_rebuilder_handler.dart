@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_playground/models/base_model.dart';
+import 'package:flutter_playground/bloc_provider_get_controller/base_model.dart';
 import 'package:states_rebuilder/states_rebuilder.dart';
 
 class StateBuilderHandler<T extends BaseViewModel> extends StatelessWidget {
@@ -8,7 +8,8 @@ class StateBuilderHandler<T extends BaseViewModel> extends StatelessWidget {
   final Widget loading;
   final Widget Function(String) error;
   final Function onInitState;
-  StateBuilderHandler({this.model, this.builder, this.loading, this.onInitState, this.error});
+  StateBuilderHandler(
+      {this.model, this.builder, this.loading, this.onInitState, this.error});
   @override
   Widget build(BuildContext context) {
     return StateBuilder<T>(

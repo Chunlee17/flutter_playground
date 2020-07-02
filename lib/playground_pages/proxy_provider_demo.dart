@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_playground/provider/counter_provider.dart';
-import 'package:flutter_playground/provider/proxy_state_provider.dart';
+import 'package:flutter_playground/bloc_provider_get_controller/counter_provider.dart';
+import 'package:flutter_playground/bloc_provider_get_controller/proxy_state_provider.dart';
 import 'package:jin_widget_helper/jin_widget_helper.dart';
 import 'package:provider/provider.dart';
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_playground/models/get_counter_controller.dart';
+import 'package:flutter_playground/bloc_provider_get_controller/get_counter_controller.dart';
 import 'package:jin_widget_helper/jin_widget_helper.dart';
 import 'package:get/get.dart';
 
@@ -48,15 +48,9 @@ class GetCounterButton extends StatelessWidget {
   //final controller = Get.find<CounterController>();
   @override
   Widget build(BuildContext context) {
-    // return RaisedButton(
-    //   onPressed: () => controller.increment(),
-    //   child: Text("Increment"),
-    // );
-    return GetBuilder<CounterController>(
-      builder: (controller) => RaisedButton(
-        onPressed: () => controller.increment(),
-        child: Text("Increment"),
-      ),
+    return RaisedButton(
+      onPressed: () => CounterController.to.increment(),
+      child: Text("Increment"),
     );
   }
 }

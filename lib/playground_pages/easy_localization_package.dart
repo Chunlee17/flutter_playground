@@ -2,14 +2,16 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:jin_widget_helper/jin_widget_helper.dart';
 
-class NewLocalization extends StatefulWidget {
-  NewLocalization({Key key}) : super(key: key);
+class EasyLocalizationPackageDemo extends StatefulWidget {
+  EasyLocalizationPackageDemo({Key key}) : super(key: key);
 
   @override
-  _NewLocalizationState createState() => _NewLocalizationState();
+  _EasyLocalizationPackageDemoState createState() =>
+      _EasyLocalizationPackageDemoState();
 }
 
-class _NewLocalizationState extends State<NewLocalization> {
+class _EasyLocalizationPackageDemoState
+    extends State<EasyLocalizationPackageDemo> {
   @override
   Widget build(BuildContext context) {
     var data = EasyLocalization.of(context);

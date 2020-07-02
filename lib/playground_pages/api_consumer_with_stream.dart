@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_playground/bloc/base_extend_bloc.dart';
+import 'package:flutter_playground/bloc_provider_get_controller/base_extend_bloc.dart';
 import 'package:flutter_playground/models/post_model.dart';
 import 'package:flutter_playground/service/api_provider.dart';
 import 'package:jin_widget_helper/jin_widget_helper.dart';
@@ -45,14 +45,6 @@ class _ApiConsumerWithStreamState extends State<ApiConsumerWithStream> {
       ),
       body: StreamHandler<List<PostModel>>(
         stream: baseBloc.stream,
-        error: (error) {
-          return Center(
-            child: Text(
-              error,
-              textAlign: TextAlign.center,
-            ),
-          );
-        },
         ready: (data) {
           return Column(
             children: <Widget>[

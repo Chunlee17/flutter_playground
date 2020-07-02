@@ -2,7 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 enum CounterEvent { increment, decrement }
 
-class RealCounterBloc extends Bloc<CounterEvent, dynamic> {
+class CounterBloc extends Bloc<CounterEvent, dynamic> {
   @override
   int get initialState => 0;
 

@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_playground/provider/counter_provider.dart';
+import 'package:flutter_playground/bloc_provider_get_controller/counter_provider.dart';
 import 'package:jin_widget_helper/jin_widget_helper.dart';
 import 'package:provider/provider.dart';
 
-class FlutterProvider extends StatefulWidget {
+class ProviderStateManagement extends StatefulWidget {
   @override
-  _FlutterProviderState createState() => _FlutterProviderState();
+  _ProviderStateManagementState createState() =>
+      _ProviderStateManagementState();
 }
 
-class _FlutterProviderState extends State<FlutterProvider> {
+class _ProviderStateManagementState extends State<ProviderStateManagement> {
   @override
   void initState() {
     super.initState();
@@ -21,7 +22,7 @@ class _FlutterProviderState extends State<FlutterProvider> {
       create: (_) => CounterProvider(),
       child: Scaffold(
         appBar: AppBar(
-          title: Text("Flutter Provider"),
+          title: Text("Provider State Mangement"),
         ),
         body: Consumer<CounterProvider>(
           builder: (context, counter, snapshot) {

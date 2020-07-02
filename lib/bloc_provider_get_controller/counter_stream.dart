@@ -1,8 +1,10 @@
 import 'package:rxdart/rxdart.dart';
 
-class CounterBloc {
+class CounterStream {
   int count = 0;
   BehaviorSubject<int> streamController = BehaviorSubject();
+
+  Stream get stream => streamController.stream;
 
   void increment() async {
     count++;
@@ -13,6 +15,10 @@ class CounterBloc {
   void decrement() {
     count--;
     streamController.add(count);
+  }
+
+  void addError() {
+    streamController.addError("There's an error occur");
   }
 
   void dispose() async {

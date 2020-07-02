@@ -1,11 +1,11 @@
 import 'package:flutter_playground/main.dart';
 import 'package:flutter_playground/models/todo_model.dart';
-import 'package:flutter_playground/provider/todo_provider.dart';
+import 'package:flutter_playground/bloc_provider_get_controller/todo_db_provider.dart';
 import 'package:rxdart/rxdart.dart';
 
 class TodoBloc {
   List<Todo> _todos;
-  TodoProvider todoProvider = getIt<TodoProvider>();
+  TodoDBProvider todoProvider = getIt<TodoDBProvider>();
   BehaviorSubject<List<Todo>> _subject = BehaviorSubject();
 
   //

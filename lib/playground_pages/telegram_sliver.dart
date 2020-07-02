@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_playground/playground_pages/flutter_provider.dart';
+import 'package:flutter_playground/playground_pages/provider_state_management.dart';
 import 'package:jin_widget_helper/jin_widget_helper.dart';
 
 class TelegramSliver extends StatefulWidget {

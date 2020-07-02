@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_playground/bloc/todo_bloc.dart';
+import 'package:flutter_playground/bloc_provider_get_controller/todo_bloc.dart';
 import 'package:flutter_playground/main.dart';
 import 'package:flutter_playground/models/todo_model.dart';
 import 'package:jin_widget_helper/jin_widget_helper.dart';

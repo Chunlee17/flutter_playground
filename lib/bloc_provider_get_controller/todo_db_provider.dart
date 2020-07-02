@@ -1,7 +1,7 @@
 import 'package:flutter_playground/models/todo_model.dart';
 import 'package:sqflite/sqflite.dart';
 
-class TodoProvider {
+class TodoDBProvider {
   Database db;
 
   Future open(String path) async {
