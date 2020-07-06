@@ -18,14 +18,12 @@ class HomePageDrawer extends StatelessWidget {
             ExpansionTile(
               title: Text(type.toStringShort()),
               leading: Icon(Icons.view_comfy),
-              children: <Widget>[
-                ...pages
-                    .where((PageModel pageModel) {
-                      return pageModel.pageType == type;
-                    })
-                    .map(buildPageItem)
-                    .toList(),
-              ],
+              children: pages
+                  .where((PageModel pageModel) {
+                    return pageModel.pageType == type;
+                  })
+                  .map(buildPageItem)
+                  .toList(),
             ),
         ],
       ),

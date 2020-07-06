@@ -5,6 +5,9 @@ import 'package:flutter_playground/models/page_model.dart';
 import 'package:flutter_playground/playground_pages/3d_drawer.dart';
 import 'package:flutter_playground/playground_pages/api_consumer_with_cache.dart';
 import 'package:flutter_playground/playground_pages/api_consumer_with_stream.dart';
+import 'package:flutter_playground/playground_pages/flutter_curve_animation.dart';
+import 'package:flutter_playground/playground_pages/flutter_custom_route.dart';
+import 'package:flutter_playground/playground_pages/flutter_tween_sequence_animation.dart';
 import 'package:flutter_playground/playground_pages/loading_button_experiment.dart';
 import 'package:flutter_playground/playground_pages/stack_architecture_example.dart';
 import 'package:flutter_playground/playground_pages/stream_with_get_It.dart';
@@ -133,6 +136,18 @@ final List<PageModel> pages = [
   PageModel(
     page: StackArchitectureHome(),
     pageType: PageType.Package,
+  ),
+  PageModel(
+    page: FlutterTweenSequenceAnimationExample(),
+    pageType: PageType.Widget,
+  ),
+  PageModel(
+    page: FlutterCurveAnimationExample(),
+    pageType: PageType.Widget,
+  ),
+  PageModel(
+    page: FlutterCustomRouteExample(),
+    pageType: PageType.Widget,
   ),
   PageModel(
     page: LoadingButtonExperiment(),

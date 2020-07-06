@@ -38,59 +38,71 @@ class _FacebookStoryUIState extends State<FacebookStoryUI>
       appBar: AppBar(
         title: Text("Facebook Story UI"),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Text(
-            "Stories",
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-          ).margin(EdgeInsets.symmetric(vertical: 16, horizontal: 12)),
-          Container(
-            height: size.height / 4,
-            child: Stack(
-              children: <Widget>[
-                ListView.builder(
-                  padding: EdgeInsets.all(12),
-                  controller: scrollController,
-                  itemCount: peoples.length + 1,
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index) {
-                    if (index == 0) return myAddStoryCard();
-                    final person = peoples[index - 1];
-                    return Container(
-                      width: size.width / 3.5,
-                      padding: EdgeInsets.all(8),
-                      margin: EdgeInsets.only(right: 8),
-                      decoration: BoxDecoration(
-                        color: Colors.grey,
-                        image: DecorationImage(
-                          image: NetworkImage(person.imageUrl),
-                          fit: BoxFit.cover,
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text(
+              "Stories",
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ).margin(EdgeInsets.symmetric(vertical: 16, horizontal: 12)),
+            Container(
+              height: size.height / 4,
+              child: Stack(
+                children: <Widget>[
+                  ListView.builder(
+                    padding: EdgeInsets.all(12),
+                    controller: scrollController,
+                    itemCount: peoples.length + 1,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) {
+                      if (index == 0) return myAddStoryCard();
+                      final person = peoples[index - 1];
+                      return Container(
+                        width: size.width / 3.5,
+                        padding: EdgeInsets.all(8),
+                        margin: EdgeInsets.only(right: 8),
+                        decoration: BoxDecoration(
+                          color: Colors.grey,
+                          image: DecorationImage(
+                            image: NetworkImage(person.imageUrl),
+                            fit: BoxFit.cover,
+                          ),
+                          borderRadius: JinWidget.radius(12),
                         ),
-                        borderRadius: JinWidget.radius(12),
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          CircleAvatar(
-                            radius: 12,
-                            backgroundImage: NetworkImage(person.profile),
-                          ),
-                          Text(
-                            person.name,
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ],
-                      ),
-                    );
-                  },
-                ),
-                buildAddStoryButton(),
-              ],
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            CircleAvatar(
+                              radius: 12,
+                              backgroundImage: NetworkImage(person.profile),
+                            ),
+                            Text(
+                              person.name,
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  ),
+                  buildAddStoryButton(),
+                ],
+              ),
             ),
-          ),
-        ],
+            ListView.builder(
+              itemCount: 19,
+              shrinkWrap: true,
+              primary: false,
+              itemBuilder: (BuildContext context, int index) {
+                return ListTile(
+                  title: Text("Hello"),
+                );
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
