@@ -6,6 +6,7 @@ import 'package:flutter_playground/playground_pages/3d_drawer.dart';
 import 'package:flutter_playground/playground_pages/api_consumer_with_cache.dart';
 import 'package:flutter_playground/playground_pages/api_consumer_with_stream.dart';
 import 'package:flutter_playground/playground_pages/loading_button_experiment.dart';
+import 'package:flutter_playground/playground_pages/stack_architecture_example.dart';
 import 'package:flutter_playground/playground_pages/stream_with_get_It.dart';
 import 'package:flutter_playground/playground_pages/clipper_playground.dart';
 import 'package:flutter_playground/playground_pages/container_shadow.dart';
@@ -128,6 +129,10 @@ final List<PageModel> pages = [
   PageModel(
     page: ApiConsumerWithCache(),
     pageType: PageType.Utility,
+  ),
+  PageModel(
+    page: StackArchitectureHome(),
+    pageType: PageType.Package,
   ),
   PageModel(
     page: LoadingButtonExperiment(),
