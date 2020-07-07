@@ -59,19 +59,20 @@ class _FlutterTweenSequenceAnimationExampleState
       body: AnimatedBuilder(
           animation: animation,
           builder: (context, snapshot) {
-            return Transform.translate(
-              offset: animation.value,
-              child: CircleAvatar(
-                radius: 32,
-                child: Text(
-                  "My Animation",
-                  style: TextStyle(fontSize: 12),
+            return Center(
+              child: Transform.translate(
+                offset: animation.value,
+                child: CircleAvatar(
+                  radius: 32,
                 ),
               ),
             );
           }),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.play_circle_filled),
+        child: Icon(
+          Icons.play_arrow,
+          color: Colors.white,
+        ),
         onPressed: () {
           controller.repeat();
         },

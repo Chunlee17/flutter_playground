@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 
-abstract class BaseState<Page extends StatefulWidget> extends State<Page> {
+mixin BasicPage<Page extends StatefulWidget> on State<Page> {
   String appBarTitle();
-}
-
-mixin BasicPage<Page extends StatefulWidget> on BaseState<Page> {
   @override
   void initState() {
     super.initState();

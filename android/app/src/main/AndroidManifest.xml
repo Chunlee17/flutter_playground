@@ -11,6 +11,7 @@
     <application
         android:name="io.flutter.app.FlutterApplication"
         android:label="Flutter Playground"
+        android:usesCleartextTraffic="true"
         android:icon="@mipmap/ic_launcher">
         <meta-data android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyAmUAM4yFRvZnPbjAAyCDWMacfOK16hHNo"/>

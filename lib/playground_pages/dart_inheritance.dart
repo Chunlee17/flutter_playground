@@ -6,7 +6,7 @@ class DartInheritance extends StatefulWidget {
   _DartInheritanceState createState() => _DartInheritanceState();
 }
 
-class _DartInheritanceState extends BaseState<DartInheritance> with BasicPage {
+class _DartInheritanceState extends State<DartInheritance> with BasicPage {
   Cat cat = Cat("Cat");
   Cat persian = Persian(name: "Persian");
   @override

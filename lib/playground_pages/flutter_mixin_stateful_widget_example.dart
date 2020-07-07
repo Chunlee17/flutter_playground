@@ -9,7 +9,7 @@ class FlutterStatefulMixinExample extends StatefulWidget {
 }
 
 class _FlutterStatefulMixinExampleState
-    extends BaseState<FlutterStatefulMixinExample> with BasicPage {
+    extends State<FlutterStatefulMixinExample> with BasicPage {
   String title = "Flutter Stateful Mixin";
   @override
   String appBarTitle() {

@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:oscilloscope/oscilloscope.dart';
 
 class FlutterCurveAnimationExample extends StatefulWidget {
   @override
@@ -12,14 +13,30 @@ class _FlutterCurveAnimationExampleState
     extends State<FlutterCurveAnimationExample>
     with SingleTickerProviderStateMixin {
   AnimationController controller;
-  Animation<Offset> animation;
+  Animation<Offset> firstAnimation;
+  Animation<Offset> secondAnimation;
+  Animation<Offset> waveAnimation;
+  List<double> y = [];
+  List<double> x = [];
   @override
   void initState() {
     controller =
-        AnimationController(vsync: this, duration: Duration(seconds: 2));
-    animation = Tween(begin: Offset.zero, end: Offset(100.0, 0.0))
+        AnimationController(vsync: this, duration: Duration(seconds: 5));
+    firstAnimation = Tween(begin: Offset.zero, end: Offset(100.0, 0.0))
         .animate(CurvedAnimation(
-      curve: MountainCurves(),
+      curve: Interval(0.0, 0.2, curve: Curves.bounceIn),
+      parent: controller,
+    ));
+
+    secondAnimation = Tween(begin: Offset.zero, end: Offset(0.0, 200.0))
+        .animate(CurvedAnimation(
+      curve: Interval(0.3, 0.6, curve: Curves.linear),
+      parent: controller,
+    ));
+
+    waveAnimation = Tween(begin: Offset.zero, end: Offset(0.0, 200.0))
+        .animate(CurvedAnimation(
+      curve: Curves.linear,
       parent: controller,
     ));
 
@@ -27,8 +44,18 @@ class _FlutterCurveAnimationExampleState
     super.initState();
   }
 
-  double getValue(double value) {
-    return sin(value * pi) * 200;
+  double verticalValue() {
+    double t = controller.value;
+    double offset = sin(t * pi * 2) * 100;
+    //y.add(offset);
+    return offset;
+  }
+
+  double horizontalValue() {
+    double t = controller.value;
+    double offset = cos(t * pi * 2) * 100;
+    //x.add(offset);
+    return offset;
   }
 
   @override
@@ -43,15 +70,68 @@ class _FlutterCurveAnimationExampleState
       appBar: AppBar(
         title: Text("Flutter Curves Animation"),
       ),
-      body: Center(
-        child: AnimatedBuilder(
-            animation: controller,
-            builder: (context, snapshot) {
-              return Transform.translate(
-                offset: Offset(animation.value.dx, getValue(controller.value)),
-                child: CircleAvatar(radius: 32),
-              );
-            }),
+      body: AnimatedBuilder(
+        animation: controller,
+        builder: (context, snapshot) {
+          return Stack(
+            children: <Widget>[
+              // Transform.translate(
+              //   offset: firstAnimation.value,
+              //   child: CircleAvatar(radius: 32),
+              // ),
+              // Transform.translate(
+              //   offset: secondAnimation.value,
+              //   child: CircleAvatar(radius: 32),
+              // ),
+
+              Center(child: VerticalDivider()),
+              Center(child: Divider()),
+              Center(
+                child: CircleAvatar(radius: 4, backgroundColor: Colors.black),
+              ),
+              Center(
+                child: Transform.translate(
+                  offset: Offset(
+                    horizontalValue(),
+                    verticalValue(),
+                  ),
+                  child: CircleAvatar(radius: 32),
+                ),
+              ),
+              Container(
+                height: 200,
+                child: Column(
+                  children: <Widget>[
+                    Text(
+                        "Vertical Value: ${verticalValue().toStringAsFixed(2)}"),
+                    Flexible(
+                      child: Oscilloscope(
+                        padding: 20.0,
+                        backgroundColor: Colors.black,
+                        traceColor: Colors.green,
+                        yAxisMax: 100.0,
+                        yAxisMin: -100.0,
+                        dataSet: y,
+                      ),
+                    ),
+                    Text(
+                        "Horizontal Value: ${horizontalValue().toStringAsFixed(2)}"),
+                    Flexible(
+                      child: Oscilloscope(
+                        padding: 20.0,
+                        backgroundColor: Colors.black,
+                        traceColor: Colors.green,
+                        yAxisMax: 100.0,
+                        yAxisMin: -100.0,
+                        dataSet: x,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          );
+        },
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.play_circle_filled),
@@ -61,11 +141,9 @@ class _FlutterCurveAnimationExampleState
   }
 }
 
-class MountainCurves extends Curve {
+class SinWaveCurve extends Curve {
   @override
   double transformInternal(double t) {
-    print(sin(pi * t * 2));
-    //sin2pi = 0;
-    return sin(pi * t * 4);
+    return sin(pi * 2 * t);
   }
 }

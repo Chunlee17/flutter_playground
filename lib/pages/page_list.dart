@@ -8,6 +8,7 @@ import 'package:flutter_playground/playground_pages/api_consumer_with_stream.dar
 import 'package:flutter_playground/playground_pages/flutter_curve_animation.dart';
 import 'package:flutter_playground/playground_pages/flutter_custom_route.dart';
 import 'package:flutter_playground/playground_pages/flutter_tween_sequence_animation.dart';
+import 'package:flutter_playground/playground_pages/flutter_webview.dart';
 import 'package:flutter_playground/playground_pages/loading_button_experiment.dart';
 import 'package:flutter_playground/playground_pages/stack_architecture_example.dart';
 import 'package:flutter_playground/playground_pages/stream_with_get_It.dart';
@@ -135,6 +136,10 @@ final List<PageModel> pages = [
   ),
   PageModel(
     page: StackArchitectureHome(),
+    pageType: PageType.Package,
+  ),
+  PageModel(
+    page: FlutterWebViewExample(),
     pageType: PageType.Package,
   ),
   PageModel(

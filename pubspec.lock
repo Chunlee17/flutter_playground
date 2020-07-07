@@ -231,7 +231,7 @@ packages:
       name: equatable
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.1.0"
+    version: "1.2.0"
   file:
     dependency: transitive
     description:
@@ -539,6 +539,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.3.0"
+  oscilloscope:
+    dependency: "direct main"
+    description:
+      name: oscilloscope
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.3"
   package_config:
     dependency: transitive
     description:
@@ -873,6 +880,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.0"
+  webview_flutter:
+    dependency: "direct main"
+    description:
+      name: webview_flutter
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.3.22+1"
   xdg_directories:
     dependency: transitive
     description:
