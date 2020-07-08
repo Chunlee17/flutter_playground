@@ -46,15 +46,15 @@ class _FlutterCurveAnimationExampleState
 
   double verticalValue() {
     double t = controller.value;
-    double offset = sin(t * pi * 2) * 100;
-    //y.add(offset);
+    double offset = sin(t * 8 * pi) * 100;
+    y.add(offset);
     return offset;
   }
 
   double horizontalValue() {
     double t = controller.value;
-    double offset = cos(t * pi * 2) * 100;
-    //x.add(offset);
+    double offset = cos(t * 2 * pi) * 100;
+    x.add(offset);
     return offset;
   }
 
@@ -126,6 +126,8 @@ class _FlutterCurveAnimationExampleState
                         dataSet: x,
                       ),
                     ),
+                    Text(
+                        "Controller Value: ${controller.value.toStringAsFixed(2)}"),
                   ],
                 ),
               ),
@@ -134,8 +136,10 @@ class _FlutterCurveAnimationExampleState
         },
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.play_circle_filled),
-        onPressed: () {},
+        child: Icon(Icons.pause),
+        onPressed: () {
+          controller.stop();
+        },
       ),
     );
   }

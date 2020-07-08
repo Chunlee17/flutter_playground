@@ -257,5 +257,5 @@ final List<PageModel> pages = [
   PageModel(
     page: ProgressLoadingIndicator(),
     pageType: PageType.Widget,
-  )
+  ),
 ];

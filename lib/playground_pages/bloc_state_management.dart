@@ -29,6 +29,10 @@ class _BlocStateManagementState extends State<BlocStateManagement> {
           children: <Widget>[
             Text("You have push the button many times: "),
             CounterDisplay(),
+            Text(
+              '${counterBloc.state}',
+              style: TextStyle(fontSize: 24.0),
+            ),
           ],
         ),
       ),
