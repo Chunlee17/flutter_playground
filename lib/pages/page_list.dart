@@ -10,6 +10,7 @@ import 'package:flutter_playground/playground_pages/flutter_custom_route.dart';
 import 'package:flutter_playground/playground_pages/flutter_tween_sequence_animation.dart';
 import 'package:flutter_playground/playground_pages/flutter_webview.dart';
 import 'package:flutter_playground/playground_pages/loading_button_experiment.dart';
+import 'package:flutter_playground/playground_pages/social_media_feeds.dart';
 import 'package:flutter_playground/playground_pages/stack_architecture_example.dart';
 import 'package:flutter_playground/playground_pages/stream_with_get_It.dart';
 import 'package:flutter_playground/playground_pages/clipper_playground.dart';
@@ -256,6 +257,10 @@ final List<PageModel> pages = [
   ),
   PageModel(
     page: ProgressLoadingIndicator(),
+    pageType: PageType.Widget,
+  ),
+  PageModel(
+    page: SocialMediaFeeds(),
     pageType: PageType.Widget,
   ),
 ];

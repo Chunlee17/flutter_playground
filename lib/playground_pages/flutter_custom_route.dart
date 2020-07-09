@@ -31,7 +31,12 @@ class _FlutterCustomRouteExampleState extends State<FlutterCustomRouteExample> {
             ),
             RaisedButton(
               onPressed: () {
-                Navigator.push(context, SimpleDialogRoute());
+                Navigator.push(
+                    context,
+                    SimpleDialogRoute(AlertDialog(
+                      title: Text("Hello"),
+                      content: Text("Sur sdey"),
+                    )));
               },
               child: Text("Push to Dialog Route"),
             ),
@@ -132,6 +137,9 @@ class SimpleOverlayRoute extends OverlayRoute {
 }
 
 class SimpleDialogRoute extends PopupRoute {
+  final Widget child;
+
+  SimpleDialogRoute(this.child);
   @override
   Color get barrierColor => Colors.black.withOpacity(0.5);
 
@@ -143,10 +151,7 @@ class SimpleDialogRoute extends PopupRoute {
 
   @override
   Widget buildPage(BuildContext context, animationdouble, secondaryAnimation) {
-    return AlertDialog(
-      title: Text("Hello"),
-      content: Text("Sur sdey"),
-    );
+    return child;
   }
 
   @override

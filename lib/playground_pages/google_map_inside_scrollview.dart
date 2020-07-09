@@ -11,6 +11,11 @@ class GoogleMapInsideScrollView extends StatefulWidget {
 
 class _GoogleMapInsideScrollViewState extends State<GoogleMapInsideScrollView> {
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
