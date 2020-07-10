@@ -9,6 +9,7 @@ import 'package:flutter_playground/playground_pages/flutter_curve_animation.dart
 import 'package:flutter_playground/playground_pages/flutter_custom_route.dart';
 import 'package:flutter_playground/playground_pages/flutter_over_flow_box.dart';
 import 'package:flutter_playground/playground_pages/flutter_tween_sequence_animation.dart';
+import 'package:flutter_playground/playground_pages/flutter_value_notififer.dart';
 import 'package:flutter_playground/playground_pages/flutter_webview.dart';
 import 'package:flutter_playground/playground_pages/loading_button_experiment.dart';
 import 'package:flutter_playground/playground_pages/mobx_state_management.dart';
@@ -148,6 +149,10 @@ final List<PageModel> pages = [
   ),
   PageModel(
     page: FlutterTweenSequenceAnimationExample(),
+    pageType: PageType.Widget,
+  ),
+  PageModel(
+    page: FlutterValueNotifierExample(),
     pageType: PageType.Widget,
   ),
   PageModel(

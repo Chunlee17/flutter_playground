@@ -24,20 +24,16 @@ class _ProviderWithStreamState extends State<ProviderWithStream> {
       appBar: AppBar(
         title: Text("Provider with Pure stream"),
       ),
-      body: StreamHandler<Object>(
-          stream: counterProviderStream.stream,
-          ready: (snapshot) {
-            return Center(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Text("You have push the button many times: "),
-                  CounterDisplay(),
-                ],
-              ),
-            );
-          }),
+      body: Center(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text("You have push the button many times: "),
+            CounterDisplay(),
+          ],
+        ),
+      ),
       floatingActionButton: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
@@ -59,11 +55,23 @@ class CounterDisplay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<CounterStream>(
-      builder: (context, counter, _) => StreamHandler<Object>(
-          stream: counter.stream,
-          ready: (snapshot) {
-            return Text(snapshot.toString());
-          }),
+      builder: (context, counter, _) => StreamHandler<int>(
+        stream: counter.stream,
+        error: (error) {
+          return Column(
+            children: <Widget>[
+              Text(error),
+              Icon(
+                Icons.error,
+                color: Colors.red,
+              ),
+            ],
+          ).paddingValue(vertical: 32);
+        },
+        ready: (snapshot) {
+          return Text(snapshot.toString()).textColor(Colors.red);
+        },
+      ),
     );
   }
 }

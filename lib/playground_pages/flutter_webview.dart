@@ -21,7 +21,7 @@ class _FlutterWebViewExampleState extends State<FlutterWebViewExample>
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
           child: WebView(
-            initialUrl: 'http://192.168.88.160:3000',
+            initialUrl: 'https://travona.net',
             javascriptMode: JavascriptMode.unrestricted,
             onWebViewCreated: (WebViewController webViewController) {
               _controller.complete(webViewController);
