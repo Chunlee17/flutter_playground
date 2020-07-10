@@ -7,6 +7,7 @@ import 'package:flutter_playground/playground_pages/api_consumer_with_cache.dart
 import 'package:flutter_playground/playground_pages/api_consumer_with_stream.dart';
 import 'package:flutter_playground/playground_pages/flutter_curve_animation.dart';
 import 'package:flutter_playground/playground_pages/flutter_custom_route.dart';
+import 'package:flutter_playground/playground_pages/flutter_over_flow_box.dart';
 import 'package:flutter_playground/playground_pages/flutter_tween_sequence_animation.dart';
 import 'package:flutter_playground/playground_pages/flutter_webview.dart';
 import 'package:flutter_playground/playground_pages/loading_button_experiment.dart';
@@ -261,6 +262,10 @@ final List<PageModel> pages = [
   ),
   PageModel(
     page: SocialMediaFeeds(),
+    pageType: PageType.Widget,
+  ),
+  PageModel(
+    page: FlutterOverflowBox(),
     pageType: PageType.Widget,
   ),
 ];
