@@ -44,6 +44,11 @@ dependencies:
   video_player: ^0.10.11+1
   oscilloscope: ^0.0.3
   webview_flutter: ^0.3.22+1
+  flutter_mobx: ^1.1.0+1
+  mobx: ^1.2.1+1
+  mobx_codegen: ^1.1.0+1
+  momentum: ^1.2.7
+
 
 dev_dependencies:
   hive_generator: any
