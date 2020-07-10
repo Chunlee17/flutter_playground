@@ -1,14 +1,14 @@
-import 'package:hive/hive.dart';
+// import 'package:hive/hive.dart';
 
-part 'contact.g.dart';
+// part 'contact.g.dart';
 
-@HiveType(typeId: 0)
-class Contact extends HiveObject {
-  @HiveField(0)
-  final String name;
+// @HiveType(typeId: 0)
+// class Contact extends HiveObject {
+//   @HiveField(0)
+//   final String name;
 
-  @HiveField(1)
-  final int age;
+//   @HiveField(1)
+//   final int age;
 
-  Contact(this.name, this.age);
-}
+//   Contact(this.name, this.age);
+// }

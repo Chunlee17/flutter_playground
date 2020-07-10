@@ -14,11 +14,14 @@ import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hive/hive.dart';
 import 'package:jin_widget_helper/jin_widget_helper.dart';
+import 'package:momentum/momentum.dart';
 import 'package:provider/provider.dart';
 import 'package:states_rebuilder/states_rebuilder.dart';
 import 'package:path_provider/path_provider.dart';
 
 import 'bloc_provider_get_controller/counter_bloc.dart';
+import 'bloc_provider_get_controller/counter_stream.dart';
+import 'bloc_provider_get_controller/momentum/momentum_counter.dart';
 import 'bloc_provider_get_controller/todo_bloc.dart';
 
 GetIt getIt = GetIt.instance;
@@ -40,8 +43,8 @@ void main() async {
 
 void setupHive() async {
   final appDocumentDir = await getApplicationDocumentsDirectory();
-  Hive.init(appDocumentDir.path);
-  Hive.registerAdapter(ContactAdapter());
+  //Hive.init(appDocumentDir.path);
+  //Hive.registerAdapter(ContactAdapter());
 }
 
 class MyApp extends StatelessWidget {
@@ -56,28 +59,34 @@ class MyApp extends StatelessWidget {
             InheritedProvider(create: (context) => 20),
             ChangeNotifierProvider(create: (_) => CounterProvider()),
             Provider(create: (context) => CheckNumberProvider()),
+            Provider(create: (context) => CounterStream()),
             ProxyProvider<CounterProvider, CheckNumberProvider>(
               update: (context, counter, depender) =>
                   CheckNumberProvider(counter: counter),
             ),
           ],
-          child: GetMaterialApp(
-            title: 'Flutter Playground',
-            navigatorKey: JinNavigator.navigatorKey,
-            debugShowCheckedModeBanner: false,
-            enableLog: false,
-            localizationsDelegates: [
-              GlobalMaterialLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
-              EasyLocalization.of(context).delegate,
+          child: Momentum(
+            controllers: [
+              MomentumCounterController(),
             ],
-            supportedLocales: EasyLocalization.of(context).supportedLocales,
-            locale: EasyLocalization.of(context).locale,
-            theme: ThemeData(
-              primarySwatch: primaryColor,
-              accentColor: JinColorUtils.hexColorToMaterialColor(0xFF47C5FB),
+            child: GetMaterialApp(
+              title: 'Flutter Playground',
+              navigatorKey: JinNavigator.navigatorKey,
+              debugShowCheckedModeBanner: false,
+              enableLog: false,
+              localizationsDelegates: [
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+                EasyLocalization.of(context).delegate,
+              ],
+              supportedLocales: EasyLocalization.of(context).supportedLocales,
+              locale: EasyLocalization.of(context).locale,
+              theme: ThemeData(
+                primarySwatch: primaryColor,
+                accentColor: JinColorUtils.hexColorToMaterialColor(0xFF47C5FB),
+              ),
+              home: MyHomePage(),
             ),
-            home: MyHomePage(),
           ),
         ),
       ),

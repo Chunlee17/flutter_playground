@@ -10,6 +10,8 @@ import 'package:flutter_playground/playground_pages/flutter_custom_route.dart';
 import 'package:flutter_playground/playground_pages/flutter_tween_sequence_animation.dart';
 import 'package:flutter_playground/playground_pages/flutter_webview.dart';
 import 'package:flutter_playground/playground_pages/loading_button_experiment.dart';
+import 'package:flutter_playground/playground_pages/mobx_state_management.dart';
+import 'package:flutter_playground/playground_pages/momentum_state_management.dart';
 import 'package:flutter_playground/playground_pages/social_media_feeds.dart';
 import 'package:flutter_playground/playground_pages/stack_architecture_example.dart';
 import 'package:flutter_playground/playground_pages/stream_with_get_It.dart';
@@ -173,6 +175,14 @@ final List<PageModel> pages = [
   ),
   PageModel(
     page: GetPackageStateManagement(),
+    pageType: PageType.StateManagement,
+  ),
+  PageModel(
+    page: MobXStateManagementExample(),
+    pageType: PageType.StateManagement,
+  ),
+  PageModel(
+    page: MomentumStateManagementExample(),
     pageType: PageType.StateManagement,
   ),
   PageModel(
