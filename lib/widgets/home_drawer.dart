@@ -9,8 +9,10 @@ class HomePageDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
       child: ListView(
+        padding: EdgeInsets.zero,
         children: <Widget>[
           UserAccountsDrawerHeader(
+            margin: EdgeInsets.zero,
             accountName: Text("Flutter Playground"),
             accountEmail: Text("chunlee.thong@gmail.com"),
           ),
