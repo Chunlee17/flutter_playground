@@ -67,14 +67,7 @@ class _SilverAppBarWithTabBarState extends State<SilverAppBarWithTabBarScreen>
                   Tab(text: "Tab 2"),
                 ],
               ),
-              Expanded(
-                child: Container(
-                  child: TabBarView(
-                    controller: controller,
-                    children: tabs.map((tab) => tab).toList(),
-                  ),
-                ),
-              ),
+              Expanded(child: TabViewList()),
             ],
           ),
         ),
@@ -98,18 +91,41 @@ class TabViewList extends StatefulWidget {
 }
 
 class _TabViewListState extends State<TabViewList> {
+  ScrollController scrollController;
+
+  @override
+  void dispose() {
+    scrollController.dispose();
+    super.dispose();
+  }
+
+  @override
+  void initState() {
+    scrollController = ScrollController()
+      ..addListener(() {
+        if (scrollController.offset != 0.0) {
+          int total = (scrollController.position.maxScrollExtent / 20).floor();
+          double currentItem = scrollController.position.pixels / total;
+
+          print(currentItem);
+        }
+      });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
       child: ListView.builder(
-        primary: true,
+        padding: EdgeInsets.zero,
+        controller: scrollController,
         itemCount: 20,
         itemBuilder: (BuildContext context, int index) {
           return ListTile(
             trailing: Icon(Icons.access_alarm),
             leading: Icon(Icons.accessibility_new),
             title: Text('${widget.title}'),
-            subtitle: Text("hello kappa 123"),
+            subtitle: Text("hello kappa $index"),
           );
         },
       ),
