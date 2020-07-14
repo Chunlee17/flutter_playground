@@ -11,7 +11,7 @@ class _FlutterOverflowBoxState extends State<FlutterOverflowBox>
   final double cellWidth = 200;
   final double cellHeight = 300;
   @override
-  Widget body() {
+  Widget body(BuildContext context) {
     return Column(
       children: <Widget>[
         Container(

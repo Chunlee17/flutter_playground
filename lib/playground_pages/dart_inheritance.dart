@@ -10,7 +10,7 @@ class _DartInheritanceState extends State<DartInheritance> with BasicPage {
   Cat cat = Cat("Cat");
   Cat persian = Persian(name: "Persian");
   @override
-  Widget body() {
+  Widget body(BuildContext context) {
     return Center(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,

@@ -14,7 +14,7 @@ class _FlutterWebViewExampleState extends State<FlutterWebViewExample>
   final Completer<WebViewController> _controller =
       Completer<WebViewController>();
   @override
-  Widget body() {
+  Widget body(BuildContext context) {
     return Builder(
       builder: (BuildContext context) {
         return Container(

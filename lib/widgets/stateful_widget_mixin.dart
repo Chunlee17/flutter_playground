@@ -18,9 +18,9 @@ mixin BasicPage<Page extends StatefulWidget> on State<Page> {
       appBar: AppBar(
         title: Text(appBarTitle()),
       ),
-      body: body(),
+      body: body(context),
     );
   }
 
-  Widget body() => Container();
+  Widget body(BuildContext context) => Container();
 }

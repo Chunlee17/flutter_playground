@@ -17,7 +17,7 @@ class _FlutterStatefulMixinExampleState
   }
 
   @override
-  Widget body() {
+  Widget body(BuildContext context) {
     return Center(
       child: SmallFlatButton(
         onTap: () {
