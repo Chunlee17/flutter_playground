@@ -8,6 +8,7 @@ import 'package:flutter_playground/playground_pages/api_consumer_with_stream.dar
 import 'package:flutter_playground/playground_pages/custom_expansion_tile.dart';
 import 'package:flutter_playground/playground_pages/flutter_curve_animation.dart';
 import 'package:flutter_playground/playground_pages/flutter_custom_route.dart';
+import 'package:flutter_playground/playground_pages/flutter_html_youtube.dart';
 import 'package:flutter_playground/playground_pages/flutter_over_flow_box.dart';
 import 'package:flutter_playground/playground_pages/flutter_tween_sequence_animation.dart';
 import 'package:flutter_playground/playground_pages/flutter_value_notififer.dart';
@@ -262,6 +263,10 @@ final List<PageModel> pages = [
   ),
   PageModel(
     page: FlutterStatefulMixinExample(),
+    pageType: PageType.Widget,
+  ),
+  PageModel(
+    page: FlutterHtmlYoutubePlayer(),
     pageType: PageType.Widget,
   ),
   PageModel(
