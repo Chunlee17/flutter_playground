@@ -37,6 +37,8 @@ class _TestInternetConnectionState extends State<TestInternetConnection> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    //final otherSize = context.size;
     return Scaffold(
       appBar: AppBar(
         title: Text("Testing internet connection"),
@@ -51,6 +53,9 @@ class _TestInternetConnectionState extends State<TestInternetConnection> {
               children: <Widget>[
                 Text("Host: ${data.host}"),
                 Text("Raw Address: ${data.address}"),
+                Text("Size: W: ${size.width}, H: ${size.height}"),
+
+                //Text("Size: W: ${otherSize.width}, H: ${otherSize.height}"),
               ],
             );
           },
