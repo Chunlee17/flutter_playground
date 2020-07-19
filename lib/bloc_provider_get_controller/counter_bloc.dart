@@ -3,8 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 enum CounterEvent { increment, decrement }
 
 class CounterBloc extends Bloc<CounterEvent, int> {
-  @override
-  int get initialState => 0;
+  CounterBloc(int initialState) : super(initialState);
 
   @override
   Stream<int> mapEventToState(CounterEvent event) async* {

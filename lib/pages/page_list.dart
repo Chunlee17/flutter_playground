@@ -5,6 +5,7 @@ import 'package:flutter_playground/models/page_model.dart';
 import 'package:flutter_playground/playground_pages/3d_drawer.dart';
 import 'package:flutter_playground/playground_pages/api_consumer_with_cache.dart';
 import 'package:flutter_playground/playground_pages/api_consumer_with_stream.dart';
+import 'package:flutter_playground/playground_pages/audio_service_example.dart';
 import 'package:flutter_playground/playground_pages/custom_expansion_tile.dart';
 import 'package:flutter_playground/playground_pages/flutter_curve_animation.dart';
 import 'package:flutter_playground/playground_pages/flutter_custom_route.dart';
@@ -91,6 +92,10 @@ final List<PageModel> pages = [
   PageModel(
     page: ContainerShadowDemo(),
     pageType: PageType.Widget,
+  ),
+  PageModel(
+    page: AudioServiceExample(),
+    pageType: PageType.Package,
   ),
   PageModel(
     page: CustomExpansionTile(),

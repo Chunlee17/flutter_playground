@@ -43,13 +43,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.4.1"
+  audio_service:
+    dependency: "direct main"
+    description:
+      name: audio_service
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.11.2"
   bloc:
     dependency: transitive
     description:
       name: bloc
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.0"
+    version: "5.0.1"
   boolean_selector:
     dependency: transitive
     description:
@@ -141,6 +148,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0+1"
+  clock:
+    dependency: transitive
+    description:
+      name: clock
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.1"
   code_builder:
     dependency: transitive
     description:
@@ -204,6 +218,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.16.1"
+  cubit:
+    dependency: transitive
+    description:
+      name: cubit
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.2"
   cupertino_icons:
     dependency: "direct main"
     description:
@@ -285,7 +306,14 @@ packages:
       name: flutter_bloc
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.2.0"
+    version: "5.0.1"
+  flutter_cache_manager:
+    dependency: transitive
+    description:
+      name: flutter_cache_manager
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.4.1"
   flutter_colorpicker:
     dependency: "direct main"
     description:
@@ -293,6 +321,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.3.2"
+  flutter_cubit:
+    dependency: transitive
+    description:
+      name: flutter_cubit
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.1"
   flutter_html:
     dependency: "direct main"
     description:
@@ -300,6 +335,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0"
+  flutter_isolate:
+    dependency: transitive
+    description:
+      name: flutter_isolate
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0+14"
   flutter_localizations:
     dependency: "direct dev"
     description: flutter
@@ -331,6 +373,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_tts:
+    dependency: "direct main"
+    description:
+      name: flutter_tts
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.2.6"
   flutter_web_plugins:
     dependency: transitive
     description: flutter
@@ -413,6 +462,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.14.0+3"
+  http:
+    dependency: transitive
+    description:
+      name: http
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.12.2"
   http_multi_server:
     dependency: transitive
     description:
@@ -483,6 +539,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.3.0"
+  just_audio:
+    dependency: "direct main"
+    description:
+      name: just_audio
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.2"
   local_auth:
     dependency: "direct main"
     description:
@@ -734,7 +797,7 @@ packages:
       name: rxdart
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.23.1"
+    version: "0.24.1"
   screen:
     dependency: transitive
     description:
@@ -901,6 +964,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.6"
+  uuid:
+    dependency: transitive
+    description:
+      name: uuid
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.2.0"
   vector_math:
     dependency: transitive
     description:
