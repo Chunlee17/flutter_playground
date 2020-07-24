@@ -16,6 +16,8 @@ class _LocationRequestExampleState extends State<LocationRequestExample>
 
   Future<Position> requuestUserPermission() async {
     try {
+      bool serviceEnabled = await geolocator.isLocationServiceEnabled();
+      print(serviceEnabled);
       Position position = await geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high,
       );
