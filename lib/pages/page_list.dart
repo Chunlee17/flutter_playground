@@ -15,6 +15,7 @@ import 'package:flutter_playground/playground_pages/flutter_tween_sequence_anima
 import 'package:flutter_playground/playground_pages/flutter_value_notififer.dart';
 import 'package:flutter_playground/playground_pages/flutter_webview.dart';
 import 'package:flutter_playground/playground_pages/loading_button_experiment.dart';
+import 'package:flutter_playground/playground_pages/location_permission_example.dart';
 import 'package:flutter_playground/playground_pages/mobx_state_management.dart';
 import 'package:flutter_playground/playground_pages/momentum_state_management.dart';
 import 'package:flutter_playground/playground_pages/pagination.dart';
@@ -266,6 +267,10 @@ final List<PageModel> pages = [
   PageModel(
     page: ProviderWithStream(),
     pageType: PageType.StateManagement,
+  ),
+  PageModel(
+    page: LocationRequestExample(),
+    pageType: PageType.Package,
   ),
   PageModel(
     page: NodeApiBoilerPlateTesting(),
