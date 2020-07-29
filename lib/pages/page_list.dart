@@ -18,6 +18,7 @@ import 'package:flutter_playground/playground_pages/loading_button_experiment.da
 import 'package:flutter_playground/playground_pages/location_permission_example.dart';
 import 'package:flutter_playground/playground_pages/mobx_state_management.dart';
 import 'package:flutter_playground/playground_pages/momentum_state_management.dart';
+import 'package:flutter_playground/playground_pages/motion_animation.dart';
 import 'package:flutter_playground/playground_pages/pagination.dart';
 import 'package:flutter_playground/playground_pages/social_media_feeds.dart';
 import 'package:flutter_playground/playground_pages/stack_architecture_example.dart';
@@ -271,6 +272,10 @@ final List<PageModel> pages = [
   PageModel(
     page: LocationRequestExample(),
     pageType: PageType.Package,
+  ),
+  PageModel(
+    page: MotionAnimationExample(),
+    pageType: PageType.Widget,
   ),
   PageModel(
     page: NodeApiBoilerPlateTesting(),
