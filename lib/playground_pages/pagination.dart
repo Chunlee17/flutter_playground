@@ -1,9 +1,6 @@
-import 'dart:async';
-
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_playground/models/response_model.dart';
-import 'package:flutter_playground/widgets/stateful_widget_mixin.dart';
 import 'package:jin_widget_helper/jin_widget_helper.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -16,16 +13,18 @@ class _PaginationExampleState extends State<PaginationExample> {
   ResponseModel responseModel;
   BehaviorSubject<List<User>> streamController = BehaviorSubject();
   int currentPage = 0;
+  int totalPages = 0;
   ScrollController scrollController;
 
   void fetchUser() async {
-    int totalPages = responseModel?.totalPages ?? 10;
-    currentPage++;
-    print("Fetch on page: $currentPage and total page: $totalPages");
-    if (currentPage <= totalPages) {
-      Response response =
-          await Dio().get("https://reqres.in/api/users?page=$currentPage");
+    totalPages = responseModel?.totalPages ?? 10;
+
+    if (currentPage < totalPages) {
+      currentPage++;
+      print("Fetch on page: $currentPage and total page: $totalPages");
+      Response response = await Dio().get("https://reqres.in/api/users?page=$currentPage");
       ResponseModel responseModel = ResponseModel.fromJson(response.data);
+      totalPages = responseModel?.totalPages ?? 10;
       if (this.responseModel == null) {
         this.responseModel = responseModel;
         streamController.add(responseModel.users);
@@ -40,8 +39,7 @@ class _PaginationExampleState extends State<PaginationExample> {
   void initState() {
     scrollController = ScrollController();
     scrollController.addListener(() {
-      if (scrollController.offset >=
-          scrollController.position.maxScrollExtent) {
+      if (scrollController.offset >= scrollController.position.maxScrollExtent) {
         fetchUser();
       }
     });
@@ -65,16 +63,26 @@ class _PaginationExampleState extends State<PaginationExample> {
         stream: streamController.stream,
         ready: (users) {
           return ListView.builder(
-            itemCount: users.length,
+            itemCount: users.length + 1,
             controller: scrollController,
             itemBuilder: (BuildContext context, int index) {
+              if (index == users.length) {
+                if (currentPage < totalPages)
+                  return Center(child: CircularProgressIndicator());
+                else
+                  return Container();
+              }
               final user = users[index];
-              return Container(
-                height: 300,
-                child: ListTile(
-                  title: Text(user.email),
-                  subtitle: Text(user.firstName),
-                ),
+              return Column(
+                children: <Widget>[
+                  Container(
+                    height: 300,
+                    child: ListTile(
+                      title: Text(user.email),
+                      subtitle: Text(user.firstName),
+                    ),
+                  ),
+                ],
               );
             },
           );
