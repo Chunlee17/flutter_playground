@@ -14,6 +14,7 @@ import 'package:flutter_playground/playground_pages/flutter_over_flow_box.dart';
 import 'package:flutter_playground/playground_pages/flutter_tween_sequence_animation.dart';
 import 'package:flutter_playground/playground_pages/flutter_value_notififer.dart';
 import 'package:flutter_playground/playground_pages/flutter_webview.dart';
+import 'package:flutter_playground/playground_pages/form_validation.dart';
 import 'package:flutter_playground/playground_pages/loading_button_experiment.dart';
 import 'package:flutter_playground/playground_pages/location_permission_example.dart';
 import 'package:flutter_playground/playground_pages/mobx_state_management.dart';
@@ -78,6 +79,10 @@ final List<PageModel> pages = [
   ),
   PageModel(
     page: IntervalAnimation(),
+    pageType: PageType.Widget,
+  ),
+  PageModel(
+    page: FormValidation(),
     pageType: PageType.Widget,
   ),
   PageModel(
