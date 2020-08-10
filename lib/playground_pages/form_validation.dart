@@ -22,7 +22,7 @@ class _FormValidationState extends State<FormValidation> with BasicPage {
         padding: EdgeInsets.symmetric(vertical: 32, horizontal: 12),
         children: [
           TextFormField(
-            autofillHints: [AutofillHints.email],
+            //autofillHints: [AutofillHints.email],
             keyboardType: TextInputType.emailAddress,
             autovalidate: true,
             validator: (value) =>
@@ -40,7 +40,7 @@ class _FormValidationState extends State<FormValidation> with BasicPage {
           ),
           SpaceY(12),
           TextFormField(
-            autofillHints: [AutofillHints.password],
+            //autofillHints: [AutofillHints.password],
             keyboardType: TextInputType.text,
             autovalidate: true,
             validator: (value) =>
