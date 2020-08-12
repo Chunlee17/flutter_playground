@@ -54,6 +54,7 @@ dependencies:
   flutter_tts: ^1.2.6
   just_audio: ^0.2.2
   geolocator: ^5.3.2+2
+  dynamic_text_highlighting: ^2.2.0
 
 dev_dependencies:
   hive_generator: any

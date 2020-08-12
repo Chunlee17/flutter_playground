@@ -15,6 +15,7 @@ import 'package:flutter_playground/playground_pages/mobx_state_management.dart';
 import 'package:flutter_playground/playground_pages/momentum_state_management.dart';
 import 'package:flutter_playground/playground_pages/motion_animation.dart';
 import 'package:flutter_playground/playground_pages/pagination.dart';
+import 'package:flutter_playground/playground_pages/rich_text_spliting.dart';
 import 'package:flutter_playground/playground_pages/stack_architecture_example.dart';
 import 'package:flutter_playground/playground_pages/clipper_playground.dart';
 import 'package:flutter_playground/playground_pages/container_shadow.dart';
@@ -75,6 +76,10 @@ final List<PageModel> pages = [
   ),
   PageModel(
     page: SliverPersistentHeaderDemo(),
+    pageType: PageType.Widget,
+  ),
+  PageModel(
+    page: RichTichSplitter(),
     pageType: PageType.Widget,
   ),
   PageModel(

@@ -63,8 +63,7 @@ class MyApp extends StatelessWidget {
               Provider(create: (context) => CheckNumberProvider()),
               Provider(create: (context) => CounterStream()),
               ProxyProvider<CounterProvider, CheckNumberProvider>(
-                update: (context, counter, depender) =>
-                    CheckNumberProvider(counter: counter),
+                update: (context, counter, depender) => CheckNumberProvider(counter: counter),
               ),
             ],
             child: Momentum(
@@ -82,11 +81,10 @@ class MyApp extends StatelessWidget {
                   EasyLocalization.of(context).delegate,
                 ],
                 supportedLocales: EasyLocalization.of(context).supportedLocales,
-                locale: EasyLocalization.of(context).locale,
+                locale: Locale("km", "KH"),
                 theme: ThemeData(
                   primarySwatch: primaryColor,
-                  accentColor:
-                      JinColorUtils.hexColorToMaterialColor(0xFF47C5FB),
+                  accentColor: JinColorUtils.hexColorToMaterialColor(0xFF47C5FB),
                 ),
                 home: MyHomePage(),
               ),
