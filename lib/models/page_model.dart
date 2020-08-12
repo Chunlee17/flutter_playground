@@ -18,8 +18,7 @@ class PageModel {
   @override
   String toString() {
     String title = "";
-    List<String> titles =
-        page.runtimeType.toString().split(beforeCapitalLetter);
+    List<String> titles = page.runtimeType.toString().split(beforeCapitalLetter);
     titles.forEach((t) => title += "$t ");
     return title;
   }
@@ -27,6 +26,7 @@ class PageModel {
 
 enum PageType {
   Widget,
+  Animation,
   CodePlayground,
   StateManagement,
   Database,

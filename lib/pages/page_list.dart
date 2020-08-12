@@ -1,30 +1,21 @@
 //pages
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_playground/models/page_model.dart';
 import 'package:flutter_playground/playground_pages/3d_drawer.dart';
 import 'package:flutter_playground/playground_pages/api_consumer_with_cache.dart';
 import 'package:flutter_playground/playground_pages/api_consumer_with_stream.dart';
 import 'package:flutter_playground/playground_pages/audio_service_example.dart';
-import 'package:flutter_playground/playground_pages/custom_expansion_tile.dart';
 import 'package:flutter_playground/playground_pages/dummy_page.dart';
 import 'package:flutter_playground/playground_pages/flutter_curve_animation.dart';
 import 'package:flutter_playground/playground_pages/flutter_custom_route.dart';
-import 'package:flutter_playground/playground_pages/flutter_html_youtube.dart';
 import 'package:flutter_playground/playground_pages/flutter_over_flow_box.dart';
 import 'package:flutter_playground/playground_pages/flutter_tween_sequence_animation.dart';
-import 'package:flutter_playground/playground_pages/flutter_value_notififer.dart';
-import 'package:flutter_playground/playground_pages/flutter_webview.dart';
 import 'package:flutter_playground/playground_pages/form_validation.dart';
-import 'package:flutter_playground/playground_pages/loading_button_experiment.dart';
 import 'package:flutter_playground/playground_pages/location_permission_example.dart';
 import 'package:flutter_playground/playground_pages/mobx_state_management.dart';
 import 'package:flutter_playground/playground_pages/momentum_state_management.dart';
 import 'package:flutter_playground/playground_pages/motion_animation.dart';
 import 'package:flutter_playground/playground_pages/pagination.dart';
-import 'package:flutter_playground/playground_pages/social_media_feeds.dart';
 import 'package:flutter_playground/playground_pages/stack_architecture_example.dart';
-import 'package:flutter_playground/playground_pages/stream_with_get_It.dart';
 import 'package:flutter_playground/playground_pages/clipper_playground.dart';
 import 'package:flutter_playground/playground_pages/container_shadow.dart';
 import 'package:flutter_playground/playground_pages/custom_dialog_example.dart';
@@ -49,7 +40,6 @@ import 'package:flutter_playground/playground_pages/lerp_animation.dart';
 import 'package:flutter_playground/playground_pages/local_auth.dart';
 import 'package:flutter_playground/playground_pages/look_rotation.dart';
 import 'package:flutter_playground/playground_pages/easy_localization_package.dart';
-import 'package:flutter_playground/playground_pages/node_api_boilerplate_testing.dart';
 import 'package:flutter_playground/playground_pages/page_view_enlarge.dart';
 import 'package:flutter_playground/playground_pages/progress_loading_indicator.dart';
 import 'package:flutter_playground/playground_pages/provider_with_stream.dart';
@@ -61,11 +51,8 @@ import 'package:flutter_playground/playground_pages/sliver_persistent_header.dar
 import 'package:flutter_playground/playground_pages/sliver_with_tabbar.dart';
 import 'package:flutter_playground/playground_pages/sqflite_todo.dart';
 import 'package:flutter_playground/playground_pages/streambuilder.dart';
-import 'package:flutter_playground/playground_pages/swipe_action.dart';
 import 'package:flutter_playground/playground_pages/swipe_card.dart';
 import 'package:flutter_playground/playground_pages/telegram_sliver.dart';
-import 'package:flutter_playground/playground_pages/test_internet.dart';
-import 'package:flutter_playground/playground_pages/video_player_demo.dart';
 
 final List<PageModel> pages = [
   PageModel(
@@ -80,7 +67,7 @@ final List<PageModel> pages = [
   ),
   PageModel(
     page: IntervalAnimation(),
-    pageType: PageType.Widget,
+    pageType: PageType.Animation,
   ),
   PageModel(
     page: FormValidation(),
@@ -92,7 +79,7 @@ final List<PageModel> pages = [
   ),
   PageModel(
     page: LookRotation(),
-    pageType: PageType.Widget,
+    pageType: PageType.Animation,
   ),
   PageModel(
     page: LocalAuthenthicationDemo(),
@@ -107,16 +94,12 @@ final List<PageModel> pages = [
     pageType: PageType.Package,
   ),
   PageModel(
-    page: CustomExpansionTile(),
-    pageType: PageType.Widget,
-  ),
-  PageModel(
     page: BlocStateManagement(),
     pageType: PageType.StateManagement,
   ),
   PageModel(
     page: LerpAnimationDemo(),
-    pageType: PageType.Widget,
+    pageType: PageType.Animation,
   ),
   PageModel(
     page: DraggableSrollableSheetDemo(),
@@ -125,10 +108,6 @@ final List<PageModel> pages = [
   PageModel(
     page: GoogleMapPolyline(),
     pageType: PageType.Widget,
-  ),
-  PageModel(
-    page: StreamWithGetIt(),
-    pageType: PageType.StateManagement,
   ),
   PageModel(
     page: PageViewEnlarge(),
@@ -164,15 +143,7 @@ final List<PageModel> pages = [
     pageType: PageType.Package,
   ),
   PageModel(
-    page: FlutterWebViewExample(),
-    pageType: PageType.Package,
-  ),
-  PageModel(
     page: FlutterTweenSequenceAnimationExample(),
-    pageType: PageType.Widget,
-  ),
-  PageModel(
-    page: FlutterValueNotifierExample(),
     pageType: PageType.Widget,
   ),
   PageModel(
@@ -181,10 +152,6 @@ final List<PageModel> pages = [
   ),
   PageModel(
     page: FlutterCustomRouteExample(),
-    pageType: PageType.Widget,
-  ),
-  PageModel(
-    page: LoadingButtonExperiment(),
     pageType: PageType.Widget,
   ),
   PageModel(
@@ -260,14 +227,6 @@ final List<PageModel> pages = [
     pageType: PageType.StateManagement,
   ),
   PageModel(
-    page: TestInternetConnection(),
-    pageType: PageType.Utility,
-  ),
-  PageModel(
-    page: VideoPlayerDemo(),
-    pageType: PageType.Package,
-  ),
-  PageModel(
     page: DummyPage(),
     pageType: PageType.Widget,
   ),
@@ -288,19 +247,7 @@ final List<PageModel> pages = [
     pageType: PageType.Widget,
   ),
   PageModel(
-    page: NodeApiBoilerPlateTesting(),
-    pageType: PageType.Utility,
-  ),
-  PageModel(
     page: FlutterStatefulMixinExample(),
-    pageType: PageType.Widget,
-  ),
-  PageModel(
-    page: FlutterHtmlYoutubePlayer(),
-    pageType: PageType.Widget,
-  ),
-  PageModel(
-    page: SwipeAction(),
     pageType: PageType.Widget,
   ),
   PageModel(
@@ -313,10 +260,6 @@ final List<PageModel> pages = [
   ),
   PageModel(
     page: ProgressLoadingIndicator(),
-    pageType: PageType.Widget,
-  ),
-  PageModel(
-    page: SocialMediaFeeds(),
     pageType: PageType.Widget,
   ),
   PageModel(
