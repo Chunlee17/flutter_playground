@@ -12,19 +12,17 @@ class PaginationExample extends StatefulWidget {
 class _PaginationExampleState extends State<PaginationExample> {
   ResponseModel responseModel;
   BehaviorSubject<List<User>> streamController = BehaviorSubject();
-  int currentPage = 0;
-  int totalPages = 0;
-  ScrollController scrollController;
+  int currentPage = 1;
+  int totalPages = 10;
 
   void fetchUser() async {
-    totalPages = responseModel?.totalPages ?? 10;
-
-    if (currentPage < totalPages) {
-      currentPage++;
+    if (currentPage <= totalPages) {
       print("Fetch on page: $currentPage and total page: $totalPages");
       Response response = await Dio().get("https://reqres.in/api/users?page=$currentPage");
       ResponseModel responseModel = ResponseModel.fromJson(response.data);
-      totalPages = responseModel?.totalPages ?? 10;
+      currentPage++;
+      totalPages = responseModel?.totalPages ?? 1;
+      print("next page: $currentPage and total page: $totalPages");
       if (this.responseModel == null) {
         this.responseModel = responseModel;
         streamController.add(responseModel.users);
@@ -37,12 +35,6 @@ class _PaginationExampleState extends State<PaginationExample> {
 
   @override
   void initState() {
-    scrollController = ScrollController();
-    scrollController.addListener(() {
-      if (scrollController.offset >= scrollController.position.maxScrollExtent) {
-        fetchUser();
-      }
-    });
     fetchUser();
     super.initState();
   }
@@ -62,27 +54,18 @@ class _PaginationExampleState extends State<PaginationExample> {
       body: StreamHandler<List<User>>(
         stream: streamController.stream,
         ready: (users) {
-          return ListView.builder(
-            itemCount: users.length + 1,
-            controller: scrollController,
-            itemBuilder: (BuildContext context, int index) {
-              if (index == users.length) {
-                if (currentPage < totalPages)
-                  return Center(child: CircularProgressIndicator());
-                else
-                  return Container();
-              }
+          return PaginatedListView(
+            itemCount: users.length,
+            hasMoreData: currentPage <= totalPages,
+            onGetMoreData: fetchUser,
+            itemBuilder: (context, index) {
               final user = users[index];
-              return Column(
-                children: <Widget>[
-                  Container(
-                    height: 300,
-                    child: ListTile(
-                      title: Text(user.email),
-                      subtitle: Text(user.firstName),
-                    ),
-                  ),
-                ],
+              return Container(
+                height: 300,
+                child: ListTile(
+                  title: Text(user.email),
+                  subtitle: Text(user.firstName),
+                ),
               );
             },
           );

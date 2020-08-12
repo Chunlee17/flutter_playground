@@ -25,8 +25,7 @@ class _FormValidationState extends State<FormValidation> with BasicPage {
             //autofillHints: [AutofillHints.email],
             keyboardType: TextInputType.emailAddress,
             autovalidate: true,
-            validator: (value) =>
-                value.isNotEmpty ? null : "Please input value",
+            validator: (value) => value.isNotEmpty ? null : "Please input value",
             decoration: InputDecoration(
               icon: Icon(Icons.person),
               hintText: "Email",
@@ -43,8 +42,7 @@ class _FormValidationState extends State<FormValidation> with BasicPage {
             //autofillHints: [AutofillHints.password],
             keyboardType: TextInputType.text,
             autovalidate: true,
-            validator: (value) =>
-                value.isNotEmpty ? null : "Please input value",
+            validator: (value) => value.isNotEmpty ? null : "Please input value",
             obscureText: true,
             decoration: InputDecoration(
               icon: Icon(Icons.vpn_lock),
