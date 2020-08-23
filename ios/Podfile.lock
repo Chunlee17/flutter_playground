@@ -1,18 +1,26 @@
 PODS:
+  - audio_service (0.0.1):
+    - Flutter
   - connectivity (0.0.1):
     - Flutter
     - Reachability
+  - connectivity_for_web (0.1.0):
+    - Flutter
   - connectivity_macos (0.0.1):
     - Flutter
   - Flutter (1.0.0)
+  - flutter_isolate (0.0.1):
+    - Flutter
   - flutter_plugin_android_lifecycle (0.0.1):
+    - Flutter
+  - flutter_tts (0.0.1):
     - Flutter
   - FMDB (2.7.5):
     - FMDB/standard (= 2.7.5)
   - FMDB/standard (2.7.5)
-  - geolocator (5.3.0):
+  - "geolocator (5.3.2+2)":
     - Flutter
-  - google_api_availability (2.0.2):
+  - google_api_availability (2.0.4):
     - Flutter
   - google_maps_flutter (0.0.1):
     - Flutter
@@ -24,11 +32,13 @@ PODS:
     - GoogleMaps/Base
   - image_picker (0.0.1):
     - Flutter
+  - just_audio (0.0.1):
+    - Flutter
   - local_auth (0.0.1):
     - Flutter
   - location (0.0.1):
     - Flutter
-  - "location_permissions (2.0.4+1)":
+  - "location_permissions (3.0.0+1)":
     - Flutter
   - path_provider (0.0.1):
     - Flutter
@@ -37,11 +47,15 @@ PODS:
   - path_provider_macos (0.0.1):
     - Flutter
   - Reachability (3.2)
+  - screen (0.0.1):
+    - Flutter
   - shared_preferences (0.0.1):
     - Flutter
   - shared_preferences_macos (0.0.1):
     - Flutter
   - shared_preferences_web (0.0.1):
+    - Flutter
+  - sign_in_with_apple (0.0.1):
     - Flutter
   - sqflite (0.0.1):
     - Flutter
@@ -56,23 +70,30 @@ PODS:
     - Flutter
 
 DEPENDENCIES:
+  - audio_service (from `.symlinks/plugins/audio_service/ios`)
   - connectivity (from `.symlinks/plugins/connectivity/ios`)
+  - connectivity_for_web (from `.symlinks/plugins/connectivity_for_web/ios`)
   - connectivity_macos (from `.symlinks/plugins/connectivity_macos/ios`)
   - Flutter (from `Flutter`)
+  - flutter_isolate (from `.symlinks/plugins/flutter_isolate/ios`)
   - flutter_plugin_android_lifecycle (from `.symlinks/plugins/flutter_plugin_android_lifecycle/ios`)
+  - flutter_tts (from `.symlinks/plugins/flutter_tts/ios`)
   - geolocator (from `.symlinks/plugins/geolocator/ios`)
   - google_api_availability (from `.symlinks/plugins/google_api_availability/ios`)
   - google_maps_flutter (from `.symlinks/plugins/google_maps_flutter/ios`)
   - image_picker (from `.symlinks/plugins/image_picker/ios`)
+  - just_audio (from `.symlinks/plugins/just_audio/ios`)
   - local_auth (from `.symlinks/plugins/local_auth/ios`)
   - location (from `.symlinks/plugins/location/ios`)
   - location_permissions (from `.symlinks/plugins/location_permissions/ios`)
   - path_provider (from `.symlinks/plugins/path_provider/ios`)
   - path_provider_linux (from `.symlinks/plugins/path_provider_linux/ios`)
   - path_provider_macos (from `.symlinks/plugins/path_provider_macos/ios`)
+  - screen (from `.symlinks/plugins/screen/ios`)
   - shared_preferences (from `.symlinks/plugins/shared_preferences/ios`)
   - shared_preferences_macos (from `.symlinks/plugins/shared_preferences_macos/ios`)
   - shared_preferences_web (from `.symlinks/plugins/shared_preferences_web/ios`)
+  - sign_in_with_apple (from `.symlinks/plugins/sign_in_with_apple/ios`)
   - sqflite (from `.symlinks/plugins/sqflite/ios`)
   - video_player (from `.symlinks/plugins/video_player/ios`)
   - video_player_web (from `.symlinks/plugins/video_player_web/ios`)
@@ -86,14 +107,22 @@ SPEC REPOS:
     - Reachability
 
 EXTERNAL SOURCES:
+  audio_service:
+    :path: ".symlinks/plugins/audio_service/ios"
   connectivity:
     :path: ".symlinks/plugins/connectivity/ios"
+  connectivity_for_web:
+    :path: ".symlinks/plugins/connectivity_for_web/ios"
   connectivity_macos:
     :path: ".symlinks/plugins/connectivity_macos/ios"
   Flutter:
     :path: Flutter
+  flutter_isolate:
+    :path: ".symlinks/plugins/flutter_isolate/ios"
   flutter_plugin_android_lifecycle:
     :path: ".symlinks/plugins/flutter_plugin_android_lifecycle/ios"
+  flutter_tts:
+    :path: ".symlinks/plugins/flutter_tts/ios"
   geolocator:
     :path: ".symlinks/plugins/geolocator/ios"
   google_api_availability:
@@ -102,6 +131,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/google_maps_flutter/ios"
   image_picker:
     :path: ".symlinks/plugins/image_picker/ios"
+  just_audio:
+    :path: ".symlinks/plugins/just_audio/ios"
   local_auth:
     :path: ".symlinks/plugins/local_auth/ios"
   location:
@@ -114,12 +145,16 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/path_provider_linux/ios"
   path_provider_macos:
     :path: ".symlinks/plugins/path_provider_macos/ios"
+  screen:
+    :path: ".symlinks/plugins/screen/ios"
   shared_preferences:
     :path: ".symlinks/plugins/shared_preferences/ios"
   shared_preferences_macos:
     :path: ".symlinks/plugins/shared_preferences_macos/ios"
   shared_preferences_web:
     :path: ".symlinks/plugins/shared_preferences_web/ios"
+  sign_in_with_apple:
+    :path: ".symlinks/plugins/sign_in_with_apple/ios"
   sqflite:
     :path: ".symlinks/plugins/sqflite/ios"
   video_player:
@@ -132,26 +167,33 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/webview_flutter/ios"
 
 SPEC CHECKSUMS:
-  connectivity: 6e94255659cc86dcbef1d452ad3e0491bb1b3e75
+  audio_service: f509d65da41b9521a61f1c404dd58651f265a567
+  connectivity: c4130b2985d4ef6fd26f9702e886bd5260681467
+  connectivity_for_web: 2b8584556930d4bd490d82b836bcf45067ce345b
   connectivity_macos: e2e9731b6b22dda39eb1b128f6969d574460e191
   Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
+  flutter_isolate: 0edf5081826d071adf21759d1eb10ff5c24503b5
   flutter_plugin_android_lifecycle: 47de533a02850f070f5696a623995e93eddcdb9b
+  flutter_tts: 0f492aab6accf87059b72354fcb4ba934304771d
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
-  geolocator: 7cdcf71180b80913b3cd84ab715d3b5365b378af
-  google_api_availability: 6f1017d3a61be12be3bd9f929cc5b2606f24ae7f
+  geolocator: f7622e0e7e2a24718285b73916d60c4a54b9f5b6
+  google_api_availability: 15fa42a8cd83c0a6738507ffe6e87096f12abcb8
   google_maps_flutter: d0dd62f5a7d39bae61057eb9f52dd778d99c7c6c
   GoogleMaps: f79af95cb24d869457b1f961c93d3ce8b2f3b848
   image_picker: e3eacd46b94694dde7cf2705955cece853aa1a8f
+  just_audio: baa7252489dbcf47a4c7cc9ca663e9661c99aafa
   local_auth: 25938960984c3a7f6e3253e3f8d962fdd16852bd
   location: 3a2eed4dd2fab25e7b7baf2a9efefe82b512d740
-  location_permissions: 360d12ecd1c94a4cab68585f508be1d5ad944c8b
+  location_permissions: 7e0f9aa0f60deb8ff93ddf0e2a164c7e8197bc94
   path_provider: abfe2b5c733d04e238b0d8691db0cfd63a27a93c
   path_provider_linux: 4d630dc393e1f20364f3e3b4a2ff41d9674a84e4
   path_provider_macos: f760a3c5b04357c380e2fddb6f9db6f3015897e0
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
+  screen: abd91ca7bf3426e1cc3646d27e9b2358d6bf07b0
   shared_preferences: 430726339841afefe5142b9c1f50cb6bd7793e01
   shared_preferences_macos: f3f29b71ccbb56bf40c9dd6396c9acf15e214087
   shared_preferences_web: 141cce0c3ed1a1c5bf2a0e44f52d31eeb66e5ea9
+  sign_in_with_apple: 34f3f5456a45fd7ac5fb42905e2ad31dae061b4a
   sqflite: 4001a31ff81d210346b500c55b17f4d6c7589dd0
   video_player: 9cc823b1d9da7e8427ee591e8438bfbcde500e6e
   video_player_web: da8cadb8274ed4f8dbee8d7171b420dedd437ce7
