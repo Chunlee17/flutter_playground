@@ -55,6 +55,7 @@ import 'package:flutter_playground/playground_pages/sqflite_todo.dart';
 import 'package:flutter_playground/playground_pages/streambuilder.dart';
 import 'package:flutter_playground/playground_pages/swipe_card.dart';
 import 'package:flutter_playground/playground_pages/telegram_sliver.dart';
+import 'package:flutter_playground/playground_pages/upwork_client.dart';
 
 final List<PageModel> pages = [
   PageModel(
@@ -275,6 +276,10 @@ final List<PageModel> pages = [
   ),
   PageModel(
     page: FlutterOverflowBox(),
+    pageType: PageType.Widget,
+  ),
+  PageModel(
+    page: MyPage2Widget(),
     pageType: PageType.Widget,
   ),
 ];
