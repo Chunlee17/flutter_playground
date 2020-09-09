@@ -74,8 +74,11 @@ class _SilverAppBarWithTabBarState extends State<SilverAppBarWithTabBarScreen>
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          controller.animateTo(1,
-              duration: Duration(milliseconds: 100), curve: Curves.bounceIn);
+          controller.animateTo(
+            1,
+            duration: Duration(milliseconds: 100),
+            curve: Curves.bounceIn,
+          );
         },
         child: Icon(Icons.add),
       ),
@@ -106,7 +109,6 @@ class _TabViewListState extends State<TabViewList> {
         if (scrollController.offset != 0.0) {
           int total = (scrollController.position.maxScrollExtent / 20).floor();
           double currentItem = scrollController.position.pixels / total;
-
           print(currentItem);
         }
       });

@@ -7,48 +7,52 @@ class FlutterCubicTo extends StatefulWidget {
 }
 
 class _FlutterCubicToState extends State<FlutterCubicTo> with BasicPage {
-  double x1 = 0;
-  double x2 = 0;
-  double y1 = 0;
-  double y2 = 0;
+  double center = 80;
+  double radius = 50;
+
+  @override
+  void initState() {
+    center = radius;
+    super.initState();
+  }
+
   @override
   Widget body(BuildContext context) {
+    double radius = 36;
     return Center(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          ClipPath(
-            child: Container(
-              width: 200,
-              height: 100,
-              color: Colors.red,
-            ),
-            clipper: MyCubicToClipper(x1, y1, x2, y2),
+          Stack(
+            children: [
+              ClipPath(
+                child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: 100,
+                  color: Colors.red,
+                ),
+                clipper: MyCubicToClipper(center: center, radius: radius),
+              ),
+              Positioned(
+                bottom: 0,
+                left: center - 24 / 2,
+                child: Container(
+                  width: 24,
+                  height: 24,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.green,
+                  ),
+                ),
+              ),
+            ],
           ),
           customSlider(
-            min: 0,
-            max: 200,
-            value: x1,
-            onChanged: (value) => setState(() => x1 = value),
-          ),
-          customSlider(
-            min: 0,
-            max: 100,
-            value: y1,
-            onChanged: (value) => setState(() => y1 = value),
-          ),
-          customSlider(
-            min: 0,
-            max: 200,
-            value: x2,
-            onChanged: (value) => setState(() => x2 = value),
-          ),
-          customSlider(
-            min: 0,
-            max: 100,
-            value: y2,
-            onChanged: (value) => setState(() => y2 = value),
+            min: radius,
+            max: MediaQuery.of(context).size.width - radius,
+            value: center,
+            onChanged: (value) => setState(() => center = value),
           ),
         ],
       ),
@@ -79,34 +83,36 @@ class _FlutterCubicToState extends State<FlutterCubicTo> with BasicPage {
 }
 
 class MyCubicToClipper extends CustomClipper<Path> {
-  final double x1;
-  final double y1;
-  final double x2;
-  final double y2;
-
-  MyCubicToClipper(this.x1, this.y1, this.x2, this.y2);
+  final double center;
+  final double radius;
+  MyCubicToClipper({this.radius, this.center});
   @override
   Path getClip(Size size) {
     final path = Path();
+    final double depth = 30;
+    final double centerPivot = center ?? size.width / 2;
     path.lineTo(0, size.height);
+    path.lineTo(centerPivot - radius, size.height);
     path.cubicTo(
-      size.width / 4,
+      centerPivot - radius / 2,
       size.height,
-      size.width / 4,
-      size.height / 2,
-      size.width / 2,
-      size.height - 50,
+      centerPivot - radius / 2,
+      size.height - depth,
+      //
+      centerPivot,
+      size.height - depth,
     );
 
     path.cubicTo(
-      size.width - size.width / 4,
-      size.height / 2,
-      size.width - size.width / 4,
+      centerPivot + radius / 2,
+      size.height - depth,
+      centerPivot + radius / 2,
       size.height,
-      size.width,
+      //
+      centerPivot + radius,
       size.height,
     );
-
+    path.lineTo(size.width, size.height);
     path.lineTo(size.width, 0);
     path.close();
     return path;

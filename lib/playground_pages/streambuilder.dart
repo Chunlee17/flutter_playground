@@ -48,6 +48,7 @@ class _StreamBuilderPlaygroundState extends State<StreamBuilderPlayground> {
   @override
   void initState() {
     selectedStream = behaviorStream;
+    selectedStream.add(10);
     initializeStreamListener();
     super.initState();
   }

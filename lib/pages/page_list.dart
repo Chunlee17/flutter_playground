@@ -12,6 +12,7 @@ import 'package:flutter_playground/playground_pages/flutter_curve_animation.dart
 import 'package:flutter_playground/playground_pages/flutter_custom_painter.dart';
 import 'package:flutter_playground/playground_pages/flutter_custom_route.dart';
 import 'package:flutter_playground/playground_pages/flutter_over_flow_box.dart';
+import 'package:flutter_playground/playground_pages/flutter_tab_bar_view.dart';
 import 'package:flutter_playground/playground_pages/flutter_tween_sequence_animation.dart';
 import 'package:flutter_playground/playground_pages/form_validation.dart';
 import 'package:flutter_playground/playground_pages/location_permission_example.dart';
@@ -84,6 +85,10 @@ final List<PageModel> pages = [
   ),
   PageModel(
     page: FlutterCustomPainter(),
+    pageType: PageType.Widget,
+  ),
+  PageModel(
+    page: FlutterTabBarView(),
     pageType: PageType.Widget,
   ),
   PageModel(
