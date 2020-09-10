@@ -29,6 +29,23 @@ GetIt getIt = GetIt.instance;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  ErrorWidget.builder = (FlutterErrorDetails details) {
+    bool inDebug = false;
+    assert(() {
+      inDebug = true;
+      return true;
+    }());
+    // In debug mode, use the normal error widget which shows
+    // the error message:
+    if (inDebug) return ErrorWidget(details.exception);
+    // In release builds, show a yellow-on-blue message instead:
+    return Material(
+      child: Container(
+        alignment: Alignment.center,
+        child: Text('Error!', style: TextStyle(color: Colors.black)),
+      ),
+    );
+  };
   setupHive();
   getIt.registerLazySingleton(() => CounterBloc(0));
   getIt.registerLazySingleton(() => TodoDBProvider());
@@ -63,7 +80,8 @@ class MyApp extends StatelessWidget {
               Provider(create: (context) => CheckNumberProvider()),
               Provider(create: (context) => CounterStream()),
               ProxyProvider<CounterProvider, CheckNumberProvider>(
-                update: (context, counter, depender) => CheckNumberProvider(counter: counter),
+                update: (context, counter, depender) =>
+                    CheckNumberProvider(counter: counter),
               ),
             ],
             child: Momentum(
@@ -84,7 +102,8 @@ class MyApp extends StatelessWidget {
                 locale: Locale("km", "KH"),
                 theme: ThemeData(
                   primarySwatch: primaryColor,
-                  accentColor: JinColorUtils.hexColorToMaterialColor(0xFF47C5FB),
+                  accentColor:
+                      JinColorUtils.hexColorToMaterialColor(0xFF47C5FB),
                 ),
                 home: MyHomePage(),
               ),
