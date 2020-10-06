@@ -18,7 +18,7 @@ import 'package:flutter_playground/playground_pages/flutter_tween_sequence_anima
 import 'package:flutter_playground/playground_pages/form_validation.dart';
 import 'package:flutter_playground/playground_pages/location_permission_example.dart';
 import 'package:flutter_playground/playground_pages/mobx_state_management.dart';
-import 'package:flutter_playground/playground_pages/momentum_state_management.dart';
+//import 'package:flutter_playground/playground_pages/momentum_state_management.dart';
 import 'package:flutter_playground/playground_pages/motion_animation.dart';
 import 'package:flutter_playground/playground_pages/pagination.dart';
 import 'package:flutter_playground/playground_pages/rich_text_spliting.dart';
@@ -209,10 +209,10 @@ final List<PageModel> pages = [
     page: MobXStateManagementExample(),
     pageType: PageType.StateManagement,
   ),
-  PageModel(
-    page: MomentumStateManagementExample(),
-    pageType: PageType.StateManagement,
-  ),
+  // PageModel(
+  //   page: MomentumStateManagementExample(),
+  //   pageType: PageType.StateManagement,
+  // ),
   PageModel(
     page: FlipPageTransition(),
     pageType: PageType.Widget,

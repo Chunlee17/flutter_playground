@@ -15,7 +15,6 @@ import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hive/hive.dart';
 import 'package:jin_widget_helper/jin_widget_helper.dart';
-import 'package:momentum/momentum.dart';
 import 'package:provider/provider.dart';
 import 'package:states_rebuilder/states_rebuilder.dart';
 import 'package:path_provider/path_provider.dart';
@@ -84,29 +83,23 @@ class MyApp extends StatelessWidget {
                     CheckNumberProvider(counter: counter),
               ),
             ],
-            child: Momentum(
-              controllers: [
-                MomentumCounterController(),
+            child: GetMaterialApp(
+              title: 'Flutter Playground',
+              navigatorKey: JinNavigator.navigatorKey,
+              debugShowCheckedModeBanner: false,
+              enableLog: false,
+              localizationsDelegates: [
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+                EasyLocalization.of(context).delegate,
               ],
-              child: GetMaterialApp(
-                title: 'Flutter Playground',
-                navigatorKey: JinNavigator.navigatorKey,
-                debugShowCheckedModeBanner: false,
-                enableLog: false,
-                localizationsDelegates: [
-                  GlobalMaterialLocalizations.delegate,
-                  GlobalWidgetsLocalizations.delegate,
-                  EasyLocalization.of(context).delegate,
-                ],
-                supportedLocales: EasyLocalization.of(context).supportedLocales,
-                locale: Locale("km", "KH"),
-                theme: ThemeData(
-                  primarySwatch: primaryColor,
-                  accentColor:
-                      JinColorUtils.hexColorToMaterialColor(0xFF47C5FB),
-                ),
-                home: MyHomePage(),
+              supportedLocales: EasyLocalization.of(context).supportedLocales,
+              locale: Locale("km", "KH"),
+              theme: ThemeData(
+                primarySwatch: primaryColor,
+                accentColor: JinColorUtils.hexColorToMaterialColor(0xFF47C5FB),
               ),
+              home: MyHomePage(),
             ),
           ),
         ),
